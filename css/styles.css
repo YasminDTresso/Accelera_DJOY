@@ -1,1 +1,206 @@
-/*Insira os principais estilos do site nesse arquivo! =)*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+::after,
+::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+  /*Paleta*/
+  /* https://colorhunt.co/palette/6439ff4f75ff00ccdd7cf5ff*/
+
+  /*Cores*/
+  --my-purple: #6439ff;
+  --my-blue: #4f75ff;
+  --my-light-blue: #00ccdd;
+  --my-bright-blue: #7cf5ff;
+
+  /*Fontes de letra*/
+  --fonte-padrao: "Poppins", sans-serif;
+}
+
+body {
+  font-family: var(--fonte-padrao);
+  background-color: var(--offwhite);
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
+
+main {
+  flex: 1;
+}
+
+/*---Navbar---*/
+
+.nav-link {
+  font-weight: 600;
+  color: black;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.nav-item > .dropdown-menu {
+  background-color: white;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.nav-item > .dropdown-menu > li > a.dropdown-item:hover {
+  color: white;
+  background-color: var(--my-blue);
+}
+
+.my-logo {
+  font-size: 2.5rem;
+  color: var(--my-purple);
+}
+
+.navbar-toggler > .uil-bars {
+  font-size: 1.8rem;
+  color: var(--my-purple);
+}
+
+.navbar-toggler > div.d-flex > i.uil-angle-right-b {
+  font-size: 2rem;
+  color: var(--my-purple);
+}
+
+.user-img {
+  width: 43px;
+  height: 43px;
+  border-radius: 2rem;
+}
+.navbar-nav{
+    font-size: 1.3rem;
+}
+
+/*---SIDEBAR---*/
+
+#sidebar a{
+    text-decoration: none;
+}
+
+#sidebar li{
+    list-style: none;
+}
+
+#sidebar h1{
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.wrapper{
+    display: flex;
+}
+
+.main{
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transform: all 0.35s ease-in-out;
+    background-color: white;
+}
+
+#sidebar{
+    width: 20vw;
+    height: 100vh;
+    z-index: 1000;
+    transition: all .25s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+}
+
+.sidebar-nav{
+  padding: 0;
+  flex: 1 1 auto;
+}
+
+a.sidebar-link{
+
+  padding: .625rem 1.625rem;
+  color: white;
+  display: block;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  border-left: 3px solid transparent;
+
+}
+
+.sidebar-link i{
+  font-size: 1.1rem;
+  margin-right: .75rem;
+}
+
+a.sidebar-link:hover{
+  background-color: var(--my-blue);
+  border-left: 3px solid var(--my-purple);
+}
+
+.sidebar-item{
+  position: relative;
+}
+
+.sidebar-link[data-bs-toggle="collapse"]::after{
+  border: solid;
+  border-width: 0 .075rem .075rem 0;
+  content: "";
+  display: inline-block;
+  padding: 2px;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.4rem;
+  transform: rotate(-135deg);
+  transition: all .2s ease-out;
+}
+
+.sidebar-link[data-bs-toggle="collapse"].collapsed::after{
+ transform: rotate(45deg);
+ transition: all .2s ease-out;
+}
+
+.sidebar-welcome{
+  padding: 1rem 1.5rem;
+}
+
+.sidebar-welcome a{
+  margin: auto 0;
+  color: #6439ff;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+/*--Responsividade--*/
+
+/*Larger Screen*/
+@media (min-width: 992px) {
+  /*---Navbar---*/
+
+  .my-logo > p[class="fs-2"] {
+    margin: 0.3rem;
+  }
+
+  .nav-item > .dropdown-menu {
+    transform: translate(0px, -1rem);
+  }
+}
+
+/*Small Screen*/
+@media (min-width: 540px) {
+  /*---Navbar---*/
+
+  .my-logo > p[class="fs-2"] {
+    margin: 0.5rem;
+  }
+}
