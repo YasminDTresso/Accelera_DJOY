@@ -11,11 +11,14 @@
   /*Paleta*/
   /* https://colorhunt.co/palette/6439ff4f75ff00ccdd7cf5ff*/
 
-  /*Cores*/
-  --my-purple: #6439ff;
-  --my-blue: #4f75ff;
-  --my-light-blue: #00ccdd;
-  --my-bright-blue: #7cf5ff;
+  /*-----+Cores+-----*/
+  --primary-color-01: #6439ff;
+  --primary-color-02: #4f75ff;
+  --primary-color-03: #00ccdd;
+  --primary-color-04: #7cf5ff;
+
+  --background-color: #DFE4EB;
+
 
   /*Fontes de letra*/
   --fonte-padrao: "Poppins", sans-serif;
@@ -23,7 +26,7 @@
 
 body {
   font-family: var(--fonte-padrao);
-  background-color: var(--offwhite);
+  background-color: var(--background-color);
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
   display: flex;
@@ -31,16 +34,37 @@ body {
   flex-direction: column;
 }
 
-body::-webkit-scrollbar {
-  display: none;
-  /* Safari and Chrome */
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+/*Para esconder o scrollbar */
+::-webkit-scrollbar {
+  width: 0px; 
+  background: transparent;  /* Tornando o scrollbar invisível */
 }
 
 main {
   flex: 1;
 }
 
+.wrapper{
+  display: flex;
+}
+
+.my-main{
+  min-width: 100vh;
+  width: 100%;
+  overflow: hidden;
+  transition: all 0.35s ease-in-out;
+}
+
+
 /*---Navbar---*/
+
+.navbar{
+  background-color: white;
+}
 
 .nav-link {
   font-weight: 600;
@@ -59,22 +83,22 @@ main {
 
 .nav-item > .dropdown-menu > li > a.dropdown-item:hover {
   color: white;
-  background-color: var(--my-blue);
+  background-color: var(--primary-color-02);
 }
 
 .my-logo {
   font-size: 2.5rem;
-  color: var(--my-purple);
+  color: var(--primary-color-01);
 }
 
 .navbar-toggler > .uil-bars {
   font-size: 1.8rem;
-  color: var(--my-purple);
+  color: var(--primary-color-01);
 }
 
 .navbar-toggler > div.d-flex > i.uil-angle-right-b {
   font-size: 2rem;
-  color: var(--my-purple);
+  color: var(--primary-color-01);
 }
 
 .user-img {
@@ -89,71 +113,99 @@ main {
 /*---SIDEBAR---*/
 
 #sidebar a{
-    text-decoration: none;
+  text-decoration: none;
 }
 
 #sidebar li{
-    list-style: none;
+  list-style: none;
 }
 
 #sidebar h1{
-    font-weight: 600;
-    font-size: 1.5rem;
-}
-
-.wrapper{
-    display: flex;
-}
-
-.main{
-    min-height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    transform: all 0.35s ease-in-out;
-    background-color: white;
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 #sidebar{
-    width: 20vw;
-    height: 100vh;
-    z-index: 1000;
-    transition: all .25s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    background-color: grey;
+  width: 70px;
+  min-width: 70px;
+  z-index: 1000;
+  transition: all .25s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-color-01);
+}
+
+/*CSS-JS -> Exibir/Esconder Sidebar*/
+#sidebar.expand{
+  min-width: 250px;
+  min-height: 90vh;
+}
+
+#sidebar:not(.expand){
+  min-width: 75px;
+  min-height: 90vh;
+}
+
+#toggle-btn{
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  padding: 1rem 1.5rem;
+}
+
+#toggle-btn i{
+  font-size: 2rem;
+  color: white;
+}
+
+.sidebar-logo{
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.sidebar-logo a{
+  color: white;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+#sidebar:not(.expand) .sidebar-logo, 
+#sidebar:not(.expand) a.sidebar-link span{
+  display: none;
 }
 
 .sidebar-nav{
-  padding: 0;
+  padding: 2rem 0;
   flex: 1 1 auto;
 }
-
 a.sidebar-link{
-
-  padding: .625rem 1.625rem;
+  padding: 0.625rem 1.625rem;
   color: white;
   display: block;
   font-size: 0.9rem;
   white-space: nowrap;
   border-left: 3px solid transparent;
-
 }
 
-.sidebar-link i{
-  font-size: 1.1rem;
+.sidebar-link i {
+  font-size: 1.3rem;
   margin-right: .75rem;
 }
 
 a.sidebar-link:hover{
-  background-color: var(--my-blue);
-  border-left: 3px solid var(--my-purple);
+  background-color: var(--primary-color-02);
+  border-left: 5px solid white;
 }
 
 .sidebar-item{
   position: relative;
 }
 
-.sidebar-link[data-bs-toggle="collapse"]::after{
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown{
+  display: none;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
   border: solid;
   border-width: 0 .075rem .075rem 0;
   content: "";
@@ -166,20 +218,9 @@ a.sidebar-link:hover{
   transition: all .2s ease-out;
 }
 
-.sidebar-link[data-bs-toggle="collapse"].collapsed::after{
- transform: rotate(45deg);
- transition: all .2s ease-out;
-}
-
-.sidebar-welcome{
-  padding: 1rem 1.5rem;
-}
-
-.sidebar-welcome a{
-  margin: auto 0;
-  color: #6439ff;
-  font-size: 1.15rem;
-  font-weight: 600;
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+  transform: rotate(45deg);
+  transition: all .2s ease-out;
 }
 /*--Responsividade--*/
 
