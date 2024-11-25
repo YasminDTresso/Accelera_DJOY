@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Cadastro | Usuario </title>
 
     <!--CDN BOOTSTRAP-->
     <link
@@ -22,7 +22,10 @@
     <!-- MY CSS-->
     <link rel="stylesheet" href="css/styles.css" />
 
-    <style></style>
+    <style>
+
+
+    </style>
   </head>
   <body>
     <!------------------------+Header+------------------------>
@@ -183,7 +186,7 @@
             <a
               href=""
               id="multi-link"
-              class="sidebar-link has-dropdown collapsed"
+              class="sidebar-link has-dropdown collapsed active-sidebar-link"
               data-bs-toggle="collapse"
               data-bs-target="#multi"
               aria-expanded="false"
@@ -235,7 +238,7 @@
               <li class="sidebar-item">
                 <a
                   href=""
-                  class="sidebar-link collapsed"
+                  class="sidebar-link collapsed active-sidebar-link"
                   data-bs-toggle="collapse"
                   data-bs-target="#multi-usuario"
                   aria-expanded="false"
@@ -314,12 +317,82 @@
       </aside>
 
       <!------------------------+Main+------------------------>
-      <main>
-        <div class="my-main p-3">
-          <div class="text-center">
-            <h1>CONTEUDO!</h1>
-          </div>
-        </div>
+      <main class="my-main d-flex align-items-center justify-content-center">
+
+
+            <!--Alinhando contéudo para o centro-->
+            <div class="container">
+
+            <!-- Título da página -->
+             <div class="row">
+                <div class="col text-center mb-3">
+                    <h1>Cadastro de Usuário</h1>
+                </div>
+            </div>
+
+            <!-- Formulário de cadastro -->
+             <div class="row justify-content-center">
+                <form class="mx-auto row g-3">
+
+                <!-- Seção: dados pessoais do usuario -->
+                  <div class="col-12">
+                    <h2>Dados pessoais:</h2>
+                </div>
+                         
+                    <div class="col-12 mb-3">
+                        <!-- Campo para o nome (apenas leitura) -->
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" id="nome" class="form-control">
+                    </div>
+
+                    <div class="col-12 mb-3">
+                    <!-- Campo para o cpf -->
+                    <label for="cpf" class="form-label">CPF:</label>
+                    <input type="number" id="cpf" class="form-control">
+                    </div>
+
+                    <div class="col-12">
+                        <h2>Dados do usuário</h2>
+                    </div>
+    
+                    <div class="col-12 mb-3">
+                    <!-- Seção: dados da conta do usuário -->
+
+                    <label for="usuario" class="form-label">Usuario:</label>
+                    <input type="text" id="usuario" class="form-control">
+                    </div>
+
+                    <div class="col-12 mb-3">
+                      <label for="password" class="form-label">Senha:</label>
+                      <input type="password" class="form-control" id="password" placeholder="Senha">
+                      </div>
+                    </div>
+    
+                    <div class="col-12 mb-3">
+                      <label for="permissoes" class="form-label">Permissões:</label>
+                      <select class="form-select" aria-label="Default select example">
+                        <option selected>Selecione...</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Operador</option>
+                        <option value="3">Gerente</option>
+                      </select>
+
+                    <!-- Botões de ação -->
+                    <div class="col-12 mt-4">
+
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <button type="submit" class="btn btn-success">Inserir</button>
+                        <button type="button" class="btn btn-primary">Alterar Cadastro</button>
+                        <button type="reset" class="btn btn-danger">Cancelar</button>
+                    </div>
+
+                </form>
+             </div>
+
+
+                
+            </div>
       </main>
     </div>
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Cadastro | Transportadora</title>
 
     <!--CDN BOOTSTRAP-->
     <link
@@ -22,7 +22,10 @@
     <!-- MY CSS-->
     <link rel="stylesheet" href="css/styles.css" />
 
-    <style></style>
+    <style>
+
+
+    </style>
   </head>
   <body>
     <!------------------------+Header+------------------------>
@@ -183,7 +186,7 @@
             <a
               href=""
               id="multi-link"
-              class="sidebar-link has-dropdown collapsed"
+              class="sidebar-link has-dropdown collapsed active-sidebar-link"
               data-bs-toggle="collapse"
               data-bs-target="#multi"
               aria-expanded="false"
@@ -218,7 +221,7 @@
                   class="sidebar-dropdown list-unstyled collapse"
                 >
                   <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="#" class="sidebar-link active-sidebar-link">
                       <div class="dropdown-link-01">Nova Transportadora</div>
                     </a>
                   </li>
@@ -314,12 +317,93 @@
       </aside>
 
       <!------------------------+Main+------------------------>
-      <main>
-        <div class="my-main p-3">
-          <div class="text-center">
-            <h1>CONTEUDO!</h1>
-          </div>
-        </div>
+      <main class="my-main d-flex align-items-center justify-content-center">
+
+
+            <!--Alinhando contéudo para o centro-->
+            <div class="container">
+
+            <!-- Título da página -->
+             <div class="row">
+                <div class="col text-center mb-3">
+                    <h1>Cadastro de Transportadora</h1>
+                </div>
+            </div>
+
+            <!-- Formulário de cadastro -->
+             <div class="row justify-content-center">
+                <form class="mx-auto row g-3">
+                         
+                    <div class="col-md-2 mb-3">
+                        <!-- Campo para o código (apenas leitura) -->
+                        <label for="codigo" class="form-label">Código:</label>
+                        <input type="text" id="codigo" class="form-control">
+                    </div>
+
+                    <div class="col-md-10 mb-3">
+                    <!-- Campo para o nome da transportadora -->
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" id="nome" class="form-control">
+                    </div>
+
+                    <div class="col-md-12">
+                        <h2>Validade de check list em dias:</h2>
+                    </div>
+    
+                    <div class="col-md-4 mb-3">
+                    <!-- Seção: validade de checklist em dias -->
+
+                    <label for="fixo-checklist" class="form-label">Fixo:</label>
+                    <input type="number" id="fixo-checklist" class="form-control">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="agregado-checklist" class="form-label">Agregado:</label>
+                        <input type="number" id="agregado-checklist" class="form-control">
+                    </div>
+    
+                    <div class="col-md-4 mb-3">
+                        <label for="terceiro-checklist" class="form-label">Terceiro:</label>
+                        <input type="number" id="terceiro-checklist" class="form-control">
+                    </div>
+
+                    <div class="col-md-12">
+                        <!-- Seção: validade de consulta em dias -->
+                        <h2>Validade da consulta em dias:</h2>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                    <label for="fixo-consulta" class="form-label">Fixo:</label>
+                    <input type="number" id="fixo-consulta" class="form-control">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="agregado-consulta" class="form-label">Agregado:</label>
+                        <input type="number" id="agregado-consulta" class="form-control">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="terceiro-consulta" class="form-label">Terceiro:</label>
+                        <input type="number" id="terceiro-consulta" class="form-control">
+                    </div>
+    
+
+                    <!-- Botões de ação -->
+                    <div class="col-12 mt-4">
+
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <button type="submit" class="btn btn-success">Inserir</button>
+                        <button type="button" class="btn btn-primary">Alterar Cadastro</button>
+                        <button type="reset" class="btn btn-danger">Cancelar</button>
+                    </div>
+
+                </form>
+             </div>
+
+
+                
+            </div>
       </main>
     </div>
 

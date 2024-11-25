@@ -53,7 +53,7 @@ main {
 }
 
 .my-main{
-  min-width: 100vh;
+  min-height: 90vh;
   width: 100%;
   overflow: hidden;
   transition: all 0.35s ease-in-out;
@@ -138,12 +138,10 @@ main {
 /*CSS-JS -> Exibir/Esconder Sidebar*/
 #sidebar.expand{
   min-width: 250px;
-  min-height: 90vh;
 }
 
 #sidebar:not(.expand){
   min-width: 75px;
-  min-height: 90vh;
 }
 
 #toggle-btn{
@@ -197,9 +195,24 @@ a.sidebar-link:hover{
   border-left: 5px solid white;
 }
 
+a.active-sidebar-link{
+  color: black;
+  background-color: white;
+  border-left: 5px solid var(--primary-color-02);
+}
+
 .sidebar-item{
   position: relative;
 }
+
+.sidebar-dropdown .dropdown-link{
+  margin-left: 1rem;
+}
+
+.sidebar-dropdown .dropdown-link-01{
+  margin-left: 2rem;
+}
+
 
 #sidebar:not(.expand) .sidebar-item .sidebar-dropdown{
   display: none;
@@ -221,6 +234,15 @@ a.sidebar-link:hover{
 #sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
   transform: rotate(45deg);
   transition: all .2s ease-out;
+}
+
+/*MAIN*/
+
+.my-main .container{
+  max-width: 85%;
+  background: white;
+  border-radius: 2rem;
+  padding: 1.5rem;
 }
 /*--Responsividade--*/
 
