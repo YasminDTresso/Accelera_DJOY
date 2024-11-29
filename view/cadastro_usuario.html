@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro | Transportadora</title>
+    <title>Cadastro | Usuario </title>
 
     <!--CDN BOOTSTRAP-->
     <link
@@ -20,7 +20,7 @@
     />
 
     <!-- MY CSS-->
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
 
     <style>
 
@@ -205,7 +205,7 @@
               <!--Link Nivel 01-->
               <li class="sidebar-item">
                 <a
-                  href="#"
+                  href=""
                   class="sidebar-link collapsed"
                   data-bs-toggle="collapse"
                   data-bs-target="#multi-transportadora"
@@ -221,7 +221,7 @@
                   class="sidebar-dropdown list-unstyled collapse"
                 >
                   <li class="sidebar-item">
-                    <a href="cadastro_transportadora.html" class="sidebar-link active-sidebar-link">
+                    <a href="cadastro_transportadora.html" class="sidebar-link">
                       <div class="dropdown-link-01">Nova Transportadora</div>
                     </a>
                   </li>
@@ -237,7 +237,7 @@
               <!--Link Nivel 01-->
               <li class="sidebar-item">
                 <a
-                  href="cadastro_usuario.html"
+                  href=""
                   class="sidebar-link collapsed"
                   data-bs-toggle="collapse"
                   data-bs-target="#multi-usuario"
@@ -253,7 +253,7 @@
                   class="sidebar-dropdown list-unstyled collapse"
                 >
                   <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="cadastro_usuario.html" class="sidebar-link active-sidebar-link">
                       <div class="dropdown-link-01">Novo Usuario</div>
                     </a>
                   </li>
@@ -304,7 +304,6 @@
           </li>
 
         </ul>
-      </ul>
 
         </ul>
 
@@ -327,72 +326,59 @@
             <!-- Título da página -->
              <div class="row">
                 <div class="col text-center mb-3">
-                    <h1>Cadastro de Transportadora</h1>
+                    <h1>Cadastro de Usuário</h1>
                 </div>
             </div>
 
             <!-- Formulário de cadastro -->
              <div class="row justify-content-center">
                 <form class="mx-auto row g-3">
+
+                <!-- Seção: dados pessoais do usuario -->
+                  <div class="col-12">
+                    <h2>Dados pessoais:</h2>
+                </div>
                          
-                    <div class="col-md-2 mb-3">
-                        <!-- Campo para o código (apenas leitura) -->
-                        <label for="codigo" class="form-label">Código:</label>
-                        <input type="text" id="codigo" class="form-control">
+                    <div class="col-12 mb-3">
+                        <!-- Campo para o nome (apenas leitura) -->
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" id="nome" class="form-control">
                     </div>
 
-                    <div class="col-md-10 mb-3">
-                    <!-- Campo para o nome da transportadora -->
-                    <label for="nome" class="form-label">Nome:</label>
-                    <input type="text" id="nome" class="form-control">
+                    <div class="col-12 mb-3">
+                    <!-- Campo para o cpf -->
+                    <label for="cpf" class="form-label">CPF:</label>
+                    <input type="number" id="cpf" class="form-control">
                     </div>
 
-                    <div class="col-md-12">
-                        <h2>Validade de check list em dias:</h2>
+                    <div class="col-12">
+                        <h2>Dados do usuário</h2>
                     </div>
     
-                    <div class="col-md-4 mb-3">
-                    <!-- Seção: validade de checklist em dias -->
+                    <div class="col-12 mb-3">
+                    <!-- Seção: dados da conta do usuário -->
 
-                    <label for="fixo-checklist" class="form-label">Fixo:</label>
-                    <input type="number" id="fixo-checklist" class="form-control">
+                    <label for="usuario" class="form-label">Usuario:</label>
+                    <input type="text" id="usuario" class="form-control">
                     </div>
 
-                    <div class="col-md-4 mb-3">
-                        <label for="agregado-checklist" class="form-label">Agregado:</label>
-                        <input type="number" id="agregado-checklist" class="form-control">
+                    <div class="col-12 mb-3">
+                      <label for="password" class="form-label">Senha:</label>
+                      <input type="password" class="form-control" id="password" placeholder="Senha">
+                      </div>
                     </div>
     
-                    <div class="col-md-4 mb-3">
-                        <label for="terceiro-checklist" class="form-label">Terceiro:</label>
-                        <input type="number" id="terceiro-checklist" class="form-control">
+                    <div class="col-12 mb-3">
+                      <label for="permissoes" class="form-label">Permissões:</label>
+                      <select class="form-select form-control" aria-label="Default select example">
+                        <option selected>Selecione...</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Operador</option>
+                        <option value="3">Gerente</option>
+                      </select>
                     </div>
-
-                    <div class="col-md-12">
-                        <!-- Seção: validade de consulta em dias -->
-                        <h2>Validade da consulta em dias:</h2>
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                    <label for="fixo-consulta" class="form-label">Fixo:</label>
-                    <input type="number" id="fixo-consulta" class="form-control">
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label for="agregado-consulta" class="form-label">Agregado:</label>
-                        <input type="number" id="agregado-consulta" class="form-control">
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label for="terceiro-consulta" class="form-label">Terceiro:</label>
-                        <input type="number" id="terceiro-consulta" class="form-control">
-                    </div>
-    
 
                     <!-- Botões de ação -->
-                    <div class="col-12 mt-4">
-
-                    </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                         <button type="submit" class="btn btn-success">Inserir</button>
                         <button type="button" class="btn btn-primary">Alterar Cadastro</button>
@@ -419,6 +405,6 @@
       crossorigin="anonymous"
     ></script>
     <!--MY JS-->
-    <script src="script.js"></script>
+    <script src="/js/script.js"></script>
   </body>
 </html>
