@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Datatable</title>
+    <title>Datable</title>
 
     <!--CDN BOOTSTRAP-->
     <link
@@ -13,71 +13,31 @@
       crossorigin="anonymous"
     />
 
-    <!--CDN UNICONS-->
+    <!--CDN DATATABLE-->
     <link
-      rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
-    />
-
-    <!--CDN - DATATABLE-->
-    <link
-      href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/b-print-3.2.0/datatables.min.css"
+      href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/b-print-3.2.0/datatables.min.css"
       rel="stylesheet"
     />
 
     <!-- MY CSS-->
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
 
     <style>
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        padding: 100px 0;
-      }
-
-      .header_part {
-        background: #0c1e2e;
-        padding: 5px 80px;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        text-align: center;
-        z-index: 9999;
-      }
-
-      .header_part h4 {
-        color: #fff;
-        padding: 10px;
-      }
-
-      .header_part img {
-        float: left;
-        height: 60px;
-        border-radius: 50%;
-      }
-
-      .data_table {
-        background: #fff;
+      .data_table{
         padding: 15px;
-        box-shadow: 1px 3px 5px #aaa;
         border-radius: 5px;
+
       }
+
     </style>
   </head>
   <body>
-    <header class="header_part">
-      <img src="/assets/guinea-pig-785052_640.jpg" alt="" class="img-fluid" />
-      <h4>Datatable</h4>
-    </header>
-
     <div class="container">
       <div class="row">
         <div class="col-12">
           <div class="data_table">
-            <table id="tabela" class="table table-striped table-bordered">
-              <thead class="table-dark">
+            <table id="example" class="table">
+              <thead>
                 <tr>
                   <th>Name</th>
                   <th>Position</th>
@@ -561,12 +521,28 @@
       </div>
     </div>
 
-    <!--CDN - DATATABLE-->
+    <!--JS-->
+    <!--CDN BOOTSTRAP JS-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--JQUERY CDN-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!--CDN DATATABLE-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/b-print-3.2.0/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/b-print-3.2.0/datatables.min.js"></script>
 
-    <!--JQUERY-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--MY JS-->
+    <script src="/assets/js/datatable.js"></script>
   </body>
 </html>
