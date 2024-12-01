@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 ::after,
-::before{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -17,8 +17,7 @@
   --primary-color-03: #00ccdd;
   --primary-color-04: #7cf5ff;
 
-  --background-color: #DFE4EB;
-
+  --background-color: #dfe4eb;
 
   /*Fontes de letra*/
   --fonte-padrao: "Poppins", sans-serif;
@@ -40,29 +39,28 @@ html {
 }
 /*Para esconder o scrollbar */
 ::-webkit-scrollbar {
-  width: 0px; 
-  background: transparent;  /* Tornando o scrollbar invisível */
+  width: 0px;
+  background: transparent; /* Tornando o scrollbar invisível */
 }
 
 main {
   flex: 1;
 }
 
-.wrapper{
+.wrapper {
   display: flex;
 }
 
-.my-main{
+.my-main {
   min-height: 90vh;
   width: 100%;
   overflow: hidden;
   transition: all 0.35s ease-in-out;
 }
 
-
 /*---Navbar---*/
 
-.navbar{
+.navbar {
   background-color: white;
 }
 
@@ -106,77 +104,77 @@ main {
   height: 43px;
   border-radius: 2rem;
 }
-.navbar-nav{
-    font-size: 1.3rem;
+.navbar-nav {
+  font-size: 1.3rem;
 }
 
 /*---SIDEBAR---*/
 
-#sidebar a{
+#sidebar a {
   text-decoration: none;
 }
 
-#sidebar li{
+#sidebar li {
   list-style: none;
 }
 
-#sidebar h1{
+#sidebar h1 {
   font-weight: 600;
   font-size: 1.5rem;
 }
 
-#sidebar{
+#sidebar {
   width: 70px;
   min-width: 70px;
   z-index: 1000;
-  transition: all .25s ease-in-out;
+  transition: all 0.25s ease-in-out;
   display: flex;
   flex-direction: column;
   background-color: var(--primary-color-01);
 }
 
 /*CSS-JS -> Exibir/Esconder Sidebar*/
-#sidebar.expand{
+#sidebar.expand {
   min-width: 250px;
 }
 
-#sidebar:not(.expand){
+#sidebar:not(.expand) {
   min-width: 75px;
 }
 
-#toggle-btn{
+#toggle-btn {
   background-color: transparent;
   cursor: pointer;
   border: 0;
   padding: 1rem 1.5rem;
 }
 
-#toggle-btn i{
+#toggle-btn i {
   font-size: 2rem;
   color: white;
 }
 
-.sidebar-logo{
+.sidebar-logo {
   margin-left: 2rem;
   margin-top: 1rem;
 }
 
-.sidebar-logo a{
+.sidebar-logo a {
   color: white;
   font-size: 1.15rem;
   font-weight: 600;
 }
 
-#sidebar:not(.expand) .sidebar-logo, 
-#sidebar:not(.expand) a.sidebar-link span{
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
   display: none;
 }
 
-.sidebar-nav{
+.sidebar-nav {
   padding: 2rem 0;
   flex: 1 1 auto;
 }
-a.sidebar-link{
+a.sidebar-link {
   padding: 0.625rem 1.625rem;
   color: white;
   display: block;
@@ -187,40 +185,39 @@ a.sidebar-link{
 
 .sidebar-link i {
   font-size: 1.3rem;
-  margin-right: .75rem;
+  margin-right: 0.75rem;
 }
 
-a.sidebar-link:hover{
+a.sidebar-link:hover {
   background-color: var(--primary-color-02);
   border-left: 5px solid white;
 }
 
-a.active-sidebar-link{
+a.active-sidebar-link {
   color: black;
   background-color: white;
   border-left: 5px solid var(--primary-color-02);
 }
 
-.sidebar-item{
+.sidebar-item {
   position: relative;
 }
 
-.sidebar-dropdown .dropdown-link{
+.sidebar-dropdown .dropdown-link {
   margin-left: 1rem;
 }
 
-.sidebar-dropdown .dropdown-link-01{
+.sidebar-dropdown .dropdown-link-01 {
   margin-left: 2rem;
 }
 
-
-#sidebar:not(.expand) .sidebar-item .sidebar-dropdown{
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
   display: none;
 }
 
 #sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
   border: solid;
-  border-width: 0 .075rem .075rem 0;
+  border-width: 0 0.075rem 0.075rem 0;
   content: "";
   display: inline-block;
   padding: 2px;
@@ -228,27 +225,31 @@ a.active-sidebar-link{
   right: 1.5rem;
   top: 1.4rem;
   transform: rotate(-135deg);
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 #sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
   transform: rotate(45deg);
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 /*MAIN*/
 
-.my-main .container{
+.my-main .container {
   max-width: 85%;
   background: white;
   border-radius: 2rem;
   padding: 1.5rem;
+  overflow: scroll;
 }
 
+.my-main .container-fluid {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
 
 /*DATATABLE*/
-
-
 
 /*--Responsividade--*/
 
