@@ -100,7 +100,7 @@
                 <li>
                   <a
                     class="dropdown-item d-flex justify-content-center"
-                    href="configuracoes.html"
+                    href="meu-perfil-configuracoes.html"
                   >
                     <i class="uil uil-setting" style="margin-right: 0.6rem"></i>
                     <span>Configurações</span>
@@ -152,7 +152,7 @@
           <!--+Link c/ dropdown+-->
           <li class="sidebar-item">
             <a
-              href="meu-perfil.html"
+              href="#"
               id="dropdown-link"
               class="sidebar-link has-dropdown collapsed"
               data-bs-toggle="collapse"
@@ -171,7 +171,7 @@
               data-bs-parent="#sidebar"
             >
               <li class="sidebar-item">
-                <a href="configuracoes.html" class="sidebar-link">
+                <a href="meu-perfil-configuracoes.html" class="sidebar-link">
                   <div class="dropdown-link">
                     <i class="uil uil-setting"></i>
                     <span>Configurações</span>
@@ -303,6 +303,100 @@
           </a>
           </li>
 
+          <!--+Link c/ dropdown multi-nivel+-->
+          <li class="sidebar-item">
+            <a
+              href=""
+              id="multi-link-01"
+              class="sidebar-link has-dropdown collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#multi-01"
+              aria-expanded="false"
+              aria-controls="multi-01"
+            >
+              <i class="uil uil-plus"></i>
+              <span>Consulta</span>
+            </a>
+
+            <!--Dropdown multi-nivel-->
+            <ul
+              id="multi-01"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="#"
+                  class="sidebar-link collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#multi-consultar"
+                  aria-expanded="false"
+                  aria-controls="multi-consultar"
+                >
+                  <div class="dropdown-link">Consultar</div>
+                </a>
+
+                <!--Link Nivel 02 -->
+                <ul
+                  id="multi-consultar"
+                  class="sidebar-dropdown list-unstyled collapse"
+                >
+                  <li class="sidebar-item">
+                    <a href="consulta_vinculo_usuario_transportadora.html" class="sidebar-link">
+                      <div class="dropdown-link-01 text-wrap">Consulta Vínculo Usuário Transportadora</div>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a href="consulta_licenciamento.html" class="sidebar-link">
+                      <div class="dropdown-link-01">Consulta Licenciamento</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="#"
+                  class="sidebar-link collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#multi-controle"
+                  aria-expanded="false"
+                  aria-controls="multi-controle"
+                >
+                  <div class="dropdown-link">Controle</div>
+                </a>
+
+                <!--Link Nivel 02 -->
+                <ul
+                  id="multi-controle"
+                  class="sidebar-dropdown list-unstyled collapse"
+                >
+                  <li class="sidebar-item">
+                    <a href="controle_consulta.html" class="sidebar-link">
+                      <div class="dropdown-link-01">Controle Consulta</div>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a href="trabalhos_pendentes.html" class="sidebar-link">
+                      <div class="dropdown-link-01">Trabalhos Pendentes</div>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a href="checklist.html" class="sidebar-link">
+                      <div class="dropdown-link-01">CheckList</div>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+            </ul>
+          </li> 
+
         </ul>
       </ul>
 
@@ -327,9 +421,10 @@
 
             <!-- Título da página -->
              <div class="row w-100">
-                <div class="col text-center mb-3">
+                <div class="col mb-3">
                     <h1>Cadastro de Usuário</h1>
                 </div>
+                <hr>
             </div>
 
             <!-- Formulário de cadastro -->
@@ -353,6 +448,7 @@
                     <input type="number" id="cpf" class="form-control">
                     </div>
 
+                    <hr>
                     <div class="col-12">
                         <h2>Dados do usuário</h2>
                     </div>

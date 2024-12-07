@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Consulta de Licenciamento</title>
+    <title>Meu Perfil </title>
 
     <!--CDN BOOTSTRAP-->
     <link
@@ -154,7 +154,7 @@
             <a
               href="#"
               id="dropdown-link"
-              class="sidebar-link has-dropdown collapsed"
+              class="sidebar-link has-dropdown collapsed active-sidebar-link"
               data-bs-toggle="collapse"
               data-bs-target="#dropdown-profile"
               aria-expanded="false"
@@ -171,7 +171,7 @@
               data-bs-parent="#sidebar"
             >
               <li class="sidebar-item">
-                <a href="meu-perfil-configuracoes.html" class="sidebar-link">
+                <a href="meu-perfil-configuracoes.html" class="sidebar-link active-sidebar-link">
                   <div class="dropdown-link">
                     <i class="uil uil-setting"></i>
                     <span>Configurações</span>
@@ -289,7 +289,7 @@
 
           <!--+Link simples+-->
           <li class="sidebar-item">
-            <a href="consulta_licenciamento.html" class="sidebar-link active-sidebar-link">
+            <a href="consulta_licenciamento.html" class="sidebar-link">
               <i class="uil uil-file-bookmark-alt"></i>
               <span>Licenciamento</span>
             </a>
@@ -396,7 +396,7 @@
               </li>
             </ul>
           </li> 
-          
+
         </ul>
       </ul>
 
@@ -411,6 +411,7 @@
         </div>
       </aside>
 
+
       <!------------------------+Main+------------------------>
       <main class="my-main d-flex p-3">
 
@@ -418,52 +419,68 @@
             <!--Alinhando contéudo para o centro-->
             <div class="container-fluid">
 
-            <!-- Título da página -->
+                          <!-- Título da página -->
              <div class="row w-100">
-                <div class="col">
-                    <h1>Vínculo de Usuário e Transportadora</h1>
-                </div>
-                <hr>
-            </div>
+              <div class="col mb-3">
+                  <h1>Meu Perfil | Configurações</h1>
+              </div>
+              <hr>
+          </div>
 
-            <!-- Formulário de consulta -->
-             <div class="row w-100" style="">
-                <form class="mx-auto row g-3">
-                  
-                <div class="col-md-12">
-                    <h2>Consulta de Licenciamento:</h2>
-                </div>
+          <!-- Formulário de cadastro -->
+           <div class="row w-100" style="align-items: center;">
+              <form class="mx-auto row g-3">
 
-                <div class="col-md-8">
-                    <!-- Campo para buscar placa do caminhão -->
-                    <label for="search-placa-caminhão" class="form-label">Placa do Caminhão:</label>
-                    <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Digite aqui..." aria-label="search-placa-caminhao" aria-describedby="search-placa-caminhao-btn">
-                      <button class="btn btn-outline-secondary" type="button" id="search-placa-caminhao-btn"><i class="uil uil-search"></i></button>
-                    </div>
-                </div>
-
-                  <!-- Campo para o filtro de busca -->
-                  <div class="col-md-4">
-                    <label for="filtro-licenciamento" class="form-label">Estado de origem do Emplacamento:</label>
-                    <select class="form-select form-control" aria-label="Default select example">
-                      <option selected>Selecione...</option>
-                      <option value="1">SP</option>
-                      <option value="2">MG</option>
-                    </select>
+              <!-- Seção: dados pessoais do usuario -->
+                <div class="col-12">
+                  <h2>Dados pessoais:</h2>
+              </div>
+                       
+                  <div class="col-12 mb-3">
+                      <!-- Campo para o nome (apenas leitura) -->
+                      <label for="nome" class="form-label">Nome:</label>
+                      <input type="text" id="nome" class="form-control" placeholder="Nome" disabled readonly>
                   </div>
-                    
-                    <div class="col-md-12 mb-3">
-                      <label for="result-licenciamento" class="form-label">Resultado da busca:</label>         
-                      <input class="form-control" type="text" value="Resultado da busca aqui! Exemplo: A data do vencimento do licenciamento 2024 para a placa 1 do estado SP (caminhao) é em: Setembro" aria-label="Disabled input" disabled readonly id="result-user">
-                    </div>
 
-                </form>
-             </div>
+                  <div class="col-12 mb-3">
+                  <!-- Campo para o cpf -->
+                  <label for="cpf" class="form-label">CPF:</label>
+                  <input type="number" id="cpf" class="form-control" placeholder="000.000.000-00" disabled readonly>
+                  </div>
 
+                  <hr>
+                  <div class="col-12">
+                      <h2>Dados do usuário</h2>
+                  </div>
+  
+                  <div class="col-12 mb-3">
+                  <!-- Seção: dados da conta do usuário -->
 
-                
+                  <label for="usuario" class="form-label">Usuario:</label>
+                  <input type="text" id="usuario" class="form-control" placeholder="Usuario" disabled readonly>
+                  </div>
+
+                  <div class="col-12 mb-3">
+                    <label for="password" class="form-label">Alterar Senha:</label>
+                    <input type="password" class="form-control" id="password" placeholder="">
+                  </div>
+                  <div class="col-12 mb-3">
+                    <label for="password" class="form-label">Confirmar Senha:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Digite novamente a nova senha">
+                  </div>
+                  </div>
+
+                  <!-- Botões de ação -->
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                      <button type="button" class="btn btn-primary">Alterar Cadastro</button>
+                      <button type="reset" class="btn btn-danger">Cancelar</button>
+                  </div>
+
+              </form>
+
             </div>
+                
+           </div>
       </main>
     </div>
 
