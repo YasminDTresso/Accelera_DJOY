@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro | Transportadora</title>
+    <title>CheckList</title>
 
     <!--CDN BOOTSTRAP-->
     <link
@@ -19,13 +19,17 @@
       href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
     />
 
+    <!--CDN DATATABLE-->
+    <link
+    href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/b-print-3.2.0/datatables.min.css"
+    rel="stylesheet"
+  />
+
+
     <!-- MY CSS-->
     <link rel="stylesheet" href="/assets/css/styles.css" />
 
-    <style>
-
-
-    </style>
+    <style></style>
   </head>
   <body>
     <!------------------------+Header+------------------------>
@@ -186,7 +190,7 @@
             <a
               href=""
               id="multi-link"
-              class="sidebar-link has-dropdown collapsed active-sidebar-link"
+              class="sidebar-link has-dropdown collapsed"
               data-bs-toggle="collapse"
               data-bs-target="#multi"
               aria-expanded="false"
@@ -205,7 +209,7 @@
               <!--Link Nivel 01-->
               <li class="sidebar-item">
                 <a
-                  href="#"
+                  href=""
                   class="sidebar-link collapsed"
                   data-bs-toggle="collapse"
                   data-bs-target="#multi-transportadora"
@@ -221,13 +225,13 @@
                   class="sidebar-dropdown list-unstyled collapse"
                 >
                   <li class="sidebar-item">
-                    <a href="cadastro_transportadora.html" class="sidebar-link">
+                    <a href="#" class="sidebar-link">
                       <div class="dropdown-link-01">Nova Transportadora</div>
                     </a>
                   </li>
 
                   <li class="sidebar-item">
-                    <a href="vinculo_usuario_transportadora.html" class="sidebar-link active-sidebar-link">
+                    <a href="#" class="sidebar-link">
                       <div class="dropdown-link-01">Novo Vinculo</div>
                     </a>
                   </li>
@@ -237,7 +241,7 @@
               <!--Link Nivel 01-->
               <li class="sidebar-item">
                 <a
-                  href="cadastro_usuario.html"
+                  href=""
                   class="sidebar-link collapsed"
                   data-bs-toggle="collapse"
                   data-bs-target="#multi-usuario"
@@ -304,7 +308,6 @@
           </li>
 
         </ul>
-      </ul>
 
         </ul>
 
@@ -318,95 +321,60 @@
       </aside>
 
       <!------------------------+Main+------------------------>
-      <main class="my-main d-flex p-3">
-
-
-            <!--Alinhando contéudo para o centro-->
+      <main>
+        <div class="my-main p-3 d-flex">
             <div class="container-fluid">
 
             <!-- Título da página -->
-             <div class="row w-100">
-                <div class="col">
-                    <h1>Vínculo de Usuário e Transportadora</h1>
-                </div>
+              <div class="row w-100">
+                <h1>Checklist</h1>
+              </div>
+
+            <div class="row w-100" style="min-height: 95%;">
+              <div class="col-12">
+                <!--DATATABLE-->
+                <div class="col-12">
+                <div class="data_table">
+                <table id="datatable" class="table">
+                    <thead>
+                    <tr>
+                    <th>Transportadora</th>
+                    <th>Gestor</th>
+                    <th>Placa</th>
+                    <th>Equipamento</th>
+                    <th>Vínculo</th>
+                    <th>Status CL</th>
+                    <th>Validade</th>
+                    <th>Programação</th>
+                    <th>Problema do Equipamento</th>
+                    <th>Inicio do Problema</th>
+                    <th>Observação</th>
+                    <th>Usuario</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transportadora</td>
+                            <td>Gestor</td>
+                            <td>Placa</td>
+                            <td>Equipamento</td>
+                            <td>Vínculo</td>
+                            <td>Status CL</td>
+                            <td>Validade</td>
+                            <td>Programação</td>
+                            <td>Problema do Equipamento</td>
+                            <td>Inicio do Problema</td>
+                            <td>Observação</td>
+                            <td>Usuario</td>
+                            </tr>
+                    </tbody>
+                </table>
+              </div>
             </div>
-
-            <!-- Formulário de cadastro -->
-             <div class="row w-100" style="min-height: 95%; align-items: center;">
-                <form class="mx-auto row g-3">
-                  
-                <div class="col-md-12">
-                    <h2>Buscar Usuário:</h2>
-                </div>
-
-                  <!-- Campo para o filtro de busca -->
-                  <div class="col-2 mb-3">
-                    <label for="filtro-user" class="form-label">Buscar por:</label>
-                    <select class="form-select form-control" aria-label="Default select example">
-                      <option selected>Selecione...</option>
-                      <option value="1">Nome</option>
-                      <option value="2">CPF</option>
-                    </select>
-                  </div>
-
-                    <div class="col-md-10">
-                        <!-- Campo para buscar usuario -->
-                        <label for="search-user" class="form-label">Campo de busca:</label>
-                        <div class="input-group mb-3">
-                          <input type="text" class="form-control" placeholder="Digite aqui..." aria-label="search-user" aria-describedby="search-user-btn">
-                          <button class="btn btn-outline-secondary" type="button" id="search-user-btn"><i class="uil uil-search"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-12 mb-3">
-                      <label for="result-user" class="form-label">Resultado da busca:</label>         
-                      <input class="form-control" type="text" value="Resultado da busca aqui!" aria-label="Disabled input" disabled readonly id="result-user">
-                    </div>
-
-                    <div class="col-md-12">
-                      <h2>Buscar Transportadora:</h2>
-                  </div>
-  
-                    <!-- Campo para o filtro de busca -->
-                    <div class="col-2 mb-3">
-                      <label for="filtro-user" class="form-label">Buscar por:</label>
-                      <select class="form-select form-control" aria-label="select-filtro-user">
-                        <option selected>Selecione...</option>
-                        <option value="1">Nome</option>
-                        <option value="2">CNPJ</option>
-                      </select>
-                    </div>
-  
-                      <div class="col-md-10">
-                          <!-- Campo para buscar usuario -->
-                          <label for="search-user" class="form-label">Campo de busca:</label>
-                          <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Digite aqui..." aria-label="search-user" aria-describedby="search-user-btn">
-                            <button class="btn btn-outline-secondary" type="button" id="search-user-btn"><i class="uil uil-search"></i></button>
-                          </div>
-                      </div>
-                      
-                      <div class="col-md-12 mb-3">
-                        <label for="result-user" class="form-label">Resultado da busca:</label>         
-                        <input class="form-control" type="text" value="Resultado da busca aqui!" aria-label="Disabled input" disabled readonly id="result-user">
-                      </div>
-    
-
-                    <!-- Botões de ação -->
-                    <div class="col-12 mt-4">
-                      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button type="submit" class="btn btn-success">Vincular</button>
-                        <button type="reset" class="btn btn-danger">Cancelar</button>
-                    </div>
-                    </div>
-
-
-                </form>
-             </div>
-
-
-                
             </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
 
@@ -420,7 +388,22 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+
+    <!--JQUERY CDN-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!--CDN DATATABLE-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/b-print-3.2.0/datatables.min.js"></script>
+
     <!--MY JS-->
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/datatable.js"></script>
   </body>
 </html>

@@ -251,6 +251,18 @@ a.active-sidebar-link {
 
 /*DATATABLE*/
 
+
+/*LOGIN*/
+
+.index{
+  background: linear-gradient(to right, var(--primary-color-01) 0%, var(--primary-color-02) 100%);
+}
+
+.login-container{
+  background-color: white;
+  border-radius: 1rem;
+}
+
 /*--Responsividade--*/
 
 /*Larger Screen*/

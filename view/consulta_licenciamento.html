@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro | Transportadora</title>
+    <title>Consulta de Licenciamento</title>
 
     <!--CDN BOOTSTRAP-->
     <link
@@ -331,75 +331,37 @@
                 </div>
             </div>
 
-            <!-- Formulário de cadastro -->
-             <div class="row w-100" style="min-height: 95%; align-items: center;">
+            <!-- Formulário de consulta -->
+             <div class="row w-100" style="">
                 <form class="mx-auto row g-3">
                   
                 <div class="col-md-12">
-                    <h2>Buscar Usuário:</h2>
+                    <h2>Consulta de Licenciamento:</h2>
+                </div>
+
+                <div class="col-md-8">
+                    <!-- Campo para buscar placa do caminhão -->
+                    <label for="search-placa-caminhão" class="form-label">Placa do Caminhão:</label>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="Digite aqui..." aria-label="search-placa-caminhao" aria-describedby="search-placa-caminhao-btn">
+                      <button class="btn btn-outline-secondary" type="button" id="search-placa-caminhao-btn"><i class="uil uil-search"></i></button>
+                    </div>
                 </div>
 
                   <!-- Campo para o filtro de busca -->
-                  <div class="col-2 mb-3">
-                    <label for="filtro-user" class="form-label">Buscar por:</label>
+                  <div class="col-md-4">
+                    <label for="filtro-licenciamento" class="form-label">Estado de origem do Emplacamento:</label>
                     <select class="form-select form-control" aria-label="Default select example">
                       <option selected>Selecione...</option>
-                      <option value="1">Nome</option>
-                      <option value="2">CPF</option>
+                      <option value="1">SP</option>
+                      <option value="2">MG</option>
                     </select>
                   </div>
-
-                    <div class="col-md-10">
-                        <!-- Campo para buscar usuario -->
-                        <label for="search-user" class="form-label">Campo de busca:</label>
-                        <div class="input-group mb-3">
-                          <input type="text" class="form-control" placeholder="Digite aqui..." aria-label="search-user" aria-describedby="search-user-btn">
-                          <button class="btn btn-outline-secondary" type="button" id="search-user-btn"><i class="uil uil-search"></i></button>
-                        </div>
-                    </div>
                     
                     <div class="col-md-12 mb-3">
-                      <label for="result-user" class="form-label">Resultado da busca:</label>         
-                      <input class="form-control" type="text" value="Resultado da busca aqui!" aria-label="Disabled input" disabled readonly id="result-user">
+                      <label for="result-licenciamento" class="form-label">Resultado da busca:</label>         
+                      <input class="form-control" type="text" value="Resultado da busca aqui! Exemplo: A data do vencimento do licenciamento 2024 para a placa 1 do estado SP (caminhao) é em: Setembro" aria-label="Disabled input" disabled readonly id="result-user">
                     </div>
-
-                    <div class="col-md-12">
-                      <h2>Buscar Transportadora:</h2>
-                  </div>
-  
-                    <!-- Campo para o filtro de busca -->
-                    <div class="col-2 mb-3">
-                      <label for="filtro-user" class="form-label">Buscar por:</label>
-                      <select class="form-select form-control" aria-label="select-filtro-user">
-                        <option selected>Selecione...</option>
-                        <option value="1">Nome</option>
-                        <option value="2">CNPJ</option>
-                      </select>
-                    </div>
-  
-                      <div class="col-md-10">
-                          <!-- Campo para buscar usuario -->
-                          <label for="search-user" class="form-label">Campo de busca:</label>
-                          <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Digite aqui..." aria-label="search-user" aria-describedby="search-user-btn">
-                            <button class="btn btn-outline-secondary" type="button" id="search-user-btn"><i class="uil uil-search"></i></button>
-                          </div>
-                      </div>
-                      
-                      <div class="col-md-12 mb-3">
-                        <label for="result-user" class="form-label">Resultado da busca:</label>         
-                        <input class="form-control" type="text" value="Resultado da busca aqui!" aria-label="Disabled input" disabled readonly id="result-user">
-                      </div>
-    
-
-                    <!-- Botões de ação -->
-                    <div class="col-12 mt-4">
-                      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button type="submit" class="btn btn-success">Vincular</button>
-                        <button type="reset" class="btn btn-danger">Cancelar</button>
-                    </div>
-                    </div>
-
 
                 </form>
              </div>

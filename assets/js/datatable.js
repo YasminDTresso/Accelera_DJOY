@@ -1,5 +1,5 @@
 /*---------------+DATATABLE+---------------*/
-$('#example').DataTable({
+$('#datatable').DataTable({
     layout: {
         topStart: {
             search: {
