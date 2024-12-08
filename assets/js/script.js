@@ -7,7 +7,7 @@ const hamburger = document.querySelector("#toggle-btn");
 const icon_toggle_btn = hamburger.querySelector("i");
 const dropdown_link = document.querySelector("#dropdown-link");
 const multi_link = document.querySelector("#multi-link");
-
+const multi_link_01 = document.querySelector("#multi-link-01");
 
 hamburger.addEventListener("click", function(){
     sidebar.classList.toggle("expand");
@@ -25,6 +25,8 @@ hamburger.addEventListener("click", function(){
     
 })
 
+
+//Caso sidebar não esteja expandida, ao clicar em um link com multinivel, a sidebar expadirá para visualização de todas os níveis do link(opção da sidebar)
 dropdown_link.addEventListener("click", function(){
     if (!sidebar.classList.contains("expand")) {
         sidebar.classList.add("expand");  // Adiciona a classe "expand"
@@ -36,6 +38,13 @@ multi_link.addEventListener("click", function(){
         sidebar.classList.add("expand");  // Adiciona a classe "expand"
     }
 })
+
+multi_link_01.addEventListener("click", function(){
+    if (!sidebar.classList.contains("expand")) {
+        sidebar.classList.add("expand");  // Adiciona a classe "expand"
+    }
+})
+
 
 
 

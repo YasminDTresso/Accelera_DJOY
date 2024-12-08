@@ -82,7 +82,7 @@
               <img
                 class="user-img me-sm-2"
                 alt=""
-                src="/assets/images/guinea-pig-785052_640.jpg"
+                src="/assets/images/user.svg"
               />
               <a
                 class="nav-link dropdown-toggle"
@@ -130,6 +130,8 @@
 
     <!--Container que realizará a organização/divisão entre a sidebar e o main-->
     <div class="wrapper">
+      <!------------------------+SIDEBAR+------------------------>
+
       <!------------------------+SIDEBAR+------------------------>
 
       <aside id="sidebar">
@@ -205,102 +207,33 @@
               <!--Link Nivel 01-->
               <li class="sidebar-item">
                 <a
-                  href="#"
-                  class="sidebar-link collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#multi-transportadora"
-                  aria-expanded="false"
-                  aria-controls="multi-transportadora"
+                  href="cadastro_transportadora.html"
+                  class="sidebar-link"
                 >
                   <div class="dropdown-link">Transportadora</div>
                 </a>
-
-                <!--Link Nivel 02 -->
-                <ul
-                  id="multi-transportadora"
-                  class="sidebar-dropdown list-unstyled collapse"
-                >
-                  <li class="sidebar-item">
-                    <a href="cadastro_transportadora.html" class="sidebar-link">
-                      <div class="dropdown-link-01">Nova Transportadora</div>
-                    </a>
-                  </li>
-
-                  <li class="sidebar-item">
-                    <a href="vinculo_usuario_transportadora.html" class="sidebar-link">
-                      <div class="dropdown-link-01">Novo Vinculo</div>
-                    </a>
-                  </li>
-                </ul>
-              </li>
 
               <!--Link Nivel 01-->
               <li class="sidebar-item">
                 <a
                   href="cadastro_usuario.html"
-                  class="sidebar-link collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#multi-usuario"
-                  aria-expanded="false"
-                  aria-controls="multi-usuario"
+                  class="sidebar-link active-sidebar-link"
                 >
                   <div class="dropdown-link">Usuario</div>
                 </a>
-
-                <!--Link Nivel 02 -->
-                <ul
-                  id="multi-usuario"
-                  class="sidebar-dropdown list-unstyled collapse"
-                >
-                  <li class="sidebar-item">
-                    <a href="cadastro_usuario.html" class="sidebar-link active-sidebar-link">
-                      <div class="dropdown-link-01">Novo Usuario</div>
-                    </a>
-                  </li>
-
-                </ul>
               </li>
+
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="vinculo_usuario_transportadora.html"
+                  class="sidebar-link"
+                >
+                  <div class="dropdown-link">Novo Vínculo</div>
+                </a>
+              </li>
+
             </ul>
-          </li>
-
-          <!--+Link simples+-->
-          <li class="sidebar-item">
-            <a href="trabalhos_pendentes.html" class="sidebar-link">
-              <i class="uil uil-clipboard"></i>
-              <span>Monitor de tarefas</span>
-            </a>
-          </li>
-
-          <!--+Link simples+-->
-          <li class="sidebar-item">
-            <a href="checklist.html" class="sidebar-link">
-              <i class="uil uil-file-check"></i>
-              <span>CheckList</span>
-            </a>
-          </li>
-
-          <!--+Link simples+-->
-          <li class="sidebar-item">
-            <a href="" class="sidebar-link">
-              <i class="uil uil-file-search-alt"></i>
-              <span>Controle de Consulta</span>
-            </a>
-          </li>
-
-          <!--+Link simples+-->
-          <li class="sidebar-item">
-            <a href="consulta_licenciamento.html" class="sidebar-link">
-              <i class="uil uil-file-bookmark-alt"></i>
-              <span>Licenciamento</span>
-            </a>
-          </li>
-
-          <!--+Link simples+-->
-          <li class="sidebar-item">
-          <a href="opcoes.html" class="sidebar-link">
-            <i class="uil uil-setting"></i>
-          <span>Opções</span>
-          </a>
           </li>
 
           <!--+Link c/ dropdown multi-nivel+-->
@@ -314,8 +247,8 @@
               aria-expanded="false"
               aria-controls="multi-01"
             >
-              <i class="uil uil-plus"></i>
-              <span>Consulta</span>
+            <i class="uil uil-constructor"></i>
+              <span>Ferramentas</span>
             </a>
 
             <!--Dropdown multi-nivel-->
@@ -366,7 +299,7 @@
                   aria-expanded="false"
                   aria-controls="multi-controle"
                 >
-                  <div class="dropdown-link">Controle</div>
+                  <div class="dropdown-link">Controlar</div>
                 </a>
 
                 <!--Link Nivel 02 -->
@@ -376,7 +309,7 @@
                 >
                   <li class="sidebar-item">
                     <a href="controle_consulta.html" class="sidebar-link">
-                      <div class="dropdown-link-01">Controle Consulta</div>
+                      <div class="dropdown-link-01">Controle de Consulta</div>
                     </a>
                   </li>
 
@@ -395,7 +328,15 @@
                 </ul>
               </li>
             </ul>
-          </li> 
+          </li>          
+
+          <!--+Link simples+-->
+          <li class="sidebar-item">
+            <a href="opcoes.html" class="sidebar-link">
+              <i class="uil uil-setting"></i>
+            <span>Opções</span>
+            </a>
+            </li>
 
         </ul>
       </ul>
