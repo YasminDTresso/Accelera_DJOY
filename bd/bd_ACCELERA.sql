@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `inter` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `inter`;
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `jt_control_manager` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `jt_control_manager`;
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: localhost    Database: inter
+-- Host: 127.0.0.1    Database: jt_control_manager
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,9 +35,9 @@ CREATE TABLE `consulta_transportadoras` (
   `usuario_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `transportadora_id` (`transportadora_id`),
-  KEY `consulta_transportadoras_ibfk_2` (`usuario_id`),
+  KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `consulta_transportadoras_ibfk_1` FOREIGN KEY (`transportadora_id`) REFERENCES `transportadoras` (`id`),
-  CONSTRAINT `consulta_transportadoras_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
+  CONSTRAINT `consulta_transportadoras_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -74,7 +74,7 @@ CREATE TABLE `controle_de_checklist` (
   `usuario_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `transportadora_id` (`transportadora_id`),
-  KEY `controle_de_checklist_ibfk_2_idx` (`usuario_id`),
+  KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `controle_de_checklist_ibfk_1` FOREIGN KEY (`transportadora_id`) REFERENCES `transportadoras` (`id`),
   CONSTRAINT `controle_de_checklist_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -116,7 +116,7 @@ CREATE TABLE `log_consultas` (
   `usuario_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `transportadora_id` (`transportadora_id`),
-  KEY `log_consultas_ibfk_2_idx` (`usuario_id`),
+  KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `log_consultas_ibfk_1` FOREIGN KEY (`transportadora_id`) REFERENCES `transportadoras` (`id`),
   CONSTRAINT `log_consultas_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -159,8 +159,8 @@ CREATE TABLE `log_trabalhos_pendentes` (
   `rota` varchar(50) DEFAULT NULL,
   `sm` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `usuario_id` (`usuario_id`),
   KEY `transportadora_id` (`transportadora_id`),
-  KEY `log_trabalhos_pendentes_ibfk_2_idx` (`usuario_id`),
   CONSTRAINT `log_trabalhos_pendentes_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
   CONSTRAINT `log_trabalhos_pendentes_ibfk_3` FOREIGN KEY (`transportadora_id`) REFERENCES `transportadoras` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -174,31 +174,6 @@ LOCK TABLES `log_trabalhos_pendentes` WRITE;
 /*!40000 ALTER TABLE `log_trabalhos_pendentes` DISABLE KEYS */;
 INSERT INTO `log_trabalhos_pendentes` VALUES (3,'2024-10-09 04:06:37',1,'CONSULTA','APROVADA','EM ANÁLISE',3,'TERCEIRO','BRY2222','BRY9999','EM ANÁLISE','TONHO','BR','AGUARDANDO','NÃO UTILIZA','AGUARDANDO','AGUARDANDO','AGUARDANDO'),(4,'2024-10-09 04:07:45',1,'CONDUTOR','TESTE','HORA',2,'TERCEIRO','PPP8888','OOO7777','REPROVADA','HORA','DA VERDADE','OK','NÃO UTILIZA','REPROVADO','OK','OK'),(5,'2024-10-09 04:07:45',1,'OBSERVACAO','09876','DA VERDADE',2,'TERCEIRO','PPP8888','OOO7777','REPROVADA','HORA','DA VERDADE','OK','NÃO UTILIZA','REPROVADO','OK','OK'),(6,'2024-10-16 00:39:05',1,'PLACA_VEICULO','BRY2222','BRY1111',2,'TERCEIRO','BRY1111','BRY9999','EM ANÁLISE','TONHO','BR','AGUARDANDO','NÃO UTILIZA','AGUARDANDO','AGUARDANDO','AGUARDANDO'),(7,'2024-10-16 00:39:53',1,'TRANSPORTADORA','SATEL','TB CARGO',1,'AGREGADO','HGT6789','GGG5566','EM ANÁLISE','THEO','0000','AGUARDANDO','NÃO UTILIZA','AGUARDANDO','AGUARDANDO','AGUARDANDO'),(8,'2024-10-16 00:39:53',1,'VINCULO','FIXO','AGREGADO',1,'AGREGADO','HGT6789','GGG5566','EM ANÁLISE','THEO','0000','AGUARDANDO','NÃO UTILIZA','AGUARDANDO','AGUARDANDO','AGUARDANDO'),(9,'2024-10-16 00:52:47',1,'CONDUTOR','TONHO','TONTO',2,'TERCEIRO','BRY1111','BRY9999','EM ANÁLISE','TONTO','BR','AGUARDANDO','NÃO UTILIZA','AGUARDANDO','AGUARDANDO','AGUARDANDO'),(10,'2024-10-19 20:44:39',1,'TRANSPORTADORA','TB CARGO','JS TRANSPORTES',2,'AGREGADO','HGT6789','GGG5566','EM ANÁLISE','THEO','0000','AGUARDANDO','NÃO UTILIZA','AGUARDANDO','AGUARDANDO','AGUARDANDO');
 /*!40000 ALTER TABLE `log_trabalhos_pendentes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `pessoa_fisica`
---
-
-DROP TABLE IF EXISTS `pessoa_fisica`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pessoa_fisica` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(150) DEFAULT NULL,
-  `cpf` varchar(14) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pessoa_fisica`
---
-
-LOCK TABLES `pessoa_fisica` WRITE;
-/*!40000 ALTER TABLE `pessoa_fisica` DISABLE KEYS */;
-INSERT INTO `pessoa_fisica` VALUES (1,'JOAO TRESSO','28864364889'),(2,'Admin','99988877755'),(3,'YASMIN TRESSO','22255588866');
-/*!40000 ALTER TABLE `pessoa_fisica` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -226,7 +201,7 @@ CREATE TABLE `trabalhos_pendentes` (
   `usuario_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `transportadora_id` (`transportadora_id`),
-  KEY `trabalhos_pendentes_ibfk_2_idx` (`usuario_id`),
+  KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `trabalhos_pendentes_ibfk_1` FOREIGN KEY (`transportadora_id`) REFERENCES `transportadoras` (`id`),
   CONSTRAINT `trabalhos_pendentes_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -282,10 +257,8 @@ DROP TABLE IF EXISTS `usuario_transportadora`;
 CREATE TABLE `usuario_transportadora` (
   `usuario_id` int NOT NULL,
   `transportadora_id` int NOT NULL,
-  `id` int NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`usuario_id`,`transportadora_id`),
   KEY `transportadora_id` (`transportadora_id`),
-  KEY `usuario_transportadora_ibfk_1_idx` (`usuario_id`),
   CONSTRAINT `usuario_transportadora_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
   CONSTRAINT `usuario_transportadora_ibfk_2` FOREIGN KEY (`transportadora_id`) REFERENCES `transportadoras` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -309,15 +282,15 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pessoa_fisica_id` int NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `cpf` varchar(14) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `usuario` varchar(50) NOT NULL,
   `permissao` enum('ADMINISTRADOR','GERENTE','COLABORADOR') DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `usuario` (`usuario`),
-  KEY `pessoa_fisica_id` (`pessoa_fisica_id`),
-  CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`pessoa_fisica_id`) REFERENCES `pessoa_fisica` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `cpf` (`cpf`),
+  UNIQUE KEY `usuario` (`usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -326,7 +299,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,1,'6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b','joao@288','ADMINISTRADOR'),(2,2,'8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','admin@999','ADMINISTRADOR'),(3,3,'6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b','yasmin@222','GERENTE');
+INSERT INTO `usuarios` VALUES (1,'JOAO TRESSO','28864364889','6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b','joao@288','ADMINISTRADOR'),(2,'Admin','99988877755','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','admin@999','ADMINISTRADOR'),(3,'YASMIN TRESSO','22255588866','6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b','yasmin@222','GERENTE');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -339,4 +312,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-28 21:12:34
+-- Dump completed on 2024-11-18 23:10:01
