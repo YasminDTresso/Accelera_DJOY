@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `jt_control_manager` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `jt_control_manager`;
+CREATE DATABASE  IF NOT EXISTS `db_inter_1` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `db_inter_1`;
 -- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: jt_control_manager
+-- Host: 127.0.0.1    Database: db_inter_1
 -- ------------------------------------------------------
 -- Server version	8.0.39
 
@@ -255,10 +255,12 @@ DROP TABLE IF EXISTS `usuario_transportadora`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario_transportadora` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `usuario_id` int NOT NULL,
   `transportadora_id` int NOT NULL,
-  PRIMARY KEY (`usuario_id`,`transportadora_id`),
+  PRIMARY KEY (`id`),
   KEY `transportadora_id` (`transportadora_id`),
+  KEY `usuario_transportadora_ibfk_1` (`usuario_id`),
   CONSTRAINT `usuario_transportadora_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
   CONSTRAINT `usuario_transportadora_ibfk_2` FOREIGN KEY (`transportadora_id`) REFERENCES `transportadoras` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -312,4 +314,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-18 23:10:01
+-- Dump completed on 2024-12-08 22:40:00
