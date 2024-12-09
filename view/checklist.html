@@ -366,14 +366,200 @@
                 <hr>
               </div>
 
-            <div class="row w-100" style="min-height: 95%;">
-              <div class="col-12">
+            <div class="row w-100">
+              <div class="col-12 mb-3">
+                <form action="" class="row mx-auto g-3">
+
+                 <p>Ações:</p>   
+                <!-- Seção para botões de ação -->
+                <div class="col-6">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#inserir-tarefa" aria-expanded="false" aria-controls="inserir-tarefa" id="btn-inserir-tarefa">Inserir</button>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="collapse" data-bs-target="#editar-tarefa" aria-expanded="false" aria-controls="editar-tarefa" id="btn-editar-tarefa">Editar</button>
+                </div>
+
+                </div>
+
+                <div class="col-6">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+                        <div class="acoes-inserir d-none" id="acoes-inserir">
+                            <button type="button" class="btn btn-success" aria-expanded="false" aria-controls="" id="btn-confirmar-edicao">Confirmar</button>
+                            <button type="button" class="btn btn-danger" aria-expanded="false" aria-controls="" id="btn-cancelar-edicao">Cancelar</button>
+                        </div>
+
+                        <div class="acoes-editar d-none" id="acoes-editar">
+                            <button type="button" class="btn btn-success" data-bs-toggle="collapse" aria-expanded="false" aria-controls="inserir-tarefa" id="btn-confirmar-edicao">Confirmar</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="collapse" aria-expanded="false" aria-controls="editar-tarefa" id="btn-cancelar-edicao">Cancelar</button> 
+                        </div>
+
+                    </div>
+                </div>
+ 
+
+                </div>
+
+                <!--Formulario Inserir-->
+                <div class="row collapse mb-3 mt-3" id="inserir-tarefa">
+                    <div class="col-2 mb-3">
+                        <!-- Campo para exibir nome da transportadora -->
+                        <label for="nome-transportadora" class="form-label">Transportadora:</label>
+                        <input type="text" id="nome-transportadora" class="form-control" placeholder="Nome da Transportadora" aria-label="nome-transportadora">
+                    </div>
+
+                    <div class="col-2 mb-3">
+                      <!-- Campo para exibir nome do Gestor -->
+                      <label for="nome-gestor" class="form-label">Gestor:</label>
+                      <input type="text" id="nome-gestor" class="form-control" placeholder="Nome do Gestor" aria-label="nome-gestor">
+                  </div>
+
+                    <div class="col-2 mb-3">
+                        <!-- Campo para exibir placa do veiculo -->
+                        <label for="placa-veiculo" class="form-label">Placa do Veículo:</label>
+                        <input type="text" id="placa-veiculo" class="form-control" placeholder="Placa do Veículo" aria-label="placa-veiculo">
+                    </div>
+                    <div class="col-2 mb-3">
+                        <!-- Campo para exibir equipamento -->
+                        <label for="equipamento" class="form-label">Equipamento:</label>
+                        <input type="text" id="equipamento" class="form-control" placeholder="Equipamento" aria-label="equipamento">
+                    </div>
+                    <div class="col-2 mb-3">
+                      <!-- Campo para exibir tipo de vinculo -->
+                      <label for="tipo-vinculo" class="form-label">Vínculo:</label>
+                      <select class="form-select form-control" aria-label="tipo-vinculo" id="tipo-vinculo">
+                        <option selected>Selecione...</option>
+                        <option value="1">Agregado</option>
+                        <option value="2">Fixo</option>
+                        <option value="3">Terceiro</option>
+                      </select>
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir status da checklist -->
+                    <label for="status-checklist" class="form-label">Status da Checklist:</label>
+                    <select class="form-select form-control" aria-label="status-checklist" id="status-checklist">
+                      <option selected>Selecione...</option>
+                      <option value="1">Aprovado</option>
+                      <option value="2">Reprovado</option>
+                      <option value="3">Aguardando</option>
+                    </select>
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir data de validade -->
+                    <label for="data-validade" class="form-label">Data de Validade:</label>
+                    <input type="date" id="data-validade" class="form-control" aria-label="data-validade">
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir programacao -->
+                    <label for="programacao" class="form-label">Programação:</label>
+                    <input type="text" id="programacao" class="form-control" placeholder="Programação" aria-label="programacao">
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir problema-equipamento -->
+                    <label for="problema-equipamento" class="form-label">Problema do Equipamento:</label>
+                    <input type="text" id="problema-equipamento" class="form-control" placeholder="Problema do Equipamento" aria-label="problema-equipamento">
+                  </div>
+                  <div class="col-2 mb-3">
+                    <!-- Campo para exibir data de ínicio do problema -->
+                      <label for="data-inicio-problema" class="form-label">Data de Ínicio do Problema:</label>
+                      <input type="date" id="data-inicio-problema" class="form-control" aria-label="data-inicio-problema">
+                  </div>
+                  <div class="col-2 mb-3">
+                    <!-- Campo para exibir observação -->
+                      <label for="observacao" class="form-label">Observação:</label>
+                      <input type="text" id="observacao" class="form-control" placeholder="Observação" aria-label="observacao">
+                    </div>                  
+                </div>
+
+                <!--Formulario Editar-->
+                <div class="row collapse mb-3 mt-3" id="editar-tarefa">
+                  <div class="col-2 mb-3">
+                    <!-- Campo para exibir data de inclusao (apenas leitura) -->
+                    <label for="data-inclusao" class="form-label">Data de Inclusão:</label>
+                    <input type="date" id="data-inclusao" class="form-control" aria-label="data-inclusao" disabled readonly>
+                </div>                  
+               <div class="col-2 mb-3">
+                        <!-- Campo para exibir nome da transportadora -->
+                        <label for="nome-transportadora" class="form-label">Transportadora:</label>
+                        <input type="text" id="nome-transportadora" class="form-control" placeholder="Nome da Transportadora" aria-label="nome-transportadora">
+                    </div>
+
+                    <div class="col-2 mb-3">
+                      <!-- Campo para exibir nome do Gestor -->
+                      <label for="nome-gestor" class="form-label">Gestor:</label>
+                      <input type="text" id="nome-gestor" class="form-control" placeholder="Nome do Gestor" aria-label="nome-gestor">
+                  </div>
+
+                    <div class="col-2 mb-3">
+                        <!-- Campo para exibir placa do veiculo -->
+                        <label for="placa-veiculo" class="form-label">Placa do Veículo:</label>
+                        <input type="text" id="placa-veiculo" class="form-control" placeholder="Placa do Veículo" aria-label="placa-veiculo">
+                    </div>
+                    <div class="col-2 mb-3">
+                        <!-- Campo para exibir equipamento -->
+                        <label for="equipamento" class="form-label">Equipamento:</label>
+                        <input type="text" id="equipamento" class="form-control" placeholder="Equipamento" aria-label="equipamento">
+                    </div>
+                    <div class="col-2 mb-3">
+                      <!-- Campo para exibir tipo de vinculo -->
+                      <label for="tipo-vinculo" class="form-label">Vínculo:</label>
+                      <select class="form-select form-control" aria-label="tipo-vinculo" id="tipo-vinculo">
+                        <option selected>Selecione...</option>
+                        <option value="1">Agregado</option>
+                        <option value="2">Fixo</option>
+                        <option value="3">Terceiro</option>
+                      </select>
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir status da checklist -->
+                    <label for="status-checklist" class="form-label">Status da Checklist:</label>
+                    <select class="form-select form-control" aria-label="status-checklist" id="status-checklist">
+                      <option selected>Selecione...</option>
+                      <option value="1">Aprovado</option>
+                      <option value="2">Reprovado</option>
+                      <option value="3">Aguardando</option>
+                    </select>
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir data de validade -->
+                    <label for="data-validade" class="form-label">Data de Validade:</label>
+                    <input type="date" id="data-validade" class="form-control" aria-label="data-validade">
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir programacao -->
+                    <label for="programacao" class="form-label">Programação:</label>
+                    <input type="text" id="programacao" class="form-control" placeholder="Programação" aria-label="programacao">
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir problema-equipamento -->
+                    <label for="problema-equipamento" class="form-label">Problema do Equipamento:</label>
+                    <input type="text" id="problema-equipamento" class="form-control" placeholder="Problema do Equipamento" aria-label="problema-equipamento">
+                  </div>
+                  <div class="col-2 mb-3">
+                    <!-- Campo para exibir data de ínicio do problema -->
+                      <label for="data-inicio-problema" class="form-label">Data de Ínicio do Problema:</label>
+                      <input type="date" id="data-inicio-problema" class="form-control" aria-label="data-inicio-problema">
+                  </div>
+                  <div class="col-2 mb-3">
+                    <!-- Campo para exibir observação -->
+                      <label for="observacao" class="form-label">Observação:</label>
+                      <input type="text" id="observacao" class="form-control" placeholder="Observação" aria-label="observacao">
+                    </div>              
+                    <div class="col-2 mb-3">
+                      <!-- Campo para exibir usuario (apenas leitura) -->
+                      <label for="usuario" class="form-label">Usuario:</label>
+                      <input type="text" id="usuario" class="form-control" placeholder="Usuário"  aria-label="usuario" disabled readonly>
+                  </div>                          
+                </div>
+
+                <hr>
+
                 <!--DATATABLE-->
                 <div class="col-12">
                 <div class="data_table">
                 <table id="datatable" class="table">
                     <thead>
                     <tr>
+                    <th>#</th>
                     <th>Transportadora</th>
                     <th>Gestor</th>
                     <th>Placa</th>
@@ -390,18 +576,21 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Transportadora</td>
-                            <td>Gestor</td>
-                            <td>Placa</td>
-                            <td>Equipamento</td>
-                            <td>Vínculo</td>
-                            <td>Status CL</td>
-                            <td>Validade</td>
-                            <td>Programação</td>
-                            <td>Problema do Equipamento</td>
-                            <td>Inicio do Problema</td>
-                            <td>Observação</td>
-                            <td>Usuario</td>
+                            <td class="text-center align-middle">
+                            <input class="form-check-input" type="checkbox" value="" id="select-consulta">
+                            </td>
+                            <td>Satel</td>
+                            <td>José</td>
+                            <td>BRA4444</td>
+                            <td>AUTOTRAC</td>
+                            <td>FIXO</td>
+                            <td>APROVADO</td>
+                            <td>03/03/2024</td>
+                            <td></td>
+                            <td>DEPÓSITO DE BLOQUEIO</td>
+                            <td>29/02/2024</td>
+                            <td>RODANDO MESMO BLOQUEADO</td>
+                            <td>Operador01</td>
                             </tr>
                     </tbody>
                 </table>
@@ -441,5 +630,84 @@
     <!--MY JS-->
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/datatable.js"></script>
+
+    <script>
+   // Selecionando os botões e formulários
+        const btnInserir = document.querySelector('#btn-inserir-tarefa');
+        const btnEditar = document.querySelector('#btn-editar-tarefa');
+        const inserirTarefa = document.querySelector('#inserir-tarefa');
+        const editarTarefa = document.querySelector('#editar-tarefa');
+        const acoesEditar = document.querySelector('#acoes-inserir');
+        const acoesInserir = document.querySelector('#acoes-editar');
+
+        // Função para controlar a exibição do formulário Inserir
+        btnInserir.addEventListener('click', () => {
+            if (!btnInserir.classList.contains('collapsed')) {
+
+                acoesInserir.classList.remove('d-none');
+
+              if(editarTarefa.classList.contains('show')){
+                 editarTarefa.classList.remove('show');
+              }
+
+              if(!acoesEditar.classList.contains('d-none')){
+                acoesEditar.classList.add('d-none');
+              }
+            }else if(btnInserir.classList.contains('collapsed')){
+                acoesInserir.classList.add('d-none');
+            }
+        });
+
+
+        // Função para controlar a exibição do formulário Editar
+        btnEditar.addEventListener('click', () => {
+            if (!btnEditar.classList.contains('collapsed')) {
+
+                acoesEditar.classList.remove('d-none');
+
+              if(inserirTarefa.classList.contains('show')){
+                 inserirTarefa.classList.remove('show');
+              }
+
+              if(!acoesInserir.classList.contains('d-none')){
+                acoesInserir.classList.add('d-none');
+              }
+            }else if(btnEditar.classList.contains('collapsed')){
+                acoesEditar.classList.add('d-none');
+            }
+            
+        });
+
+        //CheckBox
+            // Obter todos os checkboxes
+            const checkboxes = document.querySelectorAll('#select-consulta');
+
+            // Adicionar um ouvinte de evento para cada checkbox
+            checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', function () {
+            // Quando um checkbox é marcado, desmarque os outros
+            checkboxes.forEach((otherCheckbox) => {
+                if (otherCheckbox !== this) {
+                    otherCheckbox.checked = false; // Desmarcar outros checkboxes
+                    // Remover a classe de destaque de todas as linhas
+                    otherCheckbox.closest('tr').classList.remove('table-primary');
+                }
+            });
+
+            // Encontrar a linha pai do checkbox (tr)
+            const row = this.closest('tr');
+
+            // Adicionar ou remover a classe 'table-primary' dependendo do estado do checkbox
+            if (this.checked) {
+            row.classList.add('table-primary');
+            } else {
+            row.classList.remove('table-primary');
+            }
+            });
+            });
+
+            
+
+    </script>
   </body>
 </html>
