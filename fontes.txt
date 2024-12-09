@@ -17,3 +17,5 @@ https://uml.sourceforge.io/
 https://www.sis4.com/brModelo/
 https://www.w3schools.com/jquery/jquery_get_started.asp
 https://datatables.net/
+Umbrello
+BRModelo
