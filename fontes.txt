@@ -1,7 +1,7 @@
 W3Schools
 GoogleFonts
 Bootstrap
-StackHolder
+StackOverflow
 Youtube{
     1.https://www.youtube.com/watch?v=ZZ0gvY-4IKA
     2.https://www.youtube.com/watch?v=i7uJAOFEd4g
@@ -15,3 +15,5 @@ https://colorhunt.co/palette/6439ff4f75ff00ccdd7cf5ff
 Pixabay
 https://color.adobe.com/pt/create/color-wheel
 https://cdnjs.com/libraries/jquery
+https://uml.sourceforge.io/
+https://www.sis4.com/brModelo/
