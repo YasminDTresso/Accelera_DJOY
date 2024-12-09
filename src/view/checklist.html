@@ -646,6 +646,18 @@
 
                 acoesInserir.classList.remove('d-none');
 
+                if(btnEditar.classList.contains('btn-outline-warning')){
+                //remover estilo do botao editar, caso usuario clique no botao inserir
+                  btnEditar.classList.remove('btn-outline-warning');
+                  btnEditar.classList.add('btn-warning');
+                }
+
+
+                //alterar estilo do botao inserir para ativado
+                btnInserir.classList.remove('btn-success');
+                btnInserir.classList.add('btn-outline-success');
+
+
               if(editarTarefa.classList.contains('show')){
                  editarTarefa.classList.remove('show');
               }
@@ -655,6 +667,13 @@
               }
             }else if(btnInserir.classList.contains('collapsed')){
                 acoesInserir.classList.add('d-none');
+
+                if(btnInserir.classList.contains('btn-outline-success')){
+                  
+                  //alterar estilo do botao inserir para desativado
+                  btnInserir.classList.remove('btn-outline-success');
+                  btnInserir.classList.add('btn-success');
+                }
             }
         });
 
@@ -665,6 +684,16 @@
 
                 acoesEditar.classList.remove('d-none');
 
+                //remover estilo do botao inserir, caso usuario clique no botao editar
+                if(btnInserir.classList.contains('btn-outline-success')){
+                  btnInserir.classList.remove('btn-outline-success');
+                  btnInserir.classList.add('btn-success');
+                }
+
+                //alterar estilo do botao editar para ativado
+                btnEditar.classList.remove('btn-warning');
+                btnEditar.classList.add('btn-outline-warning');
+
               if(inserirTarefa.classList.contains('show')){
                  inserirTarefa.classList.remove('show');
               }
@@ -674,6 +703,13 @@
               }
             }else if(btnEditar.classList.contains('collapsed')){
                 acoesEditar.classList.add('d-none');
+
+                if(btnEditar.classList.contains('btn-outline-warning')){
+                  //alterar estilo do botao editar para desativado
+                  btnEditar.classList.remove('btn-outline-warning');
+                  btnEditar.classList.add('btn-warning');
+                }
+
             }
             
         });
