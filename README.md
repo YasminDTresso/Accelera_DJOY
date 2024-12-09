@@ -1,18 +1,3 @@
-## Getting Started
-
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+O sistema de controle de cadastros e consultas, destinado à gestão de condutores e veículos, será responsável por receber inicialmente as informações dos clientes, que serão inseridas manualmente por um funcionário em qualquer computador conectado à rede da empresa.
+O sistema deverá armazenar informações como o nome do condutor, contato, nome do cliente (transportadora), placa do veículo e, se aplicável, da carreta, além do vínculo entre os condutores, veículos e os respectivos clientes. Durante o dia, será necessário verificar o status da análise de consulta do condutor e dos veículos, a disponibilidade do sinal do equipamento de rastreamento para a Gerenciadora de Risco, o status do checklist (verificação de sensores e atuadores do equipamento de rastreamento do veículo), a criação da rota e a existência da Solicitação de Monitoramento (SM).
+Cada atualização realizada no sistema permitirá o uso da funcionalidade "copiar", que formatará automaticamente as informações para envio por WhatsApp, garantindo comunicação ágil e clara com os clientes sobre o andamento do processo. Após a conclusão de todas as etapas e a decisão sobre o carregamento do veículo, será utilizada a opção "excluir", que transferirá os dados pendentes para um histórico, acessível para consultas futuras sempre que necessário.
