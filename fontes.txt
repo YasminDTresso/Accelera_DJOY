@@ -6,9 +6,7 @@ Youtube{
     1.https://www.youtube.com/watch?v=ZZ0gvY-4IKA
     2.https://www.youtube.com/watch?v=i7uJAOFEd4g
     3.https://www.youtube.com/watch?v=clEPQ_mov_8
-    4.https://www.w3schools.com/jquery/jquery_get_started.asp
-    5.https://datatables.net/
-    6.https://www.youtube.com/watch?v=3nDwFt_i4jQ
+    4.https://www.youtube.com/watch?v=3nDwFt_i4jQ
 }
 Unicons
 https://colorhunt.co/palette/6439ff4f75ff00ccdd7cf5ff
@@ -17,3 +15,5 @@ https://color.adobe.com/pt/create/color-wheel
 https://cdnjs.com/libraries/jquery
 https://uml.sourceforge.io/
 https://www.sis4.com/brModelo/
+https://www.w3schools.com/jquery/jquery_get_started.asp
+https://datatables.net/
