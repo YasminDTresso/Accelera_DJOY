@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro | Usuario </title>
+
+    <!--CDN BOOTSTRAP-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!--CDN UNICONS-->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
+    />
+
+    <!-- MY CSS-->
+    <link rel="stylesheet" href="/static/css/styles.css" />
+
+    <style>
+
+
+    </style>
+  </head>
+  <body>
+    <!------------------------+Header+------------------------>
+    <header></header>
+
+    <!--------------------------+Navbar+-------------------------->
+    <nav class="navbar navbar-expand-lg py-4 py-lg-0 shadow">
+      <div class="container px-4">
+        <!--Logo-->
+        <!--Utilizando ícone Unicon para a Logo-->
+        <div class="my-logo d-flex align-items-center">
+          <i class="uil uil-truck"></i>
+          <span class="fs-2">Accelera</span>
+        </div>
+
+        <!--Botão para Abrir/Fechar o modal(sidebar) na visão mobile-->
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#nav-top-sidebar"
+          aria-controls="nav-top-sidebar"
+        >
+          <i class="uil uil-bars"></i>
+        </button>
+
+        <div
+          class="offcanvas offcanvas-start"
+          tabindex="-1"
+          id="nav-top-sidebar"
+          aria-labelledby="nav-top-sidebarLabel"
+        >
+          <!--+MODAL+-->
+          <!--Botão para Abrir/Fechar o modal(sidebar) na visão mobile-->
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#nav-top-sidebar"
+            aria-controls="nav-top-sidebar"
+          >
+            <div class="d-flex justify-content-between p-3">
+              <i class="uil uil-truck my-logo"></i>
+              <i class="uil uil-angle-right-b"></i>
+            </div>
+          </button>
+
+          <!--Links navbar-->
+          <ul class="navbar-nav ms-lg-auto p-4 p-lg-0">
+            <!--Espaço usuário com dropdown-->
+            <li
+              class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown d-flex align-items-center"
+            >
+              <img
+                class="user-img me-sm-2"
+                alt=""
+                src="/static/images/user.svg"
+              />
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span>Usuario</span>
+              </a>
+              <ul
+                class="dropdown-menu shadow"
+                style="position: absolute; margin: 0px"
+              >
+                <li>
+                  <a
+                    class="dropdown-item d-flex justify-content-center"
+                    href="meu-perfil-configuracoes.html"
+                  >
+                    <i class="uil uil-setting" style="margin-right: 0.6rem"></i>
+                    <span>Configurações</span>
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex justify-content-center"
+                    href="#"
+                  >
+                    <i
+                      class="uil uil-sign-out-alt"
+                      style="margin-right: 0.6rem"
+                    ></i>
+                    <span>Sair</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!------------------------+Cotéudo do site+------------------------>
+
+    <!--Container que realizará a organização/divisão entre a sidebar e o main-->
+    <div class="wrapper">
+      <!------------------------+SIDEBAR+------------------------>
+
+      <aside id="sidebar">
+        <div class="d-flex">
+          <!-----+Logo+----->
+          <div class="sidebar-logo">
+            <a href="#">Bem vindo, Usuario</a>
+          </div>
+
+          <!-----+Botão para exibir/esconder a sidebar+----->
+          <button id="toggle-btn" type="button">
+            <i class="uil uil-angle-left-b"></i>
+          </button>
+        </div>
+
+        <!-----+Sidebar Nav+----->
+        <ul class="sidebar-nav">
+          <!----+Links sidebar+---->
+
+          <!--+Link c/ dropdown+-->
+          <li class="sidebar-item">
+            <a
+              href="#"
+              id="dropdown-link"
+              class="sidebar-link has-dropdown collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#dropdown-profile"
+              aria-expanded="false"
+              aria-controls="dropdown-profile"
+            >
+              <i class="uil uil-user"></i>
+              <span>Meu Perfil</span>
+            </a>
+
+            <!--Dropdown-->
+            <ul
+              id="dropdown-profile"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <li class="sidebar-item">
+                <a href="meu-perfil-configuracoes.html" class="sidebar-link">
+                  <div class="dropdown-link">
+                    <i class="uil uil-setting"></i>
+                    <span>Configurações</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!--+Link c/ dropdown multi-nivel+-->
+          <li class="sidebar-item">
+            <a
+              href=""
+              id="multi-link"
+              class="sidebar-link has-dropdown collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#multi"
+              aria-expanded="false"
+              aria-controls="multi"
+            >
+              <i class="uil uil-plus"></i>
+              <span>Cadastro</span>
+            </a>
+
+            <!--Dropdown multi-nivel-->
+            <ul
+              id="multi"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="cadastro_transportadora.html"
+                  class="sidebar-link"
+                >
+                  <div class="dropdown-link">Transportadora</div>
+                </a>
+
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="cadastro_usuario.html"
+                  class="sidebar-link"
+                >
+                  <div class="dropdown-link">Usuario</div>
+                </a>
+              </li>
+
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="vinculo_usuario_transportadora.html"
+                  class="sidebar-link"
+                >
+                  <div class="dropdown-link">Novo Vínculo</div>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+          <!--+Link c/ dropdown multi-nivel+-->
+          <li class="sidebar-item">
+            <a
+              href=""
+              id="multi-link-01"
+              class="sidebar-link has-dropdown collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#multi-01"
+              aria-expanded="false"
+              aria-controls="multi-01"
+            >
+            <i class="uil uil-constructor"></i>
+              <span>Ferramentas</span>
+            </a>
+
+            <!--Dropdown multi-nivel-->
+            <ul
+              id="multi-01"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="#"
+                  class="sidebar-link collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#multi-consultar"
+                  aria-expanded="false"
+                  aria-controls="multi-consultar"
+                >
+                  <div class="dropdown-link">Consultar</div>
+                </a>
+
+                <!--Link Nivel 02 -->
+                <ul
+                  id="multi-consultar"
+                  class="sidebar-dropdown list-unstyled collapse"
+                >
+                  <li class="sidebar-item">
+                    <a href="consulta_vinculo_usuario_transportadora.html" class="sidebar-link">
+                      <div class="dropdown-link-01 text-wrap">Consulta Vínculo Usuário Transportadora</div>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a href="consulta_licenciamento.html" class="sidebar-link">
+                      <div class="dropdown-link-01">Consulta Licenciamento</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="#"
+                  class="sidebar-link collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#multi-controle"
+                  aria-expanded="false"
+                  aria-controls="multi-controle"
+                >
+                  <div class="dropdown-link">Controlar</div>
+                </a>
+
+                <!--Link Nivel 02 -->
+                <ul
+                  id="multi-controle"
+                  class="sidebar-dropdown list-unstyled collapse"
+                >
+                  <li class="sidebar-item">
+                    <a href="controle_consulta.html" class="sidebar-link">
+                      <div class="dropdown-link-01">Controle de Consulta</div>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a href="trabalhos_pendentes.html" class="sidebar-link">
+                      <div class="dropdown-link-01">Trabalhos Pendentes</div>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a href="checklist.html" class="sidebar-link">
+                      <div class="dropdown-link-01">CheckList</div>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>          
+
+          <!--+Link simples+-->
+          <li class="sidebar-item">
+            <a href="opcoes.html" class="sidebar-link">
+              <i class="uil uil-setting"></i>
+            <span>Opções</span>
+            </a>
+            </li>
+
+        </ul>
+      </ul>
+
+        </ul>
+
+        <!----+Sidebar Footerr+---->
+        <div class="sidebar-footer">
+          <a href="#" class="sidebar-link">
+            <span class="text-uppercase">Sair</span>
+            <i class="uil uil-sign-out-alt"></i>
+          </a>
+        </div>
+      </aside>
+
+
+      <!------------------------+Main+------------------------>
+      <main class="my-main d-flex p-3">
+
+
+            <!--Alinhando contéudo para o centro-->
+            <div class="container-fluid">
+            </div>
+                
+           </div>
+      </main>
+    </div>
+
+    <!------------------------+Footer+------------------------>
+    <footer></footer>
+
+    <!--JS-->
+    <!--CDN BOOTSTRAP JS-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <!--MY JS-->
+    <script src="/static/js/script.js"></script>
+  </body>
+</html>

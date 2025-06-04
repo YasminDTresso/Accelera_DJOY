@@ -1,0 +1,27 @@
+services:
+  sqlserver:
+    container_name: sqlserver-accelera
+    build:
+      context: .
+    environment:
+      SA_PASSWORD: "${SA_PASSWORD}"
+      ACCEPT_EULA: "Y"
+      MSSQL_AGENT_ENABLED: "True"
+    ports:
+      - "${DB_LOCAL_PORT}:${DB_DOCKER_PORT}"
+    volumes:
+      - sqlserver2_data:/var/opt/mssql
+    networks:
+      - accelera_network
+    healthcheck:
+      test: ["CMD", "nc", "-zv", "localhost", "${DB_DOCKER_PORT}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  sqlserver2_data:
+
+networks:
+  accelera_network:
+    driver: bridge
