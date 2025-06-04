@@ -13,6 +13,9 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 
 import br.accelera.djoy.accelera.Infra.UserDetailsImpl;
 
+/**
+ * A classe JwtTokenService é responsável por gerenciar a criação dos tokens JWT de autenticação
+ **/
 @Service
 public class JwtTokenService {
     

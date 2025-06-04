@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import br.accelera.djoy.accelera.Entities.UsuarioEntity;
 import lombok.Getter;
 
+/**
+ * A classe UserDetailsImpl formata o usuário autenticado antes dele entrar na sessão  
+ **/
 @Getter
 public class UserDetailsImpl implements UserDetails {
 

@@ -28,6 +28,8 @@ public class UsuarioService {
     private final SecurityConfiguration securityConfiguration;
     private final UsuarioRepository usuarioRepository;
 
+    // Pega o usuario e a senha do usuário chamando o serviço de login para que ele 
+    // possa fazer as verificações e possivelmente gerar o token de autenticação 
     public ObterTokenJwtDto autenticarUsuario(LoginUsuarioDto loginUsuarioDto) {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                 loginUsuarioDto.usuario(), loginUsuarioDto.senha());
