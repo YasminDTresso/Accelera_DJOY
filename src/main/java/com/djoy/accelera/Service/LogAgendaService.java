@@ -1,5 +1,6 @@
 package com.djoy.accelera.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,23 +34,15 @@ public class LogAgendaService {
             LogAgendaEntity logAgendaAtualizada = logAgendaExistente.get();
 
             // Atualiza os campos necessários
-            logAgendaAtualizada.setAgenda(logAgenda.getAgenda());
-            // logAgendaAtualizada.setChecagemSensorAnterior(checagemSensorAnterior);        
+            logAgendaAtualizada.setAgenda(logAgenda.getAgenda()); 
             logAgendaAtualizada.setChecagemSensorNovo(logAgenda.getChecagemSensorNovo());
-            // logAgendaAtualizada.setCondutorAnterior(condutorAnterior);
             logAgendaAtualizada.setCondutorNovo(logAgenda.getCondutorNovo());
-            // logAgendaAtualizada.setConsultaAnterior(consultaAnterior);
             logAgendaAtualizada.setConsultaNova(logAgenda.getConsultaNova());
-            logAgendaAtualizada.setDataAlteracao(logAgenda.getDataAlteracao());
-            // logAgendaAtualizada.setObservacaoAnterior(observacaoAnterior);
+            logAgendaAtualizada.setDataAlteracao(LocalDateTime.now());
             logAgendaAtualizada.setObservacaoNova(logAgenda.getObservacaoNova());
-            // logAgendaAtualizada.setRotaAnterior(logAgenda.get);
             logAgendaAtualizada.setRotaNova(logAgenda.getRotaNova());
-            // logAgendaAtualizada.setSinalBrriskAnterior(sinalBrriskAnterior);
             logAgendaAtualizada.setSinalBrriskNovo(logAgenda.getSinalBrriskNovo());
-            // logAgendaAtualizada.setSinalTcellAnterior(sinalTcellAnterior);
             logAgendaAtualizada.setSinalTcellNovo(logAgenda.getSinalTcellNovo());
-            // logAgendaAtualizada.setSmAnterior(smAnterior);
             logAgendaAtualizada.setSmNovo(logAgenda.getSmNovo());
             logAgendaAtualizada.setTransportadora(logAgenda.getTransportadora());
             logAgendaAtualizada.setUsuarioAlteracao(logAgenda.getUsuarioAlteracao());

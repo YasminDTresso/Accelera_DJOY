@@ -1,5 +1,6 @@
 package com.djoy.accelera.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,13 +35,11 @@ public class ConsultaService {
 
             // Atualiza os campos necessários
             consultaAtualizada.setCondutor(consulta.getCondutor());
-            consultaAtualizada.setDataAlteracao(consulta.getDataAlteracao());
-            // consultaAtualizada.setDataInclusao(dataInclusao);
+            consultaAtualizada.setDataAlteracao(LocalDateTime.now());
             consultaAtualizada.setObservacao(consulta.getObservacao());
             consultaAtualizada.setStatus(consulta.getStatus());
             consultaAtualizada.setTransportadora(consulta.getTransportadora());
             consultaAtualizada.setUsuarioAlteracao(consulta.getUsuarioAlteracao());
-            // consultaAtualizada.setUsuarioInclusao(usuarioInclusao);
             consultaAtualizada.setValidade(consulta.getValidade());
             consultaAtualizada.setVeiculo(consulta.getVeiculo());
             consultaAtualizada.setVinculo(consulta.getVinculo());

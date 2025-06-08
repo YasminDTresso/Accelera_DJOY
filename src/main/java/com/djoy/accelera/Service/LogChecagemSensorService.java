@@ -1,5 +1,6 @@
 package com.djoy.accelera.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,25 +35,17 @@ public class LogChecagemSensorService {
 
             // Atualiza os campos necessários
             logChecagemSensorAtualizada.setChecagemSensor(logChecagemSensor.getChecagemSensor());
-            logChecagemSensorAtualizada.setDataAlteracao(logChecagemSensor.getDataAlteracao());
-            // logChecagemSensorAtualizada.setEquipamentoAnterior(logChecagemSensor.get);
+            logChecagemSensorAtualizada.setDataAlteracao(LocalDateTime.now());
             logChecagemSensorAtualizada.setEquipamentoNovo(logChecagemSensor.getEquipamentoNovo());
             logChecagemSensorAtualizada.setGestor(logChecagemSensor.getGestor());
-            // logChecagemSensorAtualizada.setInicioProblemaAnterior(logChecagemSensor.get);
             logChecagemSensorAtualizada.setInicioProblemaNovo(logChecagemSensor.getInicioProblemaNovo());
-            // logChecagemSensorAtualizada.setObservacaoAnterior(logChecagemSensor.get);
             logChecagemSensorAtualizada.setObservacaoNova(logChecagemSensor.getObservacaoNova());
-            // logChecagemSensorAtualizada.setProblemaEquipamentoAnterior(logChecagemSensor.get);
             logChecagemSensorAtualizada.setProblemaEquipamentoNovo(logChecagemSensor.getProblemaEquipamentoNovo());
-            // logChecagemSensorAtualizada.setStatusAnterior(logChecagemSensor.get);
             logChecagemSensorAtualizada.setStatusNovo(logChecagemSensor.getStatusNovo());
             logChecagemSensorAtualizada.setTransportadora(logChecagemSensor.getTransportadora());
             logChecagemSensorAtualizada.setUsuarioAlteracao(logChecagemSensor.getUsuarioAlteracao());
-            // logChecagemSensorAtualizada.setValidadeAnterior(logChecagemSensor.get);
             logChecagemSensorAtualizada.setValidadeNova(logChecagemSensor.getValidadeNova());
-            // logChecagemSensorAtualizada.setVeiculoAnterior(logChecagemSensor.get);
             logChecagemSensorAtualizada.setVeiculoNovo(logChecagemSensor.getVeiculoNovo());
-            // logChecagemSensorAtualizada.setVinculoAnterior(logChecagemSensor.get);
             logChecagemSensorAtualizada.setVinculoNovo(logChecagemSensor.getVinculoNovo());
 
             // Salva o registro atualizado

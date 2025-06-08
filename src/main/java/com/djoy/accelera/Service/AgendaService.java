@@ -37,7 +37,6 @@ public class AgendaService {
             agendaAtualizada.setCondutor(agenda.getCondutor());
             agendaAtualizada.setConsulta(agenda.getConsulta());
             agendaAtualizada.setDataAlteracao(agenda.getDataAlteracao());
-            // agendaAtualizada.setDataInclusao();
             agendaAtualizada.setObservacao(agenda.getObservacao());
             agendaAtualizada.setRota(agenda.getRota());
             agendaAtualizada.setSinalBrrisk(agenda.getSinalBrrisk());
@@ -45,7 +44,6 @@ public class AgendaService {
             agendaAtualizada.setSm(agenda.getSm());
             agendaAtualizada.setTransportadora(agenda.getTransportadora());
             agendaAtualizada.setUsuarioAlteracao(agenda.getUsuarioAlteracao());
-            // agendaAtualizada.setUsuarioInclusao();
             agendaAtualizada.setVeiculo(agenda.getVeiculo());
 
             // Salva o registro atualizado

@@ -21,7 +21,7 @@ public class VeiculoEntity {
 
     @ManyToOne
     @JoinColumn(name = "proprietarioId", referencedColumnName = "id")  
-    private PessoaEntity proprieatario;
+    private PessoaEntity proprietario;
 
     @Column(nullable = false)
     private String modelo;

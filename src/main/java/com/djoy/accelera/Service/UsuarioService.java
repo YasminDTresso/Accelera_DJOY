@@ -14,7 +14,6 @@ import com.djoy.accelera.Entity.Dtos.ObterTokenJwtDto;
 import com.djoy.accelera.Entity.Dtos.ObterUsuarioDto;
 import com.djoy.accelera.Infra.SecurityConfiguration;
 import com.djoy.accelera.Infra.UserDetailsImpl;
-import com.djoy.accelera.Repository.PessoaFisicaRepository;
 import com.djoy.accelera.Repository.UsuarioRepository;
 
 import org.springframework.security.authentication.AuthenticationManager;
