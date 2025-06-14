@@ -15,6 +15,7 @@ import com.djoy.accelera.Entity.CadastroUsuarioDTO;
 import com.djoy.accelera.Entity.UsuarioEntity;
 import com.djoy.accelera.Repository.UsuarioRepository;
 import com.djoy.accelera.Service.TokenService;
+import com.djoy.accelera.Service.UsuarioService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,9 @@ public class AuthenticationController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Autowired
     private TokenService tokenService;
@@ -53,7 +57,7 @@ public class AuthenticationController {
     @PostMapping("/cadastrar-usuario")
     public ResponseEntity register(@RequestBody @Valid CadastroUsuarioDTO data){
         /*Verificar se o usuário já existe */
-        if(this.usuarioRepository.findByLogin(data.login()) != null /*&& this.usuarioRepository.findById(data.id())*/){
+        if(this.usuarioRepository.findByLogin(data.login()) != null && data.cpf() != null){
             return ResponseEntity.badRequest().build();
         } 
 
@@ -61,10 +65,10 @@ public class AuthenticationController {
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha());
 
         // Criando usuário
-        UsuarioEntity novoUsuario = new UsuarioEntity(data.login(), encryptedPassword, data.tipoPermissao());
-
+        // UsuarioEntity novoUsuario = new UsuarioEntity(data.login(), encryptedPassword, data.tipoPermissao());
+        usuarioService.incluir(data.cpf(), data.login(), data.tipoPermissao(), encryptedPassword, data.nome(), data.dataNascimento(), data.email(), data.telefone());
         // Salvando usuário
-        this.usuarioRepository.save(novoUsuario);
+        // this.usuarioRepository.save(novoUsuario);
 
         return ResponseEntity.ok().build();
     }

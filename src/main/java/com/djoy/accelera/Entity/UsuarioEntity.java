@@ -26,11 +26,11 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id", callSuper=false)
 @NoArgsConstructor
 @Data
-public class UsuarioEntity /*extends PessoaFisicaEntity*/ implements UserDetails{
+public class UsuarioEntity extends PessoaFisicaEntity implements UserDetails{
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // private int id;
 
     @Column(nullable = false, unique = true)
     private String login;
