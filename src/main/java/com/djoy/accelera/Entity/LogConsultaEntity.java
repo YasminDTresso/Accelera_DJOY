@@ -4,8 +4,10 @@ import java.time.LocalDateTime;
 
 import com.djoy.accelera.Entity.Enum.statusEtapa;
 import com.djoy.accelera.Entity.Enum.tipoVinculo;
+import com.djoy.accelera.Entity.Key.LogConsultaKey;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,25 +25,26 @@ import lombok.Data;
 @Data
 public class LogConsultaEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EmbeddedId
+    private LogConsultaKey id;
 
-    @ManyToOne
-    @JoinColumn(name = "consultaId", referencedColumnName = "id", nullable = false)
-    private ConsultaEntity consulta;
+    // @ManyToOne
+    // @JoinColumn(name = "consultaId", referencedColumnName = "id", nullable = false)
+    // private ConsultaEntity consulta;
 
     @ManyToOne
     @JoinColumn(name = "usuarioAlteracaoId", referencedColumnName = "id", nullable = false)
     private UsuarioEntity usuarioAlteracao;
 
 
-    @Column(name="dataAlteracao", nullable = false)
-    private LocalDateTime dataAlteracao;
-    @PrePersist
-    protected void onCreate() {
-        this.dataAlteracao = LocalDateTime.now();
-    }
+    // @Column(name="dataAlteracao", nullable = false)
+    // private LocalDateTime dataAlteracao;
+    // @PrePersist
+    // protected void onCreate() {
+    //     this.dataAlteracao = LocalDateTime.now();
+    // }
 
     @Column(name="statusAnterior", nullable = true)
     @Enumerated(EnumType.STRING)

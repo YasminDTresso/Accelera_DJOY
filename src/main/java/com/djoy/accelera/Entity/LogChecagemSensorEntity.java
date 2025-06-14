@@ -5,8 +5,10 @@ import java.util.Date;
 
 import com.djoy.accelera.Entity.Enum.statusEtapa;
 import com.djoy.accelera.Entity.Enum.tipoVinculo;
+import com.djoy.accelera.Entity.Key.LogChecagemSensorKey;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,13 +26,8 @@ import lombok.Data;
 @Data
 public class LogChecagemSensorEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @ManyToOne
-    @JoinColumn(name = "checagemSensorId", referencedColumnName = "id", nullable = false)
-    private ChecagemSensorEntity checagemSensor;
+    @EmbeddedId
+    private LogChecagemSensorKey id;
 
     @ManyToOne
     @JoinColumn(name = "transportadoraId", referencedColumnName = "id", nullable = false)
@@ -39,15 +36,6 @@ public class LogChecagemSensorEntity {
     @ManyToOne
     @JoinColumn(name = "usuarioAlteracaoId", referencedColumnName = "id", nullable = false)
     private UsuarioEntity usuarioAlteracao;
-
-    @Column(name="dataAlteracao", nullable = false)
-    private LocalDateTime dataAlteracao;
-
-    // Atribuindo a data local
-    @PrePersist
-    protected void onCreate() {
-        this.dataAlteracao = LocalDateTime.now();
-    }     
 
     @ManyToOne
     @JoinColumn(name = "gestorId", referencedColumnName = "id")

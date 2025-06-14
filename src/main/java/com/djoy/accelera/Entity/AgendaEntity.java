@@ -43,13 +43,14 @@ public class AgendaEntity {
 
     @Column(name="dataInclusao", nullable = false)
     private LocalDateTime dataInclusao;
-    @PrePersist
-    protected void onCreate() {
-        this.dataInclusao = LocalDateTime.now();
-    }
 
     @Column(name="dataAlteracao", nullable = false)
     private LocalDateTime dataAlteracao;
+    @PrePersist
+    protected void onCreate() {
+        this.dataInclusao = LocalDateTime.now();
+        this.dataAlteracao = LocalDateTime.now();
+    }
 
     @ManyToOne
     @JoinColumn(name = "veiculoId", referencedColumnName = "id")

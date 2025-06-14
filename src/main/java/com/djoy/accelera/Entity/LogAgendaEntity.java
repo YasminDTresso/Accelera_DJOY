@@ -6,14 +6,13 @@ import com.djoy.accelera.Entity.Enum.statusRota;
 import com.djoy.accelera.Entity.Enum.statusSM;
 import com.djoy.accelera.Entity.Enum.statusSinalBRRISK;
 import com.djoy.accelera.Entity.Enum.statusSinalTCELL;
+import com.djoy.accelera.Entity.Key.LogAgendaKey;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
@@ -25,13 +24,16 @@ import lombok.Data;
 @Data
 public class LogAgendaEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)   
-    private int id;
+    @EmbeddedId
+    private LogAgendaKey id;
 
-    @ManyToOne
-    @JoinColumn(name = "agendaId", referencedColumnName = "id", nullable = false)  
-    private AgendaEntity agenda;
+    //  @Id
+    //  @GeneratedValue(strategy = GenerationType.IDENTITY)   
+    //  private int id;
+
+    // @ManyToOne
+    // @JoinColumn(name = "agendaId", referencedColumnName = "id", nullable = false)  
+    // private AgendaEntity agenda;
 
     @ManyToOne
     @JoinColumn(name = "transportadoraId", referencedColumnName = "id", nullable = false)   
@@ -39,16 +41,7 @@ public class LogAgendaEntity {
 
     @ManyToOne
     @JoinColumn(name = "usuarioAlteracaoId", referencedColumnName = "id", nullable = false) 
-    private UsuarioEntity usuarioAlteracao;    
-
-    @Column(name="dataAlteracao", nullable = false)
-    private LocalDateTime dataAlteracao;
-
-    // Atribuindo a data local
-    @PrePersist
-    protected void onCreate() {
-        this.dataAlteracao = LocalDateTime.now();
-    }  
+    private UsuarioEntity usuarioAlteracao;     
 
     @ManyToOne
     @JoinColumn(name = "veiculoId", referencedColumnName = "id")
