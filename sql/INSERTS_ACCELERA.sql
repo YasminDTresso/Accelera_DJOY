@@ -140,9 +140,8 @@ go*/
 	===============================
 */
 
-exec sp_criarConsulta '1', '2', '3', null, '1', '2025-01-01', null, 'Falta documentação', 'EM_ANALISE', 'AGREGADO'
+exec sp_criarConsulta '1', '2', '3', '1', '2025-06-15T12:00:00', 'TESTE', 'EM_ANALISE', 'FIXO'
 
-go
 
 /*Ou
 insert into consultas(data_inclusao,data_alteracao,usuario_inclusao_id,usuario_alteracao_id,condutor_id,transportadora_id,veiculo_id,vinculo,

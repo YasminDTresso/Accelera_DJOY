@@ -114,10 +114,8 @@ create or alter procedure sp_criarConsulta(
 	@v_idUsuarioInclusao int,
 	@v_idTransportadora int,
 	@v_idCondutor int,
-	@v_idUsuarioAlteracao int = null,
 	@v_idVeiculo int,
 	@v_validade datetime,
-	@v_dataAlteracao datetime = null,
 	@v_observacao NVARCHAR(MAX),
 	@v_status varchar(255),
 	@v_vinculo varchar(255)
@@ -131,8 +129,8 @@ begin
 
 	--Criando consulta
 	insert into consultas(usuario_inclusao_id,usuario_alteracao_id,transportadora_id,condutor_id,veiculo_id, data_inclusao,data_alteracao,observacao,status,validade,vinculo)
-			values		 (@v_idUsuarioInclusao, @v_idUsuarioAlteracao, @v_idTransportadora, @v_idCondutor, @v_idVeiculo,
-						  @v_dataInclusao, @v_dataAlteracao, @v_observacao, @v_status, @v_validade, @v_vinculo) 
+			values		 (@v_idUsuarioInclusao, NULL, @v_idTransportadora, @v_idCondutor, @v_idVeiculo,
+						  @v_dataInclusao, NULL, @v_observacao, @v_status, @v_validade, @v_vinculo) 
 	COMMIT
 end
 go
@@ -169,7 +167,7 @@ begin
 	--Editando consulta
 	update	consultas 
 	   set	condutor_id = ISNULL(@v_idCondutor, condutor_id), validade = ISNULL(@v_validade, validade), observacao = ISNULL(@v_observacao, observacao), status = ISNULL(@v_status, status),
-			vinculo = ISNULL(@v_vinculo, vinculo), usuario_alteracao_id = @v_idUsuarioAlteracao
+			vinculo = ISNULL(@v_vinculo, vinculo), veiculo_id = ISNULL(@v_idVeiculo, veiculo_id), usuario_alteracao_id = @v_idUsuarioAlteracao
 	where	id = @v_idConsulta
 	COMMIT
 end
