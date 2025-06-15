@@ -11,7 +11,7 @@ go
 	Criar novo usuário
 	====================
 */
-create procedure sp_criarUsuario
+create or alter procedure sp_criarUsuario
 (
 	-- Declaração dos parâmetros recebidos
     @v_cpf CHAR(11), 
@@ -76,13 +76,41 @@ COMMIT
 end
 go
 
+/*
+	====================
+	Editar Usuario
+	====================
+*/
+create or alter procedure sp_editarUsuario
+(
+	-- Declaração dos parâmetros recebidos
+	@v_idUsuario int,
+    @v_permissao VARCHAR(255) = null, 
+    @v_senha VARCHAR(255) = null 
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+
+	--Verificar se o usuário existe
+	if not exists (select 1 from usuarios where id = @v_idUsuario)
+	begin
+			print 'Usuario não encontrado'
+	end
+
+	--Atualizar dados
+	update usuarios set		permissao = ISNULL(@v_permissao, permissao), senha = ISNULL(@v_senha, senha)
+					where	id = @v_idUsuario
+COMMIT
+end
+go
 
 /*
 	====================
 	Criar nova consulta
 	====================
 */
-create procedure sp_criarConsulta(
+create or alter procedure sp_criarConsulta(
 	@v_idUsuarioInclusao int,
 	@v_idTransportadora int,
 	@v_idCondutor int,
@@ -90,7 +118,7 @@ create procedure sp_criarConsulta(
 	@v_idVeiculo int,
 	@v_validade datetime,
 	@v_dataAlteracao datetime = null,
-	@v_observacao text,
+	@v_observacao NVARCHAR(MAX),
 	@v_status varchar(255),
 	@v_vinculo varchar(255)
 )
@@ -104,7 +132,45 @@ begin
 	--Criando consulta
 	insert into consultas(usuario_inclusao_id,usuario_alteracao_id,transportadora_id,condutor_id,veiculo_id, data_inclusao,data_alteracao,observacao,status,validade,vinculo)
 			values		 (@v_idUsuarioInclusao, @v_idUsuarioAlteracao, @v_idTransportadora, @v_idCondutor, @v_idVeiculo,
-						  @v_dataInclusao, @v_dataAlteracao, @v_observacao, @v_status, @v_Validade, @v_vinculo) 
+						  @v_dataInclusao, @v_dataAlteracao, @v_observacao, @v_status, @v_validade, @v_vinculo) 
+	COMMIT
+end
+go
+
+/*
+	====================
+	Editar consulta
+	====================
+*/
+
+create or alter procedure sp_editarConsulta(
+	@v_idConsulta int,
+	@v_idCondutor int = NULL,
+	@v_idUsuarioAlteracao int,
+	@v_idVeiculo int = NULL,
+	@v_validade datetime = NULL,
+	@v_observacao NVARCHAR(MAX) = NULL,
+	@v_status varchar(255) = NULL,
+	@v_vinculo varchar(255) = NULL
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+
+	--Declaração da varíavel para armazenar a data de alteração
+	declare @v_dataAlteracao datetime = getdate()
+
+	--Verificar se a consulta existe
+	if not exists (select 1 from consultas where id = @v_idConsulta)
+	begin
+			print 'Consulta não encontrada'
+	end
+
+	--Editando consulta
+	update	consultas 
+	   set	condutor_id = ISNULL(@v_idCondutor, condutor_id), validade = ISNULL(@v_validade, validade), observacao = ISNULL(@v_observacao, observacao), status = ISNULL(@v_status, status),
+			vinculo = ISNULL(@v_vinculo, vinculo), usuario_alteracao_id = @v_idUsuarioAlteracao
+	where	id = @v_idConsulta
 	COMMIT
 end
 go
@@ -114,10 +180,9 @@ go
 	Criar nova checagem de Sensor
 	====================
 */
-create procedure sp_criarChecagemSensor(
+create or alter procedure sp_criarChecagemSensor(
 	@v_idUsuarioInclusao int,
 	@v_idTransportadora int,
-	@v_idCondutor int,
 	@v_idUsuarioAlteracao int = null,
 	@v_idVeiculo int,
 	@v_idGestor int,
@@ -125,8 +190,8 @@ create procedure sp_criarChecagemSensor(
 	@v_dataAlteracao datetime = null,
 	@v_inicioProblema datetime,
 	@v_equipamento varchar(255),
-	@v_problemaEquipamento text,
-	@v_observacao text,
+	@v_problemaEquipamento NVARCHAR(MAX),
+	@v_observacao NVARCHAR(MAX),
 	@v_status varchar(255),
 	@v_vinculo varchar(255)
 )
@@ -145,7 +210,7 @@ begin
 	else
 	begin
 		--Criando checagem de sensor
-		insert into checagem_sensor(data_alteracao,data_inclusao,equipamento,gestor_id,inicio_problema,observacao,problema_equipamento,status,transportadora_id,usuario_alteracao_id
+		insert into checagem_sensores(data_alteracao,data_inclusao,equipamento,gestor_id,inicio_problema,observacao,problema_equipamento,status,transportadora_id,usuario_alteracao_id
 									,usuario_inclusao_id,validade,veiculo_id,vinculo)
 				values				(@v_dataAlteracao, @v_dataInclusao, @v_equipamento, @v_idGestor, @v_inicioProblema, @v_observacao, @v_problemaEquipamento, @v_status
 									 , @v_idTransportadora, @v_idUsuarioAlteracao, @v_idUsuarioInclusao, @v_validade, @v_idVeiculo, @v_vinculo)
@@ -155,12 +220,62 @@ end
 go
 
 /*
+	==========================
+	Editar checagem de Sensor
+	==========================
+*/
+
+create or alter procedure sp_editarChecagemSensor(
+	@v_idChecagemSensor int,
+	@v_idUsuarioAlteracao int,
+	@v_idVeiculo int,
+	@v_idGestor int,
+	@v_validade datetime,
+	@v_problemaEquipamento NVARCHAR(MAX),
+	@v_observacao NVARCHAR(MAX),
+	@v_status varchar(255),
+	@v_vinculo varchar(255)
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+
+	--Declaração da varíavel para armazenar a data de inclusão
+	declare @v_dataAlteracao datetime = getdate()
+
+	--Verificar se a consulta existe
+	if not exists (select 1 from checagem_sensores where id = @v_idChecagemSensor)
+	begin
+			print 'Checagem de Sensor não encontrada'
+	end
+
+	--Checando se o usuário definido como gestor tem a permissão GESTOR
+	if not exists (select 1 from usuarios where id = @v_idGestor and permissao = 'GESTOR')
+	begin
+		print 'Usuario definido como gestor não tem a permissão'
+	end
+	else
+	begin
+		--Alterando checagem de sensor
+		update checagem_sensores set usuario_alteracao_id = ISNULL(@v_idUsuarioAlteracao, usuario_alteracao_id), veiculo_id = ISNULL(@v_idVeiculo, veiculo_id), gestor_id = ISNULL(@v_idGestor, gestor_id), 
+									validade = ISNULL(@v_validade, validade), problema_equipamento = ISNULL(@v_problemaEquipamento, problema_equipamento), observacao = ISNULL(@v_observacao, observacao), 
+									status = ISNULL(@v_status, status), vinculo = ISNULL(@v_validade, vinculo)
+								where id = @v_idChecagemSensor
+	end
+	COMMIT
+end
+go
+
+select * from checagem_sensores
+go
+
+/*
 	====================
 	Criar nova agenda
 	====================
 */
 
-create procedure sp_criarAgenda(
+create or alter procedure sp_criarAgenda(
 	@v_idUsuarioInclusao int,
 	@v_idUsuarioAlteracao int = null,
 	@v_idTransportadora int,
@@ -169,7 +284,7 @@ create procedure sp_criarAgenda(
 	@v_idConsulta int = null,
 	@v_idChecagemSensor int = null,
 	@v_dataAlteracao datetime,
-	@v_observacao text,
+	@v_observacao NVARCHAR(MAX),
 	@v_rota varchar(255),
 	@v_sinalBRRISK varchar(255),
 	@v_sinalTCELL varchar(255),

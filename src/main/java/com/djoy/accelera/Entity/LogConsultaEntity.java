@@ -40,6 +40,19 @@ public class LogConsultaEntity {
     //     this.dataAlteracao = LocalDateTime.now();
     // }
 
+    @ManyToOne
+    @JoinColumn(name = "transportadoraId", referencedColumnName = "id")
+    private TransportadoraEntity transportadora;
+
+    @ManyToOne
+    @JoinColumn(name = "condutorId", referencedColumnName = "id")    
+    private CondutorEntity condutor;
+
+    @ManyToOne
+    @JoinColumn(name = "veiculoId", referencedColumnName = "id")   
+    private VeiculoEntity veiculo;
+
+
     @Column(name="statusAnterior", nullable = true)
     @Enumerated(EnumType.STRING)
     private statusEtapa statusAnterior;

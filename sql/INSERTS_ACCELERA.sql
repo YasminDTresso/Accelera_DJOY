@@ -2,7 +2,7 @@
 					-Accelera-
 					-INSERTS-
   =================================================*/
-  
+
 use db_accelera
 go
 /*
@@ -124,7 +124,7 @@ go
  update usuarios set permissao = 'GESTOR' where id = 1
  go
 
- exec sp_criarChecagemSensor '1','2','3',null,'1','1','2024-01-01',null,'2023-01-01','Sensor 01','Interferência no sinal','Entrar em contato com fabricante','EM_ANALISE','AGREGADO'
+ exec sp_criarChecagemSensor '1','2',null,'1','1','2024-01-01',null,'2023-01-01','Sensor 01','Interferência no sinal','Entrar em contato com fabricante','EM_ANALISE','AGREGADO'
  go
 
 /*OU
@@ -141,6 +141,7 @@ go*/
 */
 
 exec sp_criarConsulta '1', '2', '3', null, '1', '2025-01-01', null, 'Falta documentação', 'EM_ANALISE', 'AGREGADO'
+
 go
 
 /*Ou
@@ -155,9 +156,11 @@ go*/
 	===============================
 */
 
+exec sp_criarAgenda '1', null, '2', '3', '1', '1', '1', null, 'Urgente', 'AGUARDANDO', 'AGUARDANDO', 'AGUARDANDO', 'AGUARDANDO'
+go
 
-
-/*insert into agendas(data_inclusao, data_alteracao,consulta_id,checagem_sensor_id,usuario_inclusao_id,usuario_alteracao_id,
+/*OU	
+insert into agendas(data_inclusao, data_alteracao,consulta_id,checagem_sensor_id,usuario_inclusao_id,usuario_alteracao_id,
 					transportadora_id,veiculo_id,condutor_id,rota,sinal_brrisk,sinal_tcell,sm,observacao)
 	values	('2025-06-14', null, 1, 1, )
 go*/

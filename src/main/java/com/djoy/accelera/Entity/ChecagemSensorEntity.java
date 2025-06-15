@@ -20,7 +20,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="checagemSensor")
+@Table(name="checagemSensores")
 @Data
 public class ChecagemSensorEntity {
 
