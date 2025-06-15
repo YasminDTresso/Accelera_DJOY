@@ -18,6 +18,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Integer>
     // Consultar usuário pelo Login
     UserDetails findByLogin(String login);
 
+    //Procedure criar usuário
     @Procedure(name = "sp_criarUsuario")
     void criarUsuario(
         @Param("v_cpf") String cpf,
