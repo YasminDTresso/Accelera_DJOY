@@ -1,5 +1,6 @@
 package com.djoy.accelera.Entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.djoy.accelera.Entity.Enum.statusEtapa;
@@ -17,7 +18,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="logChecagemSensor")
+@Table(name="logChecagemSensores")
 @Data
 public class LogChecagemSensorEntity {
 
@@ -44,6 +45,13 @@ public class LogChecagemSensorEntity {
     @JoinColumn(name = "veiculoNovoId", referencedColumnName = "id")
     private VeiculoEntity veiculoNovo;    
 
+    // @Column(name="dataAlteracao", nullable = false)
+    // private LocalDateTime dataAlteracao;
+    // @PrePersist
+    // protected void onCreate() {
+    //     this.dataAlteracao = LocalDateTime.now();
+    // }
+
     @Column
     private String equipamentoAnterior;
 
@@ -67,15 +75,15 @@ public class LogChecagemSensorEntity {
     private statusEtapa statusNovo;
 
     @Column
-    private Date validadeAnterior;
+    private LocalDateTime validadeAnterior;
 
     @Column
-    private Date validadeNova;    
+    private LocalDateTime validadeNova;    
 
-    @Column(columnDefinition = "TEXT", nullable = true)
+    @Column(columnDefinition = "NVARCHAR(MAX)", nullable = true)
     private String problemaEquipamentoAnterior;
 
-    @Column(columnDefinition = "TEXT", nullable = true)
+    @Column(columnDefinition = "NVARCHAR(MAX)", nullable = true)
     private String problemaEquipamentoNovo;
 
     @Column(nullable = true)
@@ -84,10 +92,10 @@ public class LogChecagemSensorEntity {
     @Column(nullable = true)
     private Date inicioProblemaNovo;    
 
-    @Column(columnDefinition = "TEXT", nullable = true)
+    @Column(columnDefinition = "NVARCHAR(MAX)", nullable = true)
     private String observacaoAnterior;    
 
-    @Column(columnDefinition = "TEXT", nullable = true)
+    @Column(columnDefinition = "NVARCHAR(MAX)", nullable = true)
     private String observacaoNova;    
 
 }

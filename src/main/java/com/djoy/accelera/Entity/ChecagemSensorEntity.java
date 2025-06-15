@@ -47,7 +47,7 @@ public class ChecagemSensorEntity {
         this.dataInclusao = LocalDateTime.now();
     }
 
-    @Column(name="dataAlteracao", nullable = false)
+    @Column(name="dataAlteracao")
     private LocalDateTime dataAlteracao;
 
     @ManyToOne
@@ -70,15 +70,15 @@ public class ChecagemSensorEntity {
     private statusEtapa status;
 
     @Column(name="validade", nullable = true)
-    private Date validade;
+    private LocalDateTime validade;
 
-    @Column(columnDefinition = "TEXT", nullable = true)
+    @Column(columnDefinition = "NVARCHAR(MAX)", nullable = true)
     private String problemaEquipamento;
 
     @Column(nullable = true)
     private Date inicioProblema;
 
-    @Column(columnDefinition = "TEXT", nullable = true)
+    @Column(columnDefinition = "NVARCHAR(MAX)", nullable = true)
     private String observacao;
 
 }

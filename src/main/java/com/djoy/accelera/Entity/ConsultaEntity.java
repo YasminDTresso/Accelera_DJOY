@@ -1,6 +1,5 @@
 package com.djoy.accelera.Entity;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 import com.djoy.accelera.Entity.Enum.statusEtapa;
@@ -69,9 +68,9 @@ public class ConsultaEntity {
     private statusEtapa status;
 
     @Column(name="validade", nullable = true)
-    private Date validade;
+    private LocalDateTime validade;
 
-    @Column(name="observacao", columnDefinition = "TEXT", nullable = true)
+    @Column(name="observacao", columnDefinition = "NVARCHAR(MAX)", nullable = true)
     private String observacao;
 
 }

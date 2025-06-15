@@ -44,7 +44,7 @@ public class AgendaEntity {
     @Column(name="dataInclusao", nullable = false)
     private LocalDateTime dataInclusao;
 
-    @Column(name="dataAlteracao", nullable = false)
+    @Column(name="dataAlteracao")
     private LocalDateTime dataAlteracao;
     @PrePersist
     protected void onCreate() {
@@ -64,7 +64,7 @@ public class AgendaEntity {
     @JoinColumn(name = "condutorId", referencedColumnName = "id") 
     private CondutorEntity condutor;
 
-    @Column(columnDefinition = "TEXT", nullable = true)
+    @Column(columnDefinition = "NVARCHAR(MAX)", nullable = true)
     private String observacao;
 
     @Column(name="sinalTcell", nullable = false)

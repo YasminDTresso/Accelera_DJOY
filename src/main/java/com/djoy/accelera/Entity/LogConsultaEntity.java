@@ -1,7 +1,5 @@
 package com.djoy.accelera.Entity;
 
-import java.time.LocalDateTime;
-
 import com.djoy.accelera.Entity.Enum.statusEtapa;
 import com.djoy.accelera.Entity.Enum.tipoVinculo;
 import com.djoy.accelera.Entity.Key.LogConsultaKey;
@@ -11,17 +9,13 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="logConsulta")
+@Table(name="logConsultas")
 @Data
 public class LogConsultaEntity {
 
@@ -62,10 +56,10 @@ public class LogConsultaEntity {
     @Enumerated(EnumType.STRING)
     private tipoVinculo vinculoNovo;
 
-    @Column(name="observacaoAnterior", columnDefinition = "TEXT", nullable = true)
+    @Column(name="observacaoAnterior", columnDefinition = "NVARCHAR(MAX)", nullable = true)
     private String observacaoAnterior;
 
-    @Column(name="observacaoNova", columnDefinition = "TEXT", nullable = true)
+    @Column(name="observacaoNova", columnDefinition = "NVARCHAR(MAX)", nullable = true)
     private String observacaoNova;
 
 }

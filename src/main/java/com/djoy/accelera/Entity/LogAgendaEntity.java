@@ -1,7 +1,5 @@
 package com.djoy.accelera.Entity;
 
-import java.time.LocalDateTime;
-
 import com.djoy.accelera.Entity.Enum.statusRota;
 import com.djoy.accelera.Entity.Enum.statusSM;
 import com.djoy.accelera.Entity.Enum.statusSinalBRRISK;
@@ -15,7 +13,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -64,10 +61,10 @@ public class LogAgendaEntity {
     @JoinColumn(name = "condutorNovoId", referencedColumnName = "id") 
     private CondutorEntity condutorNovo;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "NVARCHAR(MAX)")
     private String observacaoAnterior;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "NVARCHAR(MAX)")
     private String observacaoNova;
 
     @Column(nullable = false)
