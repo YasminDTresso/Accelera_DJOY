@@ -1,18 +1,22 @@
 package com.djoy.accelera.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.djoy.accelera.Entity.CondutorEntity;
+import com.djoy.accelera.Entity.ConsultaEntity;
+import com.djoy.accelera.Entity.PessoaEntity;
 import com.djoy.accelera.Entity.Enum.statusEtapa;
 import com.djoy.accelera.Entity.Enum.tipoVinculo;
 import com.djoy.accelera.Entity.TransportadoraEntity;
 import com.djoy.accelera.Entity.UsuarioEntity;
 import com.djoy.accelera.Entity.VeiculoEntity;
 import com.djoy.accelera.Repository.ConsultaRepository;
+import com.djoy.accelera.Service.Util.parseData;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -33,12 +37,11 @@ public class ConsultaService {
     /*====Incluir===*/
     @Transactional
     public void incluir(UsuarioEntity usuarioInclusao, TransportadoraEntity transportadora, 
-                        CondutorEntity condutor, VeiculoEntity veiculo, LocalDateTime validade, 
+                        CondutorEntity condutor, VeiculoEntity veiculo, String validade, 
                         String observacao, statusEtapa status, tipoVinculo vinculo)
     {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-        String validadeFormatada = validade.format(formatter);
+        LocalDateTime validadeFormatada = parseData.formatarData(validade);
 
         Query query = entityManager.createNativeQuery("EXEC sp_criarConsulta ?, ?, ?, ?, ?, ?, ?, ?")
               .setParameter(1, usuarioInclusao.getId())
@@ -50,9 +53,6 @@ public class ConsultaService {
               .setParameter(7, status.toString())
               .setParameter(8, vinculo.toString())                
               ;
-        // System.out.println("Executando a procedure com:" + "\nusuarioInclusao " + usuarioInclusao.getId()+ "\ntransportadora " + transportadora.getId()+ "\ncondutor " + condutor.getId()+ "\nveiculo " + veiculo.getId()+ "\nvalidade " +"2025-06-15T12:00:00"+ "\nobservacao " +observacao+ "\nstatus " + status+ "\nvinculo " + vinculo);
-
-        // Query query = entityManager.createNativeQuery("EXEC sp_criarConsulta '1', '2', '3', '1', '"+validadeFormatada+"', 'Teste', '"+ status +"', 'FIXO'");
 
         try {
             query.executeUpdate();
@@ -62,6 +62,66 @@ public class ConsultaService {
             e.printStackTrace(); // Isso pode revelar possíveis falhas que não aparecem no log
         }
 
-        System.out.println("Executando a procedure com:" + "usuarioInclusao" + usuarioInclusao.getId()+ "transportadora" + transportadora.getId()+ "condutor" + condutor.getId()+ "veiculo" + veiculo.getId()+ "validade" +validadeFormatada+ "observacao" +observacao+ "status" + status+ "vinculo" + vinculo);
+        // System.out.println("Executando a procedure com:" + "usuarioInclusao" + usuarioInclusao.getId()+ "transportadora" + transportadora.getId()+ "condutor" + condutor.getId()+ "veiculo" + veiculo.getId()+ "validade" +validadeFormatada+ "observacao" +observacao+ "status" + status+ "vinculo" + vinculo);
+     }
+  
+    /*====Editar===*/
+    @Transactional
+    public ConsultaEntity editar(ConsultaEntity consulta, CondutorEntity condutor, UsuarioEntity usuarioAlteracao, VeiculoEntity veiculo, String validade, String observacao, statusEtapa status, tipoVinculo vinculo){
+
+        //Verifica se o registro existe
+        Optional<ConsultaEntity> consultaExistente = consultaRepository.findById(consulta.getId());
+
+        if(consultaExistente.isPresent()){
+
+        LocalDateTime validadeFormatada = parseData.formatarData(validade);
+
+String sqlProcedure = String.format(
+    "EXEC sp_editarConsulta %d, %d, %d, %d, '%s', '%s', '%s', '%s'",
+    consulta.getId(),
+    condutor.getId(),
+    usuarioAlteracao.getId(),
+    veiculo.getId(),
+    validadeFormatada,
+    observacao,
+    status.toString(),
+    vinculo.toString()
+);
+
+System.out.println("Executando SQL Procedure:");
+System.out.println(sqlProcedure);        
+
+        Query query = entityManager.createNativeQuery("EXEC sp_editarConsulta ?, ?, ?, ?, ?, ?, ?, ?")
+              .setParameter(1, consulta.getId())
+              .setParameter(2, condutor.getId())
+              .setParameter(3, usuarioAlteracao.getId())
+              .setParameter(4, veiculo.getId())  
+              .setParameter(5, validadeFormatada)
+              .setParameter(6, observacao)
+              .setParameter(7, status.toString())
+              .setParameter(8, vinculo.toString())                
+              ;
+
+        try {
+            query.executeUpdate();
+            entityManager.flush();
+            entityManager.clear();
+        } catch (Exception e) {
+            e.printStackTrace(); // Isso pode revelar possíveis falhas que não aparecem no log
+        }            
+
+        System.out.println("Executando a procedure com:" + "usuarioAlteracao" + usuarioAlteracao.getId());
+        return consulta;
+
+        }else{
+            // Caso o registro não exista, retorna como nulo.
+            return null;
+        }
+
+    }     
+
+    /*====Listar Todos===*/
+    public List<ConsultaEntity> listarTodos(){
+        return consultaRepository.findAll();
     }
 }

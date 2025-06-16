@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.djoy.accelera.Entity.AuthenticationDTO;
-import com.djoy.accelera.Entity.CadastroUsuarioDTO;
+import com.djoy.accelera.DTO.AuthenticationDTO;
+import com.djoy.accelera.DTO.CadastroUsuarioDTO;
+import com.djoy.accelera.DTO.LoginResponseDTO;
 import com.djoy.accelera.Entity.UsuarioEntity;
 import com.djoy.accelera.Repository.UsuarioRepository;
 import com.djoy.accelera.Service.TokenService;
@@ -49,6 +50,7 @@ public class AuthenticationController {
 
         // Gerar e retornar o token ao usuário
         var token = tokenService.generateToken((UsuarioEntity) auth.getPrincipal());
+
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 

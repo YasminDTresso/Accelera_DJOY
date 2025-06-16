@@ -4,18 +4,18 @@ package com.djoy.accelera.Service;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.stream.Collectors;
+// import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.djoy.accelera.Entity.PessoaFisicaEntity;
+// import com.djoy.accelera.Entity.PessoaFisicaEntity;
 import com.djoy.accelera.Entity.UsuarioEntity;
-import com.djoy.accelera.Entity.Dtos.CriarUsuarioDto;
-import com.djoy.accelera.Entity.Dtos.LoginUsuarioDto;
-import com.djoy.accelera.Entity.Dtos.ObterTokenJwtDto;
-import com.djoy.accelera.Entity.Dtos.ObterUsuarioDto;
-import com.djoy.accelera.Infra.SecurityConfiguration;
-import com.djoy.accelera.Infra.UserDetailsImpl;
+// import com.djoy.accelera.Entity.Dtos.CriarUsuarioDto;
+// import com.djoy.accelera.Entity.Dtos.LoginUsuarioDto;
+// import com.djoy.accelera.Entity.Dtos.ObterTokenJwtDto;
+// import com.djoy.accelera.Entity.Dtos.ObterUsuarioDto;
+// import com.djoy.accelera.Infra.SecurityConfiguration;
+// import com.djoy.accelera.Infra.UserDetailsImpl;
 import com.djoy.accelera.Repository.UsuarioRepository;
 
 import jakarta.persistence.EntityManager;
@@ -23,9 +23,10 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+// import org.springframework.security.authentication.AuthenticationManager;
+// import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.djoy.accelera.Entity.Enum.tipoPermissao;
 
@@ -41,9 +42,11 @@ public class UsuarioService {
     
     private final UsuarioRepository usuarioRepository;
 
+    private Authentication authentication;
+
     /*====Incluir===*/
-        @Transactional
-        public void incluir(
+    @Transactional
+     public void incluir(
         String cpf, String login, tipoPermissao permissao, String senha,
         String nome, Date dataNascimento, String email, String telefone) {
 
@@ -72,4 +75,16 @@ public class UsuarioService {
         }
         //    System.out.println("Executando procedure com: CPF=" + cpf + ", Login=" + login + ", Permissao =" + permissao + ", Senha =" + senha + ", Nome ="  + nome + ", dataNascimento =" + new java.sql.Date(dataNascimento.getTime()) + ", email=" + email + ", telefone =" +telefone);
     }
+
+    // Captar id do usuario logado
+    public Integer getUsuarioLogadoId() {
+     authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    if (authentication != null && authentication.getPrincipal() instanceof UsuarioEntity) {
+        return ((UsuarioEntity) authentication.getPrincipal()).getId();
+    }
+
+        return null; // Retorna null caso não esteja autenticado
+    }
+
 }

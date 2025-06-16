@@ -1,4 +1,4 @@
-package com.djoy.accelera.Entity;
+package com.djoy.accelera.DTO;
 
 import java.util.Date;
 

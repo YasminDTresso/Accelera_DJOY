@@ -18,17 +18,29 @@ import com.djoy.accelera.Entity.VeiculoEntity;
 @Repository
 public interface ConsultaRepository extends JpaRepository<ConsultaEntity, Integer>{
 
-    //Procedure criar consulta
+    //====================Procedure criar consulta====================
     @Procedure(name = "sp_criarConsulta")
     void criarConsulta(
-    @Param("v_idUsuarioInclusao") UsuarioEntity usuarioInclusao,
-	@Param("v_idTransportadora") TransportadoraEntity transportadora,
+		@Param("v_idUsuarioInclusao") UsuarioEntity usuarioInclusao,
+		@Param("v_idTransportadora") TransportadoraEntity transportadora,
+		@Param("v_idCondutor") CondutorEntity condutor,
+		@Param("v_idVeiculo") VeiculoEntity veiculo,
+		@Param("v_validade") LocalDateTime validade,
+		@Param("v_observacao") String observacao, 
+		@Param("v_status") statusEtapa status,
+		@Param("v_vinculo") tipoVinculo vinculo
+    );
+
+    //====================Procedure editar consulta====================	
+    @Procedure(name = "sp_editarConsulta")
+	void editarConsulta(
+	@Param("v_idConsulta") ConsultaEntity consulta,
 	@Param("v_idCondutor") CondutorEntity condutor,
+	@Param("v_idUsuarioAlteracao") UsuarioEntity usuarioAlteracao,
 	@Param("v_idVeiculo") VeiculoEntity veiculo,
 	@Param("v_validade") LocalDateTime validade,
-	@Param("v_observacao") String observacao, 
+	@Param("v_observacao") String observacao,
 	@Param("v_status") statusEtapa status,
 	@Param("v_vinculo") tipoVinculo vinculo
-    );
-    
+	);
 }

@@ -1,4 +1,4 @@
-package com.djoy.accelera.Controller;
+package com.djoy.accelera.DTO;
 
 public record LoginResponseDTO(String token) {
 
