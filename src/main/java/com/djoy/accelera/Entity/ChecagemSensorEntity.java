@@ -3,7 +3,7 @@ package com.djoy.accelera.Entity;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import com.djoy.accelera.Entity.Enum.statusEtapa;
+import com.djoy.accelera.Entity.Enum.etapaChecagem;
 import com.djoy.accelera.Entity.Enum.tipoVinculo;
 
 import jakarta.persistence.Column;
@@ -67,7 +67,7 @@ public class ChecagemSensorEntity {
 
     @Column(name="status", nullable = true)
     @Enumerated(EnumType.STRING)
-    private statusEtapa status;
+    private etapaChecagem status;
 
     @Column(name="validade", nullable = true)
     private LocalDateTime validade;

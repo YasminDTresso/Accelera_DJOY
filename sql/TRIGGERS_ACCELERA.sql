@@ -15,9 +15,11 @@ on consultas
 after UPDATE
 as
     begin
-            insert into log_consultas(consulta_id, data_alteracao, condutor_id,observacao_anterior,observacao_nova,status_anterior,status_novo,usuario_alteracao_id,vinculo_anterior,vinculo_novo)
+            insert into log_consultas(consulta_id, transportadora_id, veiculo_id, data_alteracao, condutor_id,observacao_anterior,observacao_nova,status_anterior,status_novo,usuario_alteracao_id,vinculo_anterior,vinculo_novo)
             select
                    d.id,
+                   d.transportadora_id,
+                   d.veiculo_id,
                    GETDATE(),
                    d.condutor_id,
                    d.observacao,
@@ -79,3 +81,39 @@ go
 	logAgenda após alteração
 	============================
 */
+
+create or alter trigger trg_LogAgenda
+on agendas 
+after UPDATE
+as
+    begin
+            insert into log_agendas(agenda_id,checagem_sensor_anterior_id,checagem_sensor_novo_id,condutor_anterior_id,condutor_novo_id,consulta_anterior_id,
+                                    consulta_nova_id,data_alteracao,observacao_anterior,observacao_nova,rota_anterior,rota_nova,sinal_brrisk_anterior,sinal_brrisk_novo,sinal_tcell_anterior,
+                                    sinal_tcell_novo,sm_anterior,sm_novo,transportadora_id,usuario_alteracao_id,veiculo_id)
+            select
+                   d.id,
+                   d.checagem_sensor_id,
+                   i.checagem_sensor_id,
+                   d.condutor_id,
+                   i.condutor_id,
+                   d.consulta_id,
+                   i.consulta_id,
+                   GETDATE(),
+                   d.observacao,
+                   i.observacao,
+                   d.rota,
+                   i.rota,
+                   d.sinal_brrisk,
+                   i.sinal_brrisk,
+                   d.sinal_tcell,
+                   i.sinal_tcell,
+                   d.sm,
+                   i.sm,
+                   d.transportadora_id,
+                   i.usuario_alteracao_id,
+                   d.veiculo_id
+            from deleted d
+            join inserted i 
+            on d.id = i.id
+    end
+go

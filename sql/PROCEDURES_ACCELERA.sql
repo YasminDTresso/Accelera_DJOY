@@ -167,7 +167,7 @@ begin
 	--Editando consulta
 	update	consultas 
 	   set	condutor_id = ISNULL(@v_idCondutor, condutor_id), validade = ISNULL(@v_validade, validade), observacao = ISNULL(@v_observacao, observacao), status = ISNULL(@v_status, status),
-			vinculo = ISNULL(@v_vinculo, vinculo), veiculo_id = ISNULL(@v_idVeiculo, veiculo_id), usuario_alteracao_id = @v_idUsuarioAlteracao
+			vinculo = ISNULL(@v_vinculo, vinculo), veiculo_id = ISNULL(@v_idVeiculo, veiculo_id), usuario_alteracao_id = @v_idUsuarioAlteracao, data_alteracao = @v_dataAlteracao
 	where	id = @v_idConsulta
 	COMMIT
 end
@@ -181,11 +181,9 @@ go
 create or alter procedure sp_criarChecagemSensor(
 	@v_idUsuarioInclusao int,
 	@v_idTransportadora int,
-	@v_idUsuarioAlteracao int = null,
 	@v_idVeiculo int,
 	@v_idGestor int,
 	@v_validade datetime,
-	@v_dataAlteracao datetime = null,
 	@v_inicioProblema datetime,
 	@v_equipamento varchar(255),
 	@v_problemaEquipamento NVARCHAR(MAX),
@@ -210,8 +208,8 @@ begin
 		--Criando checagem de sensor
 		insert into checagem_sensores(data_alteracao,data_inclusao,equipamento,gestor_id,inicio_problema,observacao,problema_equipamento,status,transportadora_id,usuario_alteracao_id
 									,usuario_inclusao_id,validade,veiculo_id,vinculo)
-				values				(@v_dataAlteracao, @v_dataInclusao, @v_equipamento, @v_idGestor, @v_inicioProblema, @v_observacao, @v_problemaEquipamento, @v_status
-									 , @v_idTransportadora, @v_idUsuarioAlteracao, @v_idUsuarioInclusao, @v_validade, @v_idVeiculo, @v_vinculo)
+				values				(null, @v_dataInclusao, @v_equipamento, @v_idGestor, @v_inicioProblema, @v_observacao, @v_problemaEquipamento, @v_status
+									 , @v_idTransportadora, null, @v_idUsuarioInclusao, @v_validade, @v_idVeiculo, @v_vinculo)
 	end
 	COMMIT
 end

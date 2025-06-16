@@ -1,10 +1,10 @@
 package com.djoy.accelera.Controller;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,14 +18,14 @@ import com.djoy.accelera.DTO.EditarConsultaDTO;
 import com.djoy.accelera.DTO.InserirConsultaDTO;
 import com.djoy.accelera.Entity.ConsultaEntity;
 import com.djoy.accelera.Entity.Enum.statusEtapa;
-import com.djoy.accelera.Entity.PessoaEntity;
+
 import com.djoy.accelera.Entity.UsuarioEntity;
 import com.djoy.accelera.Repository.ConsultaRepository;
 import com.djoy.accelera.Repository.UsuarioRepository;
 import com.djoy.accelera.Service.ConsultaService;
 import com.djoy.accelera.Service.UsuarioService;
 
-import jakarta.persistence.Id;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -38,13 +38,14 @@ public class ConsultaController {
     private final ConsultaService consultaService;
 
     @Autowired
+    private final ConsultaRepository consultaRepository;
+
+    @Autowired
     private final UsuarioService usuarioService;
 
     @Autowired
     private final UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private final ConsultaRepository consultaRepository;
 
     /*================Listar Consultas Ativas================*/
     @GetMapping

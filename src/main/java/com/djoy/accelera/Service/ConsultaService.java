@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.djoy.accelera.Entity.CondutorEntity;
 import com.djoy.accelera.Entity.ConsultaEntity;
-import com.djoy.accelera.Entity.PessoaEntity;
 import com.djoy.accelera.Entity.Enum.statusEtapa;
 import com.djoy.accelera.Entity.Enum.tipoVinculo;
 import com.djoy.accelera.Entity.TransportadoraEntity;
@@ -40,8 +39,8 @@ public class ConsultaService {
                         CondutorEntity condutor, VeiculoEntity veiculo, String validade, 
                         String observacao, statusEtapa status, tipoVinculo vinculo)
     {
-
-        LocalDateTime validadeFormatada = parseData.formatarData(validade);
+        //Formatando as datas recebidas
+        String validadeFormatada = parseData.formatarLocalDateTimeSQL(validade);
 
         Query query = entityManager.createNativeQuery("EXEC sp_criarConsulta ?, ?, ?, ?, ?, ?, ?, ?")
               .setParameter(1, usuarioInclusao.getId())
@@ -74,22 +73,22 @@ public class ConsultaService {
 
         if(consultaExistente.isPresent()){
 
-        LocalDateTime validadeFormatada = parseData.formatarData(validade);
+        String validadeFormatada = parseData.formatarLocalDateTimeSQL(validade);
 
-// String sqlProcedure = String.format(
-//     "EXEC sp_editarConsulta %d, %d, %d, %d, '%s', '%s', '%s', '%s'",
-//     consulta.getId(),
-//     condutor.getId(),
-//     usuarioAlteracao.getId(),
-//     veiculo.getId(),
-//     validadeFormatada,
-//     observacao,
-//     status.toString(),
-//     vinculo.toString()
-// );
+        // String sqlProcedure = String.format(
+        //     "EXEC sp_editarConsulta %d, %d, %d, %d, '%s', '%s', '%s', '%s'",
+        //     consulta.getId(),
+        //     condutor.getId(),
+        //     usuarioAlteracao.getId(),
+        //     veiculo.getId(),
+        //     validadeFormatada,
+        //     observacao,
+        //     status.toString(),
+        //     vinculo.toString()
+        // );
 
-// System.out.println("Executando SQL Procedure:");
-// System.out.println(sqlProcedure);        
+        // System.out.println("Executando SQL Procedure:");
+        // System.out.println(sqlProcedure);        
 
         Query query = entityManager.createNativeQuery("EXEC sp_editarConsulta ?, ?, ?, ?, ?, ?, ?, ?")
               .setParameter(1, consulta.getId())

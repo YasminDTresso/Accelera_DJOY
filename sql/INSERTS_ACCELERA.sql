@@ -124,7 +124,7 @@ go
  update usuarios set permissao = 'GESTOR' where id = 1
  go
 
- exec sp_criarChecagemSensor '1','2',null,'1','1','2024-01-01',null,'2023-01-01','Sensor 01','Interferência no sinal','Entrar em contato com fabricante','EM_ANALISE','AGREGADO'
+ exec sp_criarChecagemSensor '1','2', '1','1','2024-01-01', '2023-01-01','Sensor 01','Interferência no sinal','Entrar em contato com fabricante','EM_ANALISE','AGREGADO'
  go
 
 /*OU
@@ -134,6 +134,10 @@ insert into checagem_sensor(data_inclusao,data_alteracao,usuario_inclusao_id,usu
 	values	()
 go*/
 
+SELECT * FROM checagem_sensores
+
+EXEC sp_criarChecagemSensor 1, 1, 1, 2, '2025-06-30T18:00', '2025-06-15T18:00', 'Sensor de Temperatura', 'Falha na leitura', 'Equipamento apresentou erro intermitente', 'EMITIDO', 'FIXO'
+
 /*
 	===============================
 			Consulta
@@ -141,13 +145,6 @@ go*/
 */
 
 exec sp_criarConsulta '1', '2', '3', '1', '2025-06-15T12:00:00', 'TESTE', 'EM_ANALISE', 'FIXO'
-
-select * from consultas
-
-/*select * from log_consultas
-
-exec sp_editarConsulta '1', null, '1', null, null, 'hahahahahahah'
-go*/
 
 /*Ou
 insert into consultas(data_inclusao,data_alteracao,usuario_inclusao_id,usuario_alteracao_id,condutor_id,transportadora_id,veiculo_id,vinculo,

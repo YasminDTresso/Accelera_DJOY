@@ -4,18 +4,12 @@ package com.djoy.accelera.Service;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-// import java.util.stream.Collectors;
+
 
 import org.springframework.stereotype.Service;
 
-// import com.djoy.accelera.Entity.PessoaFisicaEntity;
 import com.djoy.accelera.Entity.UsuarioEntity;
-// import com.djoy.accelera.Entity.Dtos.CriarUsuarioDto;
-// import com.djoy.accelera.Entity.Dtos.LoginUsuarioDto;
-// import com.djoy.accelera.Entity.Dtos.ObterTokenJwtDto;
-// import com.djoy.accelera.Entity.Dtos.ObterUsuarioDto;
-// import com.djoy.accelera.Infra.SecurityConfiguration;
-// import com.djoy.accelera.Infra.UserDetailsImpl;
+
 import com.djoy.accelera.Repository.UsuarioRepository;
 
 import jakarta.persistence.EntityManager;
@@ -23,8 +17,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 
-// import org.springframework.security.authentication.AuthenticationManager;
-// import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
