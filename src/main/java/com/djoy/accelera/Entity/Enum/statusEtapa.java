@@ -4,5 +4,6 @@ public enum statusEtapa {
     AGUARDANDO_DOCUMENTOS,
     EM_ANALISE,
     APROVADA,
-    REPROVADA
+    REPROVADA,
+    CANCELADA
 }

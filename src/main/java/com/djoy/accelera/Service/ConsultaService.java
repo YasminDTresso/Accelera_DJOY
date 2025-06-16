@@ -76,20 +76,20 @@ public class ConsultaService {
 
         LocalDateTime validadeFormatada = parseData.formatarData(validade);
 
-String sqlProcedure = String.format(
-    "EXEC sp_editarConsulta %d, %d, %d, %d, '%s', '%s', '%s', '%s'",
-    consulta.getId(),
-    condutor.getId(),
-    usuarioAlteracao.getId(),
-    veiculo.getId(),
-    validadeFormatada,
-    observacao,
-    status.toString(),
-    vinculo.toString()
-);
+// String sqlProcedure = String.format(
+//     "EXEC sp_editarConsulta %d, %d, %d, %d, '%s', '%s', '%s', '%s'",
+//     consulta.getId(),
+//     condutor.getId(),
+//     usuarioAlteracao.getId(),
+//     veiculo.getId(),
+//     validadeFormatada,
+//     observacao,
+//     status.toString(),
+//     vinculo.toString()
+// );
 
-System.out.println("Executando SQL Procedure:");
-System.out.println(sqlProcedure);        
+// System.out.println("Executando SQL Procedure:");
+// System.out.println(sqlProcedure);        
 
         Query query = entityManager.createNativeQuery("EXEC sp_editarConsulta ?, ?, ?, ?, ?, ?, ?, ?")
               .setParameter(1, consulta.getId())
@@ -110,7 +110,7 @@ System.out.println(sqlProcedure);
             e.printStackTrace(); // Isso pode revelar possíveis falhas que não aparecem no log
         }            
 
-        System.out.println("Executando a procedure com:" + "usuarioAlteracao" + usuarioAlteracao.getId());
+        // System.out.println("Executando a procedure com:" + "usuarioAlteracao" + usuarioAlteracao.getId());
         return consulta;
 
         }else{
@@ -124,4 +124,29 @@ System.out.println(sqlProcedure);
     public List<ConsultaEntity> listarTodos(){
         return consultaRepository.findAll();
     }
+
+    /*====Deletar===*/
+    public ConsultaEntity excluir(Integer id, UsuarioEntity usuarioAlteracao){
+    
+        //Verifica se o registro existe
+        Optional<ConsultaEntity> consultaExistente = consultaRepository.findById(id);
+
+        if(consultaExistente.isPresent()){
+
+            //Atualiza o registro
+            ConsultaEntity consultaAtualizada = consultaExistente.get();
+
+            //Atualiza os campos necessários
+            consultaAtualizada.setStatus(statusEtapa.CANCELADA);
+            consultaAtualizada.setUsuarioAlteracao(usuarioAlteracao);
+
+            //Salva a alteração
+            return consultaRepository.save(consultaAtualizada);
+
+        }else{
+        // Caso o registro não exista, retorna como nulo.
+        return null;
+        }
+
+    } 
 }

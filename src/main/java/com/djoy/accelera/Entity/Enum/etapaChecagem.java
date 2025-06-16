@@ -4,5 +4,6 @@ public enum etapaChecagem {
     AGUARDANDO,
     EMITIDO,
     APROVADO,
-    REPROVADO
+    REPROVADO,
+    CANCELADO
 }

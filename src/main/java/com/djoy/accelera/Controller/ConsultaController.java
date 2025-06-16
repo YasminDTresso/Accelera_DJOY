@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.djoy.accelera.DTO.EditarConsultaDTO;
 import com.djoy.accelera.DTO.InserirConsultaDTO;
 import com.djoy.accelera.Entity.ConsultaEntity;
+import com.djoy.accelera.Entity.Enum.statusEtapa;
 import com.djoy.accelera.Entity.PessoaEntity;
 import com.djoy.accelera.Entity.UsuarioEntity;
 import com.djoy.accelera.Repository.ConsultaRepository;
@@ -45,10 +46,11 @@ public class ConsultaController {
     @Autowired
     private final ConsultaRepository consultaRepository;
 
-    /*================Listar Todos================*/
+    /*================Listar Consultas Ativas================*/
     @GetMapping
-    public ResponseEntity<List<ConsultaEntity>> listarTodos(){
-        List<ConsultaEntity> lista = consultaService.listarTodos();
+    public ResponseEntity<List<ConsultaEntity>> listar(){
+        //Listando todas as consultas menos as canceladas
+        List<ConsultaEntity> lista = consultaRepository.findAllExcludingCertainStatus(statusEtapa.CANCELADA);
         return ResponseEntity.ok().body(lista);
     }
 
@@ -81,6 +83,27 @@ public class ConsultaController {
     ConsultaEntity consultaAtualizada = consultaService.editar(consulta, data.condutor(), usuario, data.veiculo(), data.validade(), data.observacao(), data.status(), data.vinculo());
 
     return ResponseEntity.ok(consultaAtualizada);
+    
+    }
+
+    /*================Excluir================*/
+    @PutMapping("/excluir/{id}")
+    public ResponseEntity<ConsultaEntity> excluir(@PathVariable int id){
+
+        //Buscando e armazenando o usuário logado        
+        UsuarioEntity usuario = usuarioRepository.findById(usuarioService.getUsuarioLogadoId())
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    
+        //Buscando e armazenando a consulta ser deletada         
+        ConsultaEntity consulta = consultaRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Consulta não encontrada"));        
+
+        //Guardando a consulta para exibir após 'exclusão'
+        ConsultaEntity consultaExcluida = consulta;
+
+        consultaService.excluir(id, usuario);
+
+        return ResponseEntity.ok(consultaExcluida);
     
     }
 }
