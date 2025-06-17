@@ -73,44 +73,48 @@ public class ConsultaService {
 
         if(consultaExistente.isPresent()){
 
-        String validadeFormatada = parseData.formatarLocalDateTimeSQL(validade);
+            String validadeFormatada = parseData.formatarLocalDateTimeSQL(validade);
 
-        // String sqlProcedure = String.format(
-        //     "EXEC sp_editarConsulta %d, %d, %d, %d, '%s', '%s', '%s', '%s'",
-        //     consulta.getId(),
-        //     condutor.getId(),
-        //     usuarioAlteracao.getId(),
-        //     veiculo.getId(),
-        //     validadeFormatada,
-        //     observacao,
-        //     status.toString(),
-        //     vinculo.toString()
-        // );
+            // String sqlProcedure = String.format(
+            //     "EXEC sp_editarConsulta %d, %d, %d, %d, '%s', '%s', '%s', '%s'",
+            //     consulta.getId(),
+            //     condutor.getId(),
+            //     usuarioAlteracao.getId(),
+            //     veiculo.getId(),
+            //     validadeFormatada,
+            //     observacao,
+            //     status.toString(),
+            //     vinculo.toString()
+            // );
 
-        // System.out.println("Executando SQL Procedure:");
-        // System.out.println(sqlProcedure);        
+            // System.out.println("Executando SQL Procedure:");
+            // System.out.println(sqlProcedure);        
 
-        Query query = entityManager.createNativeQuery("EXEC sp_editarConsulta ?, ?, ?, ?, ?, ?, ?, ?")
-              .setParameter(1, consulta.getId())
-              .setParameter(2, condutor.getId())
-              .setParameter(3, usuarioAlteracao.getId())
-              .setParameter(4, veiculo.getId())  
-              .setParameter(5, validadeFormatada)
-              .setParameter(6, observacao)
-              .setParameter(7, status.toString())
-              .setParameter(8, vinculo.toString())                
-              ;
+            Query query = entityManager.createNativeQuery("EXEC sp_editarConsulta ?, ?, ?, ?, ?, ?, ?, ?")
+                .setParameter(1, consulta.getId())
+                .setParameter(2, condutor.getId())
+                .setParameter(3, usuarioAlteracao.getId())
+                .setParameter(4, veiculo.getId())  
+                .setParameter(5, validadeFormatada)
+                .setParameter(6, observacao)
+                .setParameter(7, status.toString())
+                .setParameter(8, vinculo.toString())                
+                ;
 
-        try {
-            query.executeUpdate();
-            entityManager.flush();
-            entityManager.clear();
-        } catch (Exception e) {
-            e.printStackTrace(); // Isso pode revelar possíveis falhas que não aparecem no log
-        }            
+            try {
+                query.executeUpdate();
+                entityManager.flush();
+                entityManager.refresh(consulta);
+                // entityManager.clear();
+            } catch (Exception e) {
+                e.printStackTrace(); // Isso pode revelar possíveis falhas que não aparecem no log
+            }            
 
-        // System.out.println("Executando a procedure com:" + "usuarioAlteracao" + usuarioAlteracao.getId());
-        return consulta;
+            //Retornando objeto atualizado
+            ConsultaEntity consultaAtualizada = consultaRepository.findById(consulta.getId())
+            .orElseThrow(() -> new RuntimeException("Consulta não encontrada após atualização"));
+
+            return consultaAtualizada;
 
         }else{
             // Caso o registro não exista, retorna como nulo.

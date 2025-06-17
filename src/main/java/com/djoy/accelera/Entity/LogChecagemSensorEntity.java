@@ -3,6 +3,7 @@ package com.djoy.accelera.Entity;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.djoy.accelera.Entity.Enum.etapaChecagem;
 import com.djoy.accelera.Entity.Enum.statusEtapa;
 import com.djoy.accelera.Entity.Enum.tipoVinculo;
 import com.djoy.accelera.Entity.Key.LogChecagemSensorKey;
@@ -68,11 +69,11 @@ public class LogChecagemSensorEntity {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private statusEtapa statusAnterior;
+    private etapaChecagem statusAnterior;
 
     @Column
     @Enumerated(EnumType.STRING)
-    private statusEtapa statusNovo;
+    private etapaChecagem statusNovo;
 
     @Column
     private LocalDateTime validadeAnterior;

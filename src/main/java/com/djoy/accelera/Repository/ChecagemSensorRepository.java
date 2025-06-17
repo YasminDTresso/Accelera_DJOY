@@ -10,9 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.djoy.accelera.Entity.ChecagemSensorEntity;
-import com.djoy.accelera.Entity.ConsultaEntity;
 import com.djoy.accelera.Entity.Enum.etapaChecagem;
-import com.djoy.accelera.Entity.Enum.statusEtapa;
 import com.djoy.accelera.Entity.TransportadoraEntity;
 import com.djoy.accelera.Entity.UsuarioEntity;
 import com.djoy.accelera.Entity.VeiculoEntity;
@@ -52,6 +50,6 @@ public interface  ChecagemSensorRepository extends JpaRepository<ChecagemSensorE
     );  
     //====================Método para filtrar checagem====================	
     @Query("SELECT c FROM ChecagemSensorEntity c WHERE c.status <> :status")
-	List<ConsultaEntity> findAllExcludingCertainStatus(@Param("status") statusEtapa status);
+	List<ChecagemSensorEntity> findAllExcludingCertainStatus(@Param("status") etapaChecagem status);
 
 }

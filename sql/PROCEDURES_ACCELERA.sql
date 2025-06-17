@@ -255,7 +255,7 @@ begin
 		--Alterando checagem de sensor
 		update checagem_sensores set usuario_alteracao_id = ISNULL(@v_idUsuarioAlteracao, usuario_alteracao_id), veiculo_id = ISNULL(@v_idVeiculo, veiculo_id), gestor_id = ISNULL(@v_idGestor, gestor_id), 
 									validade = ISNULL(@v_validade, validade), problema_equipamento = ISNULL(@v_problemaEquipamento, problema_equipamento), observacao = ISNULL(@v_observacao, observacao), 
-									status = ISNULL(@v_status, status), vinculo = ISNULL(@v_validade, vinculo)
+									status = ISNULL(@v_status, status), vinculo = ISNULL(@v_vinculo, vinculo)
 								where id = @v_idChecagemSensor
 	end
 	COMMIT
