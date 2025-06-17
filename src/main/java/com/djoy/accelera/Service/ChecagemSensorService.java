@@ -44,21 +44,21 @@ public class ChecagemSensorService {
         String validadeFormatada = parseData.formatarLocalDateTimeSQL(validade);
         String inicioProblemaFormatado = parseData.formatarLocalDateTimeSQL(inicioProblema);
 
-        // System.out.println("Executando comando SQL:");
-        // System.out.println(String.format(
-        // "EXEC sp_criarChecagemSensor %d, %d, %d, %d, '%s', '%s', '%s', '%s', '%s', '%s', '%s'",
-        // usuarioInclusao.getId(),
-        // transportadora.getId(),
-        // veiculo.getId(),
-        // gestor.getId(),
-        // validadeFormatada,
-        // inicioProblemaFormatado,
-        // equipamento,
-        // problemaEquipamento,
-        // observacao,
-        // status.toString(),
-        // vinculo.toString()
-        // ));
+        System.out.println("Executando comando SQL:");
+        System.out.println(String.format(
+        "EXEC sp_criarChecagemSensor %d, %d, %d, %d, '%s', '%s', '%s', '%s', '%s', '%s', '%s'",
+        usuarioInclusao.getId(),
+        transportadora.getId(),
+        veiculo.getId(),
+        gestor.getId(),
+        validadeFormatada,
+        inicioProblemaFormatado,
+        equipamento,
+        problemaEquipamento,
+        observacao,
+        status.toString(),
+        vinculo.toString()
+        ));
 
         Query query = entityManager.createNativeQuery("EXEC sp_criarChecagemSensor ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?")
             .setParameter(1, usuarioInclusao.getId())

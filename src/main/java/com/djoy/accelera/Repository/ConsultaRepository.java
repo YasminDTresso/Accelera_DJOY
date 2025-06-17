@@ -20,6 +20,7 @@ import com.djoy.accelera.Entity.VeiculoEntity;
 @Repository
 public interface ConsultaRepository extends JpaRepository<ConsultaEntity, Integer>{
 
+	//Para chamadas diretas, porém no service utilizei a chamada por query
     //====================Procedure criar consulta====================
     @Procedure(name = "sp_criarConsulta")
     void criarConsulta(

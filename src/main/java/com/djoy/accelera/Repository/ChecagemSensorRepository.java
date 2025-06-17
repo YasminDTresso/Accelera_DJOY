@@ -19,6 +19,7 @@ import com.djoy.accelera.Entity.Enum.tipoVinculo;
 @Repository
 public interface  ChecagemSensorRepository extends JpaRepository<ChecagemSensorEntity, Integer>{
 
+    //Para chamadas diretas, porém no service utilizei a chamada por query
     //====================Procedure criar checagem====================
         @Procedure(name = "sp_criarChecagemSensor")
         void criarChecagemSensor(

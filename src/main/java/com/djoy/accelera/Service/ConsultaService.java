@@ -150,6 +150,6 @@ public class ConsultaService {
         // Caso o registro não exista, retorna como nulo.
         return null;
         }
-
     } 
+    
 }
