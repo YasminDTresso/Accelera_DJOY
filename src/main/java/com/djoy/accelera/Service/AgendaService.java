@@ -37,7 +37,7 @@ public class AgendaService {
 
     private final AgendaRepository agendaRepository;
 
-        /*====Incluir===*/
+    /*====Incluir===*/
     @Transactional
     public void incluir(UsuarioEntity usuarioInclusao, TransportadoraEntity transportadora, PessoaFisicaEntity condutor,
                         VeiculoEntity veiculo, ConsultaEntity consulta, ChecagemSensorEntity checagemSensor, String observacao,

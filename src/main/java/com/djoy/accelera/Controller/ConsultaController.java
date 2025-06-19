@@ -47,14 +47,6 @@ public class ConsultaController {
     private final UsuarioRepository usuarioRepository;
 
 
-    /*================Listar Consultas Ativas================*/
-    @GetMapping
-    public ResponseEntity<List<ConsultaEntity>> listar(){
-        //Listando todas as consultas menos as canceladas
-        List<ConsultaEntity> lista = consultaRepository.findAllExcludingCertainStatus(statusEtapa.CANCELADA);
-        return ResponseEntity.ok().body(lista);
-    }
-
     /*================Incluir================*/
     @PostMapping("/nova-consulta")
     public ResponseEntity incluir(@RequestBody @Valid InserirConsultaDTO data){

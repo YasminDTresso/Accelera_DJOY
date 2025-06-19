@@ -32,5 +32,8 @@ public class PessoaEntity{
 
     @Column(length = 25, nullable = false)
     private String telefone;
+
+    @Column(nullable = false, columnDefinition = "BIT DEFAULT 1")
+    private Boolean registroAtivo = true;
     
 }

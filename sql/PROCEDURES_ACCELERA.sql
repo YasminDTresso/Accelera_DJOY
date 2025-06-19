@@ -8,6 +8,204 @@ go
 
 /*
 	====================
+	Criar nova PessoaFisica
+	====================
+*/
+
+create or alter procedure sp_criarPessoaFisica(
+	@v_cpf char(11),
+	@v_dataNascimento date,
+	@v_telefone varchar(25),
+	@v_nome varchar(150),
+	@v_email varchar(255)
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+	
+	insert into pessoas(data_nascimento, telefone, nome, email)
+			values		(@v_dataNascimento, @v_telefone, @v_nome, @v_email)
+
+	declare @v_idPessoa int
+	set @v_idPessoa = SCOPE_IDENTITY()
+
+	insert into pessoas_fisicas(id, cpf)
+	values		   (@v_idPessoa, @v_cpf)
+	
+	COMMIT
+end
+go
+
+/*
+	====================
+	Editar PessoaFisica
+	====================
+*/
+
+create or alter procedure sp_editarPessoaFisica(
+	@v_cpf char(11),
+	@v_dataNascimento date = null,
+	@v_telefone varchar(25) = null,
+	@v_nome varchar(150) = null,
+	@v_email varchar(255) = null
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+
+	declare @v_idPessoaFisica int
+	
+	--Atribuindo o id a partir do cpf fornecido
+	select @v_idPessoaFisica = id
+	from pessoas_fisicas
+	where cpf = @v_cpf
+
+	--Alterando os dados
+
+	--Pessoa
+	update pessoas set data_nascimento = ISNULL(@v_dataNascimento, data_nascimento), telefone = ISNULL(@v_telefone, telefone), nome= ISNULL(@v_nome, nome), email = ISNULL(@v_email, email)
+					where id = @v_idPessoaFisica
+
+	COMMIT
+end
+go
+
+/*
+	====================
+	Criar nova PessoaJuridica
+	====================
+*/
+
+create or alter procedure sp_criarPessoaJuridica(
+	@v_cnpj char(11),
+	@v_dataNascimento date,
+	@v_telefone varchar(25),
+	@v_nome varchar(150),
+	@v_nomeFantasia varchar(150) = null,
+	@v_email varchar(255)
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+
+	insert into pessoas(data_nascimento, telefone, nome, email)
+			values		(@v_dataNascimento, @v_telefone, @v_nome, @v_email)
+
+	declare @v_idPessoa int
+	set @v_idPessoa = SCOPE_IDENTITY()
+
+	insert into pessoas_juridicas(id, cnpj, nome_fantasia)
+		values					 (@v_idPessoa, @v_cnpj, @v_nomeFantasia)
+
+	COMMIT
+end
+go
+
+/*
+	====================
+	Editar PessoaJuridica
+	====================
+*/
+
+create or alter procedure sp_editarPessoaJuridica(
+	@v_cnpj char(11),
+	@v_dataNascimento date = null,
+	@v_telefone varchar(25) = null,
+	@v_nome varchar(150) = null,
+	@v_nomeFantasia varchar(150) = null,
+	@v_email varchar(255) = null
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+
+	declare @v_idPessoaJuridica int
+	
+	--Atribuindo o id a partir do cpnj fornecido
+	select @v_idPessoaJuridica = id
+	from pessoas_juridicas
+	where cnpj = @v_cnpj
+
+	--Alterando os dados
+
+	--Pessoa
+	update pessoas set data_nascimento = ISNULL(@v_dataNascimento, data_nascimento), telefone = ISNULL(@v_telefone, telefone), nome= ISNULL(@v_nome, nome), email = ISNULL(@v_email, email)
+					where id = @v_idPessoaJuridica
+
+	--Pessoa Juridica
+	update pessoas_juridicas set nome_fantasia = ISNULL(@v_nomeFantasia, nome_fantasia)
+	                       where id = @v_idPessoaJuridica
+
+	COMMIT
+end
+go
+
+/*
+	====================
+	Criar novo condutor
+	====================
+*/
+
+create or alter procedure sp_criarCondutor(
+	@v_cpf char(11),
+	@v_cnh char(11),
+	@v_dataNascimento date,
+	@v_telefone varchar(25),
+	@v_nome varchar(150),
+	@v_email varchar(255) 
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+
+	declare @v_idPessoaFisica int
+
+	--Atribuindo o id a partir do cpf fornecido
+	select @v_idPessoaFisica = id
+	from pessoas_fisicas
+	where cpf = @v_cpf
+
+	--Verificando se a pessoa referente ao cpf fornecido existe
+	if @v_idPessoaFisica is null
+		begin
+			--Se não existir, cadastrar pessoa conforme os dados
+			exec sp_criarPessoaFisica @v_cpf, @v_dataNascimento, @v_telefone, @v_nome, @v_email
+			
+			select @v_idPessoaFisica = id
+			from pessoas_fisicas
+			where cpf = @v_cpf
+
+		end
+
+	--Verificando se já não existe algum condutor
+	if not exists (select 1 from condutores where id = @v_idPessoaFisica)
+		begin
+
+			--Atribuindo os dados de Pessoa, caso já exista
+			if exists ( select 1 from pessoas where id = @v_idPessoaFisica)
+				begin
+					select @v_dataNascimento = data_nascimento, @v_telefone = telefone, @v_nome = nome, @v_email = email 
+					from pessoas
+					where id = @v_idPessoaFisica
+				end
+		end
+	else
+		begin
+			print 'Condutor já cadastrado'
+		end		
+
+		--Criando condutor
+		insert into condutores(id, cnh)
+		 values               (@v_idPessoaFisica, @v_cnh)
+
+	COMMIT
+end
+go
+
+--Para editar o condutor, basta o procedure sp_EditarPessoaFisica, pois a cnh não pode ser alterada pelo usuario
+
+/*
+	====================
 	Criar novo usuário
 	====================
 */
@@ -30,17 +228,22 @@ begin
 
 	declare @v_idPessoa int
 	declare @v_idPessoaFisica int
+	declare @v_status varchar(15)
+
+
+	--Ao criar usuario, ele receberá o status ativo
+	set @v_status = 'ATIVO'
 
    -- Caso a pessoa fisica exista, preencher os parametros
-    SELECT @v_idPessoaFisica = pf.id, 
+    select @v_idPessoaFisica = pf.id, 
            @v_idPessoa = p.id,
            @v_nome = p.nome,
            @v_dtaNascimento = p.data_nascimento,
            @v_email = p.email,
            @v_telefone = p.telefone
-    FROM pessoas_fisicas pf
-    JOIN pessoas p ON pf.id = p.id
-    WHERE pf.cpf = @v_cpf
+    from pessoas_fisicas pf
+    join pessoas p on pf.id = p.id
+    where pf.cpf = @v_cpf
 
 	 -- Se a pessoa não existir, verificar se os parâmetros obrigatórios foram preenchidos
     if @v_idPessoa IS NULL AND @v_idPessoaFisica IS NULL AND @v_nome IS NULL AND @v_dtaNascimento IS NULL AND @v_email IS NULL AND @v_telefone IS NULL
@@ -69,8 +272,8 @@ begin
 	--Verificando se há usuario vinculado à PessoaFisica
 	if not exists (select id from usuarios where id = @v_idPessoaFisica)
 	begin
-		insert into usuarios (id,login,permissao,senha)
-		values        (@v_idPessoaFisica, @v_login, @v_permissao, @v_senha)
+		insert into usuarios (id,login,permissao,senha, status)
+		values        (@v_idPessoaFisica, @v_login, @v_permissao, @v_senha, @v_status)
 	end
 COMMIT
 end

@@ -53,6 +53,9 @@ insert into condutores(id,cnh)
 	values	(3, '12345678911')
 go
 
+--EXEC sp_criarCondutor 00000000000, 98765432100, '2006-06-30', 17999999999, 'Administrador', 'adm@gmail.com'
+go
+
 select * from condutores
 
 /*
