@@ -53,6 +53,8 @@ insert into condutores(id,cnh)
 	values	(3, '12345678911')
 go
 
+select * from condutores
+
 /*
 	===============================
 		   Transportadoras
@@ -132,6 +134,9 @@ insert into checagem_sensor(data_inclusao,data_alteracao,usuario_inclusao_id,usu
 go*/
 
 SELECT * FROM checagem_sensores
+select * from log_checagem_sensores
+EXEC sp_editarChecagemSensor 1, 4, 1, 1, '2025-06-30T00:00:00', 'Falha na leitura', 'Teste de edição', 'EMITIDO', 'TERCEIRO'
+go
 
 /*
 	===============================
@@ -155,8 +160,8 @@ go*/
 	===============================
 */
 
-exec sp_criarAgenda '1', null, '2', '3', '1', '1', '1', null, 'Urgente', 'AGUARDANDO', 'AGUARDANDO', 'AGUARDANDO', 'AGUARDANDO'
-go
+--exec sp_criarAgenda '1', null, '2', '3', '1', '1', '1', null, 'Urgente', 'AGUARDANDO', 'AGUARDANDO', 'AGUARDANDO', 'AGUARDANDO'
+--go
 
 /*OU	
 insert into agendas(data_inclusao, data_alteracao,consulta_id,checagem_sensor_id,usuario_inclusao_id,usuario_alteracao_id,
@@ -164,4 +169,7 @@ insert into agendas(data_inclusao, data_alteracao,consulta_id,checagem_sensor_id
 	values	('2025-06-14', null, 1, 1, )
 go*/
 
+select * from agendas
+select * from log_agendas
+EXEC sp_editarAgenda 1, 4, 3, 1, 1,1 , 'teste de ediçao', 'OK', 'OK', 'OK', 'OK'
 

@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.djoy.accelera.Entity.Enum.statusUsuario;
 import com.djoy.accelera.Entity.Enum.tipoPermissao;
 
 import jakarta.persistence.Column;
@@ -41,6 +42,10 @@ public class UsuarioEntity extends PessoaFisicaEntity implements UserDetails{
     @Column(name = "permissao", nullable = false)   
     @Enumerated(EnumType.STRING)
     private tipoPermissao tipoPermissao;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private statusUsuario status;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -224,13 +224,13 @@ go
 create or alter procedure sp_editarChecagemSensor(
 	@v_idChecagemSensor int,
 	@v_idUsuarioAlteracao int,
-	@v_idVeiculo int,
-	@v_idGestor int,
-	@v_validade datetime,
-	@v_problemaEquipamento NVARCHAR(MAX),
-	@v_observacao NVARCHAR(MAX),
-	@v_status varchar(255),
-	@v_vinculo varchar(255)
+	@v_idVeiculo int = null,
+	@v_idGestor int = null,
+	@v_validade datetime = null,
+	@v_problemaEquipamento NVARCHAR(MAX) = null,
+	@v_observacao NVARCHAR(MAX) = null,
+	@v_status varchar(255) = null,
+	@v_vinculo varchar(255) = null
 )
 as
 begin
@@ -239,7 +239,7 @@ begin
 	--Declaração da varíavel para armazenar a data de inclusão
 	declare @v_dataAlteracao datetime = getdate()
 
-	--Verificar se a consulta existe
+	--Verificar se a checagem de sensor existe
 	if not exists (select 1 from checagem_sensores where id = @v_idChecagemSensor)
 	begin
 			print 'Checagem de Sensor não encontrada'
@@ -255,7 +255,7 @@ begin
 		--Alterando checagem de sensor
 		update checagem_sensores set usuario_alteracao_id = ISNULL(@v_idUsuarioAlteracao, usuario_alteracao_id), veiculo_id = ISNULL(@v_idVeiculo, veiculo_id), gestor_id = ISNULL(@v_idGestor, gestor_id), 
 									validade = ISNULL(@v_validade, validade), problema_equipamento = ISNULL(@v_problemaEquipamento, problema_equipamento), observacao = ISNULL(@v_observacao, observacao), 
-									status = ISNULL(@v_status, status), vinculo = ISNULL(@v_vinculo, vinculo)
+									status = ISNULL(@v_status, status), vinculo = ISNULL(@v_vinculo, vinculo), data_alteracao = @v_dataAlteracao
 								where id = @v_idChecagemSensor
 	end
 	COMMIT
@@ -273,13 +273,11 @@ go
 
 create or alter procedure sp_criarAgenda(
 	@v_idUsuarioInclusao int,
-	@v_idUsuarioAlteracao int = null,
 	@v_idTransportadora int,
 	@v_idCondutor int,
 	@v_idVeiculo int, 
 	@v_idConsulta int = null,
 	@v_idChecagemSensor int = null,
-	@v_dataAlteracao datetime,
 	@v_observacao NVARCHAR(MAX),
 	@v_rota varchar(255),
 	@v_sinalBRRISK varchar(255),
@@ -296,10 +294,52 @@ begin
 	--Criando agenda
 	insert into agendas(checagem_sensor_id,condutor_id,consulta_id,data_alteracao,data_inclusao,observacao,rota,sinal_brrisk,sinal_tcell,sm,transportadora_id,usuario_alteracao_id,
 						usuario_inclusao_id,veiculo_id)
-			values		(@v_idChecagemSensor, @v_idCondutor, @v_idConsulta,@v_dataAlteracao, @v_dataInclusao, @v_observacao, @v_rota, @v_sinalBRRISK, @v_sinalTCELL, @v_SM, @v_idTransportadora,
-						 @v_idUsuarioAlteracao, @v_idUsuarioInclusao, @v_idVeiculo)
+			values		(@v_idChecagemSensor, @v_idCondutor, @v_idConsulta,null, @v_dataInclusao, @v_observacao, @v_rota, @v_sinalBRRISK, @v_sinalTCELL, @v_SM, @v_idTransportadora,
+						 null, @v_idUsuarioInclusao, @v_idVeiculo)
 
 	COMMIT
 end
 go
 
+/*
+	====================
+	Editar agenda
+	====================
+*/
+
+create or alter procedure sp_editarAgenda(
+	@v_idAgenda int,
+	@v_idUsuarioAlteracao int,
+	@v_idCondutor int = null,
+	@v_idVeiculo int = null, 
+	@v_idConsulta int = null,
+	@v_idChecagemSensor int = null,
+	@v_observacao NVARCHAR(MAX) = null,
+	@v_rota varchar(255) = null,
+	@v_sinalBRRISK varchar(255) = null,
+	@v_sinalTCELL varchar(255) = null,
+	@v_SM varchar(255) = null
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+
+	--Declaração da varíavel para armazenar a data de inclusão
+	declare @v_dataAlteracao datetime = getdate()
+
+	--Verificar se a agenda existe
+	if not exists (select 1 from agendas where id = @v_idAgenda)
+	begin
+			print 'Agenda não encontrada'
+	end
+
+	--Alterando agenda
+	update agendas set		usuario_alteracao_id = ISNULL(@v_idUsuarioAlteracao, usuario_alteracao_id), condutor_id = ISNULL(@v_idCondutor, condutor_id), veiculo_id = ISNULL(@v_idVeiculo, veiculo_id),
+							consulta_id = ISNULL(@v_idConsulta, consulta_id), checagem_sensor_id = ISNULL(@v_idChecagemSensor, checagem_sensor_id), observacao = ISNULL(@v_observacao, observacao),
+							rota = ISNULL(@v_rota, rota), sinal_brrisk = ISNULL(@v_sinalBRRISK, sinal_brrisk),
+							sinal_tcell = ISNULL(@v_sinalTCELL, sinal_tcell), sm = ISNULL(@v_SM, sm), data_alteracao = @v_dataAlteracao
+				   where	id = @v_idAgenda
+
+	COMMIT
+end
+go
