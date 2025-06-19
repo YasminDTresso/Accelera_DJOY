@@ -22,6 +22,8 @@ insert into pessoas(data_nascimento,email,nome,telefone)
 			values	('1999-01-01','condutor@gmail.com','Joao','17333333333')
 go
 
+select * from pessoas
+
 /*
 	===============================
 		   Pessoas Juridicas
