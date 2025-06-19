@@ -14,8 +14,8 @@ public interface CondutorRepository extends JpaRepository<CondutorEntity, Intege
 
     Optional<CondutorEntity> findByCnh(String cnh);
 
-        //====================Método para filtrar condutor====================	
-	    List<CondutorEntity> findByRegistroAtivoTrue();
+    //====================Método para filtrar condutor====================	
+    List<CondutorEntity> findByRegistroAtivoTrue();
 
 
 }

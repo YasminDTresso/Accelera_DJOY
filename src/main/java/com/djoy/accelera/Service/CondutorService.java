@@ -94,29 +94,4 @@ public class CondutorService {
         }
     }
 
-    // /*
-    //  *     /*====Deletar===*/
-    // public AgendaEntity excluir(Integer id, UsuarioEntity usuarioAlteracao){
-    
-    //     //Verifica se o registro existe
-    //     Optional<AgendaEntity> agendaExistente =agendaRepository.findById(id);
-
-    //     if(agendaExistente.isPresent()){
-
-    //         //Atualiza o registro
-    //        AgendaEntity agendaAtualizada = agendaExistente.get();
-
-    //         //Atualiza os campos necessários
-    //        agendaAtualizada.setRota(statusRota.CANCELADA);
-    //        agendaAtualizada.setUsuarioAlteracao(usuarioAlteracao);
-
-    //         //Salva a alteração
-    //         return agendaRepository.save(agendaAtualizada);
-
-    //     }else{
-    //     // Caso o registro não exista, retorna como nulo.
-    //     return null;
-    //     }
-    // } 
-    //  */
 }

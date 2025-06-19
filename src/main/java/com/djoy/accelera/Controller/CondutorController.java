@@ -49,7 +49,6 @@ public class CondutorController {
     @PostMapping("/novo-condutor")
     public ResponseEntity<CondutorEntity> incluir(@RequestBody @Valid InserirCondutorDTO data) {
 
-        // Recupera o condutor recém-criado por cnh
         CondutorEntity condutor = condutorService.incluir(data.cpf(), data.cnh(), data.dataNascimento(), data.telefone(), data.nome(), data.email());
 
         return ResponseEntity.ok(condutor);
