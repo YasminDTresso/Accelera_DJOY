@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.djoy.accelera.DTO.EditarVeiculoDTO;
 import com.djoy.accelera.DTO.InserirVeiculoDTO;
-import com.djoy.accelera.Entity.AgendaEntity;
-import com.djoy.accelera.Entity.VeiculoEntity;
 import com.djoy.accelera.Entity.VeiculoEntity;
 import com.djoy.accelera.Repository.VeiculoRepository;
 import com.djoy.accelera.Service.VeiculoService;

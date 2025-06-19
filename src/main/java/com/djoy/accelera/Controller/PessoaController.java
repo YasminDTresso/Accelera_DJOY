@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.djoy.accelera.DTO.EditarPessoaDTO;
 import com.djoy.accelera.Entity.PessoaEntity;
 import com.djoy.accelera.Service.PessoaService;
 
@@ -49,7 +50,7 @@ public class PessoaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<PessoaEntity> editar(@PathVariable int id, 
-    @RequestBody PessoaEntity pessoa){
+    @RequestBody EditarPessoaDTO pessoa){
         PessoaEntity atualizado = pessoaService.editar(id, pessoa);
 
         if(atualizado != null){

@@ -2,6 +2,7 @@ package com.djoy.accelera.Controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.djoy.accelera.DTO.EditarPessoaDTO;
 import com.djoy.accelera.DTO.InserirCondutorDTO;
 import com.djoy.accelera.Entity.CondutorEntity;
+import com.djoy.accelera.Entity.PessoaEntity;
 import com.djoy.accelera.Repository.CondutorRepository;
 import com.djoy.accelera.Service.CondutorService;
+import com.djoy.accelera.Service.PessoaService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +31,7 @@ public class CondutorController {
 
     @SuppressWarnings("unused")
     private final CondutorService condutorService;
+    private final PessoaService pessoaService;
 
     private final CondutorRepository condutorRepository;
 
@@ -49,6 +54,21 @@ public class CondutorController {
 
         return ResponseEntity.ok(condutor);
     }
+
+        /*================Editar================*/
+
+        @PutMapping("/{id}")
+        public ResponseEntity<CondutorEntity> editar(@PathVariable int id, 
+        @RequestBody EditarPessoaDTO pessoa){
+            
+            CondutorEntity condutor = condutorRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Condutor não encontrado"));
+
+            pessoaService.editar(id, pessoa);
+
+            return ResponseEntity.ok(condutor);
+        }
+
 
 
     /*================Excluir================*/

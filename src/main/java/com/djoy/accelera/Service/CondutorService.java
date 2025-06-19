@@ -4,16 +4,10 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import com.djoy.accelera.Entity.AgendaEntity;
 import com.djoy.accelera.Entity.CondutorEntity;
-import com.djoy.accelera.Entity.ConsultaEntity;
-import com.djoy.accelera.Entity.PessoaEntity;
-import com.djoy.accelera.Entity.UsuarioEntity;
 import com.djoy.accelera.Repository.CondutorRepository;
 
 import jakarta.persistence.EntityManager;
@@ -71,7 +65,7 @@ public class CondutorService {
     }
 
     /*====Editar===*/
-    /*--Para editar o condutor, basta o procedure sp_EditarPessoaFisica, pois a cnh não pode ser alterada pelo usuario */
+    /*--Para editar o condutor, utilizaremos o método editar Pessoa, pois a cnh não pode ser alterada pelo usuario */
 
     /*====Listar Todos===*/
     public List<CondutorEntity> listarTodos(){

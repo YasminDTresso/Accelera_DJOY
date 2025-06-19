@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.djoy.accelera.DTO.EditarPessoaDTO;
 import com.djoy.accelera.Entity.PessoaEntity;
 import com.djoy.accelera.Repository.PessoaRepository;
 
@@ -24,7 +25,7 @@ public class PessoaService {
     }
 
     /*====Editar===*/
-    public PessoaEntity editar(int id, PessoaEntity pessoa){
+    public PessoaEntity editar(int id, EditarPessoaDTO pessoa){
         //Verifica se o registro existe
         Optional<PessoaEntity> pessoaExistente = pessoaRepository.findById(id);
 
@@ -33,10 +34,10 @@ public class PessoaService {
             PessoaEntity pessoaAtualizada = pessoaExistente.get();
 
             // Atualiza os campos necessários
-            pessoaAtualizada.setDataNascimento(pessoa.getDataNascimento());
-            pessoaAtualizada.setEmail(pessoa.getEmail());
-            pessoaAtualizada.setNome(pessoa.getNome());
-            pessoaAtualizada.setTelefone(pessoa.getTelefone());;           
+            pessoaAtualizada.setDataNascimento(pessoa.dataNascimento());
+            pessoaAtualizada.setEmail(pessoa.email());
+            pessoaAtualizada.setNome(pessoa.nome());
+            pessoaAtualizada.setTelefone(pessoa.telefone());;           
 
             // Salva o registro atualizado
             return pessoaRepository.save(pessoaAtualizada);
