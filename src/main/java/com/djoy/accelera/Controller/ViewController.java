@@ -6,29 +6,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ViewController {
 
-    @GetMapping("/auth/login")
+    @GetMapping("view/auth/login")
     public String login() {
         return "login"; // vai carregar templates/login.html
     }
 
-    @GetMapping("/home")
+    @GetMapping("view/home")
     public String home() {
         return "home";
     }
 
-    @GetMapping("/transportadora/cadastro")
+    @GetMapping("view/transportadora/cadastro")
     public String cadastroTransportadora() {
         return "cadastro_transportadora";
     }
 
-    @GetMapping("/transportadora/edicao")
+    @GetMapping("view/transportadora/edicao")
     public String edicaoTransportadora() {
         return "editar_transportadora";
     }
 
-    @GetMapping("/transportadora/exclusao")
+    @GetMapping("view/transportadora/exclusao")
     public String exclusaoTransportadora() {
         return "deletar_transportadora";
+    }
+
+    @GetMapping("view/checagem-sensor")
+    public String checagemSensor() {
+        return "checagem-sensor";
     }
 
 }

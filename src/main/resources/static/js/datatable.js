@@ -21,7 +21,7 @@ $('#datatable').DataTable({
     },
     /*Definindo a linguagem do datatable para PT-BR */
     language: {
-        url: '/assets/data/datatable-pt-BR.json'
+        url: '/data/datatable-pt-BR.json'
     }
 
 })
