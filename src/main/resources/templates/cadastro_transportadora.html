@@ -19,8 +19,8 @@
       href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
     />
 
-    <!-- MY CSS-->
-    <link rel="stylesheet" href="/assets/css/styles.css" />
+  <!-- Estilo local -->
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
 
     <style>
 
@@ -368,78 +368,63 @@
 
             <!-- Formulário de cadastro -->
              <div class="row w-100" style="min-height: 95%; align-items: center;">
-                <form class="mx-auto row g-3">
-                         
-                    <div class="col-md-2 mb-3">
-                        <!-- Campo para o código (apenas leitura) -->
-                        <label for="codigo" class="form-label">Código:</label>
-                        <input type="text" id="codigo" class="form-control">
-                    </div>
-
-                    <div class="col-md-10 mb-3">
-                    <!-- Campo para o nome da transportadora -->
-                    <label for="nome" class="form-label">Nome:</label>
-                    <input type="text" id="nome" class="form-control">
-                    </div>
-
-                    <div class="col-md-12">
-                        <h2>Validade de check list em dias:</h2>
-                    </div>
-    
-                    <div class="col-md-4 mb-3">
-                    <!-- Seção: validade de checklist em dias -->
-
-                    <label for="fixo-checklist" class="form-label">Fixo:</label>
-                    <input type="number" id="fixo-checklist" class="form-control">
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label for="agregado-checklist" class="form-label">Agregado:</label>
-                        <input type="number" id="agregado-checklist" class="form-control">
-                    </div>
-    
-                    <div class="col-md-4 mb-3">
-                        <label for="terceiro-checklist" class="form-label">Terceiro:</label>
-                        <input type="number" id="terceiro-checklist" class="form-control">
-                    </div>
-
-                    <div class="col-md-12">
-                        <!-- Seção: validade de consulta em dias -->
-                        <h2>Validade da consulta em dias:</h2>
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                    <label for="fixo-consulta" class="form-label">Fixo:</label>
-                    <input type="number" id="fixo-consulta" class="form-control">
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label for="agregado-consulta" class="form-label">Agregado:</label>
-                        <input type="number" id="agregado-consulta" class="form-control">
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label for="terceiro-consulta" class="form-label">Terceiro:</label>
-                        <input type="number" id="terceiro-consulta" class="form-control">
-                    </div>
-    
-
-                    <!-- Botões de ação -->
-                    <div class="col-12 mt-4">
-
-                    </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button type="submit" class="btn btn-success">Inserir</button>
-                        <button type="button" class="btn btn-primary">Alterar Cadastro</button>
-                        <button type="reset" class="btn btn-danger">Cancelar</button>
-                    </div>
-
+                <form id="incluir-transportadora-form" class="mx-auto row g-3" method="post">
+                <!-- Campo: CNPJ -->
+                <div class="col-md-6">
+                <label for="cnpj" class="form-label">CNPJ</label>
+                <input type="text" id="cnpj" name="cnpj" class="form-control" placeholder="Digite o CNPJ" required>
+                </div>
+                <!-- Campo: Data de Nascimento -->
+                <div class="col-md-6">
+                <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+                <input type="date" id="dataNascimento" name="dataNascimento" class="form-control" required>
+                </div>
+                <!-- Campo: Telefone -->
+                <div class="col-md-6">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="Digite o telefone" required>
+                </div>
+                <!-- Campo: Nome -->
+                <div class="col-md-6">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite o nome" required>
+                </div>
+                <!-- Campo: Nome Fantasia -->
+                <div class="col-md-6">
+                <label for="nomeFantasia" class="form-label">Nome Fantasia</label>
+                <input type="text" id="nomeFantasia" name="nomeFantasia" class="form-control" placeholder="Digite o nome fantasia" required>
+                </div>
+                <!-- Campo: Email -->
+                <div class="col-md-6">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Digite o e-mail" required>
+                </div>
+                <!-- Campo: Tipo de Serviço -->
+                <div class="col-md-6">
+                <label for="tipoServico" class="form-label">Tipo de Serviço</label>
+                <input type="text" id="tipoServico" name="tipoServico" class="form-control" placeholder="Digite o tipo de serviço" required>
+                </div>
+                <!-- Campo: Tipo de Vínculo -->
+                <div class="col-md-6">
+                  <label for="tipoVinculo" class="form-label">Tipo de Vínculo</label>
+                  <select id="tipoVinculo" name="tipoVinculo" class="form-select" required>
+                    <option value="">Selecione...</option>
+                    <option value="FIXO">FIXO</option>
+                    <option value="AGREGADO">AGREGADO</option>
+                    <option value="TERCEIRO">TERCEIRO</option>
+                  </select>
+                </div>
+                <!-- Botões de Ação -->
+                <div class="col-12 d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+                <button type="submit" class="btn btn-success">Inserir</button>
+                <button type="reset" class="btn btn-danger">Cancelar</button>
+                </div>
                 </form>
-             </div>
 
+             </div>    
 
-                
             </div>
+
       </main>
     </div>
 
@@ -453,7 +438,43 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <!--MY JS-->
-    <script src="/assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script th:src="@{/js/axios-config.js}"></script>
+    <!--My script -->
+    <script th:src="@{/js/script.js}"></script>
+
+      <script>
+      // Intercepta o envio do formulário para enviar os dados via Axios
+      document.getElementById('incluir-transportadora-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Previne o comportamento padrão de envio
+        
+        // Coleta dos valores dos campos
+        const payload = {
+          cnpj: document.getElementById('cnpj').value,
+          dataNascimento: document.getElementById('dataNascimento').value,
+          telefone: document.getElementById('telefone').value,
+          nome: document.getElementById('nome').value,
+          nomeFantasia: document.getElementById('nomeFantasia').value,
+          email: document.getElementById('email').value,
+          tipoServico: document.getElementById('tipoServico').value,
+          tipoVinculo: document.getElementById('tipoVinculo').value
+        };
+
+        console.log("Payload a ser enviado:", payload);
+        
+        // Envio do payload via POST para o endpoint de inclusão
+        axios.post("/transportadora/nova-transportadora", payload)
+          .then(response => {
+            console.log("Resposta do servidor:", response.data);
+            alert("Transportadora cadastrada com sucesso!");
+            // Opcional: limpa o formulário
+            document.getElementById('incluir-transportadora-form').reset();
+          })
+          .catch(error => {
+            console.error("Erro ao incluir transportadora:", error);
+            alert("Erro ao cadastrar transportadora. Confira os dados informados e tente novamente.");
+          });
+      });
+    </script>
   </body>
 </html>

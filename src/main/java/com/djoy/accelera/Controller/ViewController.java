@@ -16,5 +16,10 @@ public class ViewController {
         return "home";
     }
 
+    @GetMapping("/transportadora/cadastro")
+    public String cadastroTransportadora() {
+        return "cadastro_transportadora";
+    }
+
 }
 
