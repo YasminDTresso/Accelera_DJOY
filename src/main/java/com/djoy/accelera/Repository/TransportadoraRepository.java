@@ -16,4 +16,6 @@ public interface TransportadoraRepository extends JpaRepository<TransportadoraEn
     //====================Método para filtrar transportadora====================	
     List<TransportadoraEntity> findByRegistroAtivoTrue();
 
+    //====================Buscar por CNPJ====================	
+
 }

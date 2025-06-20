@@ -39,6 +39,19 @@ public class TransportadoraController {
         return ResponseEntity.ok().body(lista);
     }
 
+    @GetMapping("/buscar/{cnpj}")
+    public ResponseEntity<TransportadoraEntity> buscarPorCnpj(@PathVariable String cnpj) {
+        TransportadoraEntity transportadora = transportadoraRepository.findByCnpj(cnpj)
+        .orElseThrow(() -> new RuntimeException("Transportadora não encontrada"));
+        
+        if (transportadora != null) {
+        return ResponseEntity.ok(transportadora);
+        } else {
+        return ResponseEntity.notFound().build();
+        }
+    }
+
+
     /*================Incluir================*/
     @PostMapping("/nova-transportadora")
     public ResponseEntity<TransportadoraEntity> incluir(@RequestBody @Valid InserirTransportadoraDTO data) {

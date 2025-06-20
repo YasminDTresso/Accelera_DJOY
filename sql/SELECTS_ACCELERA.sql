@@ -11,11 +11,14 @@
   select * from pessoas_fisicas
   go
 
-    select * from pessoas_juridicas
+  select * from pessoas_juridicas
   go
 
   select * from condutores
   go
 
   select * from veiculos
+  go
+
+  select * from transportadoras
   go

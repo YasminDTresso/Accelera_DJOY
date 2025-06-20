@@ -21,5 +21,15 @@ public class ViewController {
         return "cadastro_transportadora";
     }
 
+    @GetMapping("/transportadora/edicao")
+    public String edicaoTransportadora() {
+        return "editar_transportadora";
+    }
+
+    @GetMapping("/transportadora/exclusao")
+    public String exclusaoTransportadora() {
+        return "deletar_transportadora";
+    }
+
 }
 
