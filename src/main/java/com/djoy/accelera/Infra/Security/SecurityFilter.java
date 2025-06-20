@@ -1,7 +1,6 @@
 package com.djoy.accelera.Infra.Security;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.djoy.accelera.Entity.UsuarioEntity;
 import com.djoy.accelera.Repository.UsuarioRepository;
 import com.djoy.accelera.Service.TokenService;
 
@@ -31,6 +29,23 @@ public class SecurityFilter extends OncePerRequestFilter{
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+
+        String path = request.getRequestURI();
+        
+
+        System.out.println("Caminho acessado: " + request.getRequestURI());
+
+        // Libera acesso para rotas públicas
+        if (path.equals("/auth/view-login") ||
+            path.startsWith("/css/") ||
+            path.startsWith("/js/") ||
+            path.startsWith("/images/") ||
+            path.startsWith("/assets/")) {
+
+            System.out.println("Rota pública liberada sem verificação de token: " + path);
+            filterChain.doFilter(request, response);
+            return;
+        }     
 
         var token = this.recoverToken(request);
 

@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -34,8 +33,12 @@ public class SecurityConfigurations {
               //Definindo requisições autorizadas
               .authorizeHttpRequests(authorize -> authorize
               // Permitir que todos os usuários acessem a pagina de login
-              .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
-              .requestMatchers(HttpMethod.POST,"/auth/cadastrar-usuario").permitAll()
+                .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
+                .requestMatchers(HttpMethod.POST,"/auth/cadastrar-usuario").permitAll()
+                .requestMatchers(
+                    HttpMethod.GET,
+                    "/auth/view-login", "/css/**", "/js/**", "/images/**", "/assets/**", "/home"
+                ).permitAll()
               .requestMatchers(HttpMethod.POST, "/pessoa").hasRole("ADMINISTRADOR")
               //O resto dos metodos pode ser requisitado por qualquer usuário autenticado
               .anyRequest().authenticated()

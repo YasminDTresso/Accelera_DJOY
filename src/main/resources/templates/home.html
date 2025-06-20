@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Home - Usuário Autenticado</title>
+  <!-- Seu CSS customizado -->
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+  <div style="text-align: center; padding-top: 50px;">
+    <h1>Bem-vindo!</h1>
+    <p>Token recebido:</p>
+    <!-- Exibiremos o token aqui -->
+    <pre id="token-output" style="background: #f4f4f4; padding: 10px; width: fit-content; margin: auto;">Carregando token...</pre>
+  </div>
+
+  <!-- Script para ler e exibir o token -->
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+      // Obtendo o token do localStorage
+      const token = localStorage.getItem("jwt_token");
+      console.log("Token encontrado na home:", token);
+
+      if (token) {
+        // Exibe o token na tela
+        document.getElementById("token-output").textContent = token;
+      } else {
+        // Se não houver token, redireciona para a tela de login
+        alert("Token não encontrado. Por favor, efetue login novamente.");
+        window.location.href = "/auth/view-login";
+      }
+    });
+  </script>
+</body>
+</html>

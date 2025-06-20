@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+
+  <!-- CDN BOOTSTRAP -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous" />
+
+  <!-- CDN UNICONS -->
+  <link rel="stylesheet"
+        href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+
+  <!-- Estilo local -->
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body class="index">
+
+  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="row align-items-center justify-content-center" style="width: 40%;">
+      <div class="col-12 text-center">
+        <i class="uil uil-truck logo" style="font-size: 4rem; color: white;"></i>
+        <h1 style="color: white;">Accelera</h1>
+      </div>
+      <div class="col-12">
+        <div class="login-container">
+          <form id="login-form" class="p-5">
+            <div class="mb-3">
+              <label for="usuario" class="form-label">Usuário:</label>
+              <input type="text" class="form-control" id="usuario" name="username" required />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Senha:</label>
+              <input type="password" class="form-control" id="password" name="password" required />
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="remember-me" />
+              <label class="form-check-label" for="remember-me">Lembrar de mim.</label>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary">Entrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Bootstrap Bundle -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+  <!-- JS customizado -->
+    <!-- <script th:src="@{/js/script.js}"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+  document.getElementById("login-form").addEventListener("submit", async function (event) {
+    event.preventDefault(); // evita recarregamento do formulário
+
+    const login = document.getElementById("usuario").value;
+    const senha = document.getElementById("password").value;
+
+    // Verificação básica (opcional)
+    if (!login || !senha) {
+      alert("Preencha todos os campos!");
+      return;
+    }
+
+    try {
+      // Envia os dados de login para o backend
+      const response = await axios.post("/auth/login", {
+        login: login,
+        senha: senha
+      });
+
+      console.log("Resposta do login:", response.data); // debug
+
+      const token = response.data.token;
+
+      if (!token) {
+        alert("Token não recebido!");
+        return;
+      }
+
+      // Salva o token localmente
+      localStorage.setItem("jwt_token", token);
+
+      // Aplica o token a todas as futuras requisições do Axios
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      console.log("Token salvo e aplicado:", token);
+
+      // Redireciona após garantir que o token foi salvo
+      setTimeout(() => {
+        window.location.href = "/home";
+      }, 100); // pequeno delay para garantir persistência
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      alert("Usuário ou senha inválidos.");
+    }
+  });
+    </script>
+</body>
+</html>

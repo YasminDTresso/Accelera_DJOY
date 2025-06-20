@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CheckList</title>
+
+    <!--CDN BOOTSTRAP-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!--CDN UNICONS-->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
+    />
+
+    <!--CDN DATATABLE-->
+    <link
+    href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/b-print-3.2.0/datatables.min.css"
+    rel="stylesheet"
+  />
+
+
+    <!-- MY CSS-->
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+
+    <style></style>
+  </head>
+  <body>
+    <!------------------------+Header+------------------------>
+    <header></header>
+
+    <!--------------------------+Navbar+-------------------------->
+    <nav class="navbar navbar-expand-lg py-4 py-lg-0 shadow">
+      <div class="container px-4">
+        <!--Logo-->
+        <!--Utilizando ícone Unicon para a Logo-->
+        <div class="my-logo d-flex align-items-center">
+          <i class="uil uil-truck"></i>
+          <span class="fs-2">Accelera</span>
+        </div>
+
+        <!--Botão para Abrir/Fechar o modal(sidebar) na visão mobile-->
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#nav-top-sidebar"
+          aria-controls="nav-top-sidebar"
+        >
+          <i class="uil uil-bars"></i>
+        </button>
+
+        <div
+          class="offcanvas offcanvas-start"
+          tabindex="-1"
+          id="nav-top-sidebar"
+          aria-labelledby="nav-top-sidebarLabel"
+        >
+          <!--+MODAL+-->
+          <!--Botão para Abrir/Fechar o modal(sidebar) na visão mobile-->
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#nav-top-sidebar"
+            aria-controls="nav-top-sidebar"
+          >
+            <div class="d-flex justify-content-between p-3">
+              <i class="uil uil-truck my-logo"></i>
+              <i class="uil uil-angle-right-b"></i>
+            </div>
+          </button>
+
+          <!--Links navbar-->
+          <ul class="navbar-nav ms-lg-auto p-4 p-lg-0">
+            <!--Espaço usuário com dropdown-->
+            <li
+              class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown d-flex align-items-center"
+            >
+              <img
+                class="user-img me-sm-2"
+                alt=""
+                src="/assets/images/user.svg"
+              />
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span>Usuario</span>
+              </a>
+              <ul
+                class="dropdown-menu shadow"
+                style="position: absolute; margin: 0px"
+              >
+                <li>
+                  <a
+                    class="dropdown-item d-flex justify-content-center"
+                    href="meu-perfil-configuracoes.html"
+                  >
+                    <i class="uil uil-setting" style="margin-right: 0.6rem"></i>
+                    <span>Configurações</span>
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex justify-content-center"
+                    href="#"
+                  >
+                    <i
+                      class="uil uil-sign-out-alt"
+                      style="margin-right: 0.6rem"
+                    ></i>
+                    <span>Sair</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!------------------------+Cotéudo do site+------------------------>
+
+    <!--Container que realizará a organização/divisão entre a sidebar e o main-->
+    <div class="wrapper">
+      <!------------------------+SIDEBAR+------------------------>
+
+      <aside id="sidebar">
+        <div class="d-flex">
+          <!-----+Logo+----->
+          <div class="sidebar-logo">
+            <a href="#">Bem vindo, Usuario</a>
+          </div>
+
+          <!-----+Botão para exibir/esconder a sidebar+----->
+          <button id="toggle-btn" type="button">
+            <i class="uil uil-angle-left-b"></i>
+          </button>
+        </div>
+
+        <!-----+Sidebar Nav+----->
+        <ul class="sidebar-nav">
+          <!----+Links sidebar+---->
+
+          <!--+Link c/ dropdown+-->
+          <li class="sidebar-item">
+            <a
+              href="#"
+              id="dropdown-link"
+              class="sidebar-link has-dropdown collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#dropdown-profile"
+              aria-expanded="false"
+              aria-controls="dropdown-profile"
+            >
+              <i class="uil uil-user"></i>
+              <span>Meu Perfil</span>
+            </a>
+
+            <!--Dropdown-->
+            <ul
+              id="dropdown-profile"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <li class="sidebar-item">
+                <a href="meu-perfil-configuracoes.html" class="sidebar-link">
+                  <div class="dropdown-link">
+                    <i class="uil uil-setting"></i>
+                    <span>Configurações</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!--+Link c/ dropdown multi-nivel+-->
+          <li class="sidebar-item">
+            <a
+              href=""
+              id="multi-link"
+              class="sidebar-link has-dropdown collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#multi"
+              aria-expanded="false"
+              aria-controls="multi"
+            >
+              <i class="uil uil-plus"></i>
+              <span>Cadastro</span>
+            </a>
+
+            <!--Dropdown multi-nivel-->
+            <ul
+              id="multi"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="cadastro_transportadora.html"
+                  class="sidebar-link"
+                >
+                  <div class="dropdown-link">Transportadora</div>
+                </a>
+
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="cadastro_usuario.html"
+                  class="sidebar-link"
+                >
+                  <div class="dropdown-link">Usuario</div>
+                </a>
+              </li>
+
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="vinculo_usuario_transportadora.html"
+                  class="sidebar-link"
+                >
+                  <div class="dropdown-link">Novo Vínculo</div>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+          <!--+Link c/ dropdown multi-nivel+-->
+          <li class="sidebar-item">
+            <a
+              href=""
+              id="multi-link-01"
+              class="sidebar-link has-dropdown collapsed active-sidebar-link"
+              data-bs-toggle="collapse"
+              data-bs-target="#multi-01"
+              aria-expanded="false"
+              aria-controls="multi-01"
+            >
+            <i class="uil uil-constructor"></i>
+              <span>Ferramentas</span>
+            </a>
+
+            <!--Dropdown multi-nivel-->
+            <ul
+              id="multi-01"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="#"
+                  class="sidebar-link collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#multi-consultar"
+                  aria-expanded="false"
+                  aria-controls="multi-consultar"
+                >
+                  <div class="dropdown-link">Consultar</div>
+                </a>
+
+                <!--Link Nivel 02 -->
+                <ul
+                  id="multi-consultar"
+                  class="sidebar-dropdown list-unstyled collapse"
+                >
+                  <li class="sidebar-item">
+                    <a href="consulta_vinculo_usuario_transportadora.html" class="sidebar-link">
+                      <div class="dropdown-link-01 text-wrap">Consulta Vínculo Usuário Transportadora</div>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a href="consulta_licenciamento.html" class="sidebar-link">
+                      <div class="dropdown-link-01">Consulta Licenciamento</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!--Link Nivel 01-->
+              <li class="sidebar-item">
+                <a
+                  href="#"
+                  class="sidebar-link collapsed active-sidebar-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#multi-controle"
+                  aria-expanded="false"
+                  aria-controls="multi-controle"
+                >
+                  <div class="dropdown-link">Controlar</div>
+                </a>
+
+                <!--Link Nivel 02 -->
+                <ul
+                  id="multi-controle"
+                  class="sidebar-dropdown list-unstyled collapse"
+                >
+                  <li class="sidebar-item">
+                    <a href="controle_consulta.html" class="sidebar-link">
+                      <div class="dropdown-link-01">Controle de Consulta</div>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a href="trabalhos_pendentes.html" class="sidebar-link">
+                      <div class="dropdown-link-01">Trabalhos Pendentes</div>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a href="checklist.html" class="sidebar-link active-sidebar-link">
+                      <div class="dropdown-link-01">CheckList</div>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>          
+
+          <!--+Link simples+-->
+          <li class="sidebar-item">
+            <a href="opcoes.html" class="sidebar-link">
+              <i class="uil uil-setting"></i>
+            <span>Opções</span>
+            </a>
+            </li>
+
+        </ul>
+      </ul>
+
+        </ul>
+
+        <!----+Sidebar Footerr+---->
+        <div class="sidebar-footer">
+          <a href="#" class="sidebar-link">
+            <span class="text-uppercase">Sair</span>
+            <i class="uil uil-sign-out-alt"></i>
+          </a>
+        </div>
+      </aside>
+
+
+      <!------------------------+Main+------------------------>
+      <main>
+        <div class="my-main p-3 d-flex">
+            <div class="container-fluid">
+
+            <!-- Título da página -->
+              <div class="row w-100">
+                <h1>CheckList</h1>
+                <hr>
+              </div>
+
+            <div class="row w-100">
+              <div class="col-12 mb-3">
+                <form action="" class="row mx-auto g-3">
+
+                 <p>Ações:</p>   
+                <!-- Seção para botões de ação -->
+                <div class="col-6">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#inserir-tarefa" aria-expanded="false" aria-controls="inserir-tarefa" id="btn-inserir-tarefa">Inserir</button>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="collapse" data-bs-target="#editar-tarefa" aria-expanded="false" aria-controls="editar-tarefa" id="btn-editar-tarefa">Editar</button>
+                </div>
+
+                </div>
+
+                <div class="col-6">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+                        <div class="acoes-inserir d-none" id="acoes-inserir">
+                            <button type="button" class="btn btn-success" aria-expanded="false" aria-controls="" id="btn-confirmar-edicao">Confirmar</button>
+                            <button type="button" class="btn btn-danger" aria-expanded="false" aria-controls="" id="btn-cancelar-edicao">Cancelar</button>
+                        </div>
+
+                        <div class="acoes-editar d-none" id="acoes-editar">
+                            <button type="button" class="btn btn-success" data-bs-toggle="collapse" aria-expanded="false" aria-controls="inserir-tarefa" id="btn-confirmar-edicao">Confirmar</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="collapse" aria-expanded="false" aria-controls="editar-tarefa" id="btn-cancelar-edicao">Cancelar</button> 
+                        </div>
+
+                    </div>
+                </div>
+ 
+
+                </div>
+
+                <!--Formulario Inserir-->
+                <div class="row collapse mb-3 mt-3" id="inserir-tarefa">
+                    <div class="col-2 mb-3">
+                        <!-- Campo para exibir nome da transportadora -->
+                        <label for="nome-transportadora" class="form-label">Transportadora:</label>
+                        <input type="text" id="nome-transportadora" class="form-control" placeholder="Nome da Transportadora" aria-label="nome-transportadora">
+                    </div>
+
+                    <div class="col-2 mb-3">
+                      <!-- Campo para exibir nome do Gestor -->
+                      <label for="nome-gestor" class="form-label">Gestor:</label>
+                      <input type="text" id="nome-gestor" class="form-control" placeholder="Nome do Gestor" aria-label="nome-gestor">
+                  </div>
+
+                    <div class="col-2 mb-3">
+                        <!-- Campo para exibir placa do veiculo -->
+                        <label for="placa-veiculo" class="form-label">Placa do Veículo:</label>
+                        <input type="text" id="placa-veiculo" class="form-control" placeholder="Placa do Veículo" aria-label="placa-veiculo">
+                    </div>
+                    <div class="col-2 mb-3">
+                        <!-- Campo para exibir equipamento -->
+                        <label for="equipamento" class="form-label">Equipamento:</label>
+                        <input type="text" id="equipamento" class="form-control" placeholder="Equipamento" aria-label="equipamento">
+                    </div>
+                    <div class="col-2 mb-3">
+                      <!-- Campo para exibir tipo de vinculo -->
+                      <label for="tipo-vinculo" class="form-label">Vínculo:</label>
+                      <select class="form-select form-control" aria-label="tipo-vinculo" id="tipo-vinculo">
+                        <option selected>Selecione...</option>
+                        <option value="1">Agregado</option>
+                        <option value="2">Fixo</option>
+                        <option value="3">Terceiro</option>
+                      </select>
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir status da checklist -->
+                    <label for="status-checklist" class="form-label">Status da Checklist:</label>
+                    <select class="form-select form-control" aria-label="status-checklist" id="status-checklist">
+                      <option selected>Selecione...</option>
+                      <option value="1">Aprovado</option>
+                      <option value="2">Reprovado</option>
+                      <option value="3">Aguardando</option>
+                    </select>
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir data de validade -->
+                    <label for="data-validade" class="form-label">Data de Validade:</label>
+                    <input type="date" id="data-validade" class="form-control" aria-label="data-validade">
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir programacao -->
+                    <label for="programacao" class="form-label">Programação:</label>
+                    <input type="text" id="programacao" class="form-control" placeholder="Programação" aria-label="programacao">
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir problema-equipamento -->
+                    <label for="problema-equipamento" class="form-label">Problema do Equipamento:</label>
+                    <input type="text" id="problema-equipamento" class="form-control" placeholder="Problema do Equipamento" aria-label="problema-equipamento">
+                  </div>
+                  <div class="col-2 mb-3">
+                    <!-- Campo para exibir data de ínicio do problema -->
+                      <label for="data-inicio-problema" class="form-label">Data de Ínicio do Problema:</label>
+                      <input type="date" id="data-inicio-problema" class="form-control" aria-label="data-inicio-problema">
+                  </div>
+                  <div class="col-2 mb-3">
+                    <!-- Campo para exibir observação -->
+                      <label for="observacao" class="form-label">Observação:</label>
+                      <input type="text" id="observacao" class="form-control" placeholder="Observação" aria-label="observacao">
+                    </div>                  
+                </div>
+
+                <!--Formulario Editar-->
+                <div class="row collapse mb-3 mt-3" id="editar-tarefa">
+                  <div class="col-2 mb-3">
+                    <!-- Campo para exibir data de inclusao (apenas leitura) -->
+                    <label for="data-inclusao" class="form-label">Data de Inclusão:</label>
+                    <input type="date" id="data-inclusao" class="form-control" aria-label="data-inclusao" disabled readonly>
+                </div>                  
+               <div class="col-2 mb-3">
+                        <!-- Campo para exibir nome da transportadora -->
+                        <label for="nome-transportadora" class="form-label">Transportadora:</label>
+                        <input type="text" id="nome-transportadora" class="form-control" placeholder="Nome da Transportadora" aria-label="nome-transportadora">
+                    </div>
+
+                    <div class="col-2 mb-3">
+                      <!-- Campo para exibir nome do Gestor -->
+                      <label for="nome-gestor" class="form-label">Gestor:</label>
+                      <input type="text" id="nome-gestor" class="form-control" placeholder="Nome do Gestor" aria-label="nome-gestor">
+                  </div>
+
+                    <div class="col-2 mb-3">
+                        <!-- Campo para exibir placa do veiculo -->
+                        <label for="placa-veiculo" class="form-label">Placa do Veículo:</label>
+                        <input type="text" id="placa-veiculo" class="form-control" placeholder="Placa do Veículo" aria-label="placa-veiculo">
+                    </div>
+                    <div class="col-2 mb-3">
+                        <!-- Campo para exibir equipamento -->
+                        <label for="equipamento" class="form-label">Equipamento:</label>
+                        <input type="text" id="equipamento" class="form-control" placeholder="Equipamento" aria-label="equipamento">
+                    </div>
+                    <div class="col-2 mb-3">
+                      <!-- Campo para exibir tipo de vinculo -->
+                      <label for="tipo-vinculo" class="form-label">Vínculo:</label>
+                      <select class="form-select form-control" aria-label="tipo-vinculo" id="tipo-vinculo">
+                        <option selected>Selecione...</option>
+                        <option value="1">Agregado</option>
+                        <option value="2">Fixo</option>
+                        <option value="3">Terceiro</option>
+                      </select>
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir status da checklist -->
+                    <label for="status-checklist" class="form-label">Status da Checklist:</label>
+                    <select class="form-select form-control" aria-label="status-checklist" id="status-checklist">
+                      <option selected>Selecione...</option>
+                      <option value="1">Aprovado</option>
+                      <option value="2">Reprovado</option>
+                      <option value="3">Aguardando</option>
+                    </select>
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir data de validade -->
+                    <label for="data-validade" class="form-label">Data de Validade:</label>
+                    <input type="date" id="data-validade" class="form-control" aria-label="data-validade">
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir programacao -->
+                    <label for="programacao" class="form-label">Programação:</label>
+                    <input type="text" id="programacao" class="form-control" placeholder="Programação" aria-label="programacao">
+                  </div>
+                  <div class="col-2 mb-3">
+                  <!-- Campo para exibir problema-equipamento -->
+                    <label for="problema-equipamento" class="form-label">Problema do Equipamento:</label>
+                    <input type="text" id="problema-equipamento" class="form-control" placeholder="Problema do Equipamento" aria-label="problema-equipamento">
+                  </div>
+                  <div class="col-2 mb-3">
+                    <!-- Campo para exibir data de ínicio do problema -->
+                      <label for="data-inicio-problema" class="form-label">Data de Ínicio do Problema:</label>
+                      <input type="date" id="data-inicio-problema" class="form-control" aria-label="data-inicio-problema">
+                  </div>
+                  <div class="col-2 mb-3">
+                    <!-- Campo para exibir observação -->
+                      <label for="observacao" class="form-label">Observação:</label>
+                      <input type="text" id="observacao" class="form-control" placeholder="Observação" aria-label="observacao">
+                    </div>              
+                    <div class="col-2 mb-3">
+                      <!-- Campo para exibir usuario (apenas leitura) -->
+                      <label for="usuario" class="form-label">Usuario:</label>
+                      <input type="text" id="usuario" class="form-control" placeholder="Usuário"  aria-label="usuario" disabled readonly>
+                  </div>                          
+                </div>
+
+                <hr>
+
+                <!--DATATABLE-->
+                <div class="col-12">
+                <div class="data_table">
+                <table id="datatable" class="table">
+                    <thead>
+                    <tr>
+                    <th>#</th>
+                    <th>Transportadora</th>
+                    <th>Gestor</th>
+                    <th>Placa</th>
+                    <th>Equipamento</th>
+                    <th>Vínculo</th>
+                    <th>Status CL</th>
+                    <th>Validade</th>
+                    <th>Programação</th>
+                    <th>Problema do Equipamento</th>
+                    <th>Inicio do Problema</th>
+                    <th>Observação</th>
+                    <th>Usuario</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center align-middle">
+                            <input class="form-check-input" type="checkbox" value="" id="select-consulta">
+                            </td>
+                            <td>Satel</td>
+                            <td>José</td>
+                            <td>BRA4444</td>
+                            <td>AUTOTRAC</td>
+                            <td>FIXO</td>
+                            <td>APROVADO</td>
+                            <td>03/03/2024</td>
+                            <td></td>
+                            <td>DEPÓSITO DE BLOQUEIO</td>
+                            <td>29/02/2024</td>
+                            <td>RODANDO MESMO BLOQUEADO</td>
+                            <td>Operador01</td>
+                            </tr>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!------------------------+Footer+------------------------>
+    <footer></footer>
+
+    <!--JS-->
+    <!--CDN BOOTSTRAP JS-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--JQUERY CDN-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!--CDN DATATABLE-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.1.8/b-3.2.0/b-html5-3.2.0/b-print-3.2.0/datatables.min.js"></script>
+
+    <!--MY JS-->
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/datatable.js"></script>
+
+    <script>
+   // Selecionando os botões e formulários
+        const btnInserir = document.querySelector('#btn-inserir-tarefa');
+        const btnEditar = document.querySelector('#btn-editar-tarefa');
+        const inserirTarefa = document.querySelector('#inserir-tarefa');
+        const editarTarefa = document.querySelector('#editar-tarefa');
+        const acoesEditar = document.querySelector('#acoes-inserir');
+        const acoesInserir = document.querySelector('#acoes-editar');
+
+        // Função para controlar a exibição do formulário Inserir
+        btnInserir.addEventListener('click', () => {
+            if (!btnInserir.classList.contains('collapsed')) {
+
+                acoesInserir.classList.remove('d-none');
+
+                if(btnEditar.classList.contains('btn-outline-warning')){
+                //remover estilo do botao editar, caso usuario clique no botao inserir
+                  btnEditar.classList.remove('btn-outline-warning');
+                  btnEditar.classList.add('btn-warning');
+                }
+
+
+                //alterar estilo do botao inserir para ativado
+                btnInserir.classList.remove('btn-success');
+                btnInserir.classList.add('btn-outline-success');
+
+
+              if(editarTarefa.classList.contains('show')){
+                 editarTarefa.classList.remove('show');
+              }
+
+              if(!acoesEditar.classList.contains('d-none')){
+                acoesEditar.classList.add('d-none');
+              }
+            }else if(btnInserir.classList.contains('collapsed')){
+                acoesInserir.classList.add('d-none');
+
+                if(btnInserir.classList.contains('btn-outline-success')){
+                  
+                  //alterar estilo do botao inserir para desativado
+                  btnInserir.classList.remove('btn-outline-success');
+                  btnInserir.classList.add('btn-success');
+                }
+            }
+        });
+
+
+        // Função para controlar a exibição do formulário Editar
+        btnEditar.addEventListener('click', () => {
+            if (!btnEditar.classList.contains('collapsed')) {
+
+                acoesEditar.classList.remove('d-none');
+
+                //remover estilo do botao inserir, caso usuario clique no botao editar
+                if(btnInserir.classList.contains('btn-outline-success')){
+                  btnInserir.classList.remove('btn-outline-success');
+                  btnInserir.classList.add('btn-success');
+                }
+
+                //alterar estilo do botao editar para ativado
+                btnEditar.classList.remove('btn-warning');
+                btnEditar.classList.add('btn-outline-warning');
+
+              if(inserirTarefa.classList.contains('show')){
+                 inserirTarefa.classList.remove('show');
+              }
+
+              if(!acoesInserir.classList.contains('d-none')){
+                acoesInserir.classList.add('d-none');
+              }
+            }else if(btnEditar.classList.contains('collapsed')){
+                acoesEditar.classList.add('d-none');
+
+                if(btnEditar.classList.contains('btn-outline-warning')){
+                  //alterar estilo do botao editar para desativado
+                  btnEditar.classList.remove('btn-outline-warning');
+                  btnEditar.classList.add('btn-warning');
+                }
+
+            }
+            
+        });
+
+        //CheckBox
+            // Obter todos os checkboxes
+            const checkboxes = document.querySelectorAll('#select-consulta');
+
+            // Adicionar um ouvinte de evento para cada checkbox
+            checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', function () {
+            // Quando um checkbox é marcado, desmarque os outros
+            checkboxes.forEach((otherCheckbox) => {
+                if (otherCheckbox !== this) {
+                    otherCheckbox.checked = false; // Desmarcar outros checkboxes
+                    // Remover a classe de destaque de todas as linhas
+                    otherCheckbox.closest('tr').classList.remove('table-primary');
+                }
+            });
+
+            // Encontrar a linha pai do checkbox (tr)
+            const row = this.closest('tr');
+
+            // Adicionar ou remover a classe 'table-primary' dependendo do estado do checkbox
+            if (this.checked) {
+            row.classList.add('table-primary');
+            } else {
+            row.classList.remove('table-primary');
+            }
+            });
+            });
+
+            
+
+    </script>
+  </body>
+</html>
