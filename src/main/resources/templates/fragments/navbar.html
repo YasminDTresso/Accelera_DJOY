@@ -1,0 +1,100 @@
+<!-- templates/fragments/navbar.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <!-- Definição do fragmento com o nome "navbar" -->
+    <div th:fragment="navbar">
+      <nav class="navbar navbar-expand-lg py-4 py-lg-0 shadow">
+        <div class="container px-4">
+          <!-- Logo -->
+          <div class="my-logo d-flex align-items-center">
+            <i class="uil uil-truck"></i>
+            <span class="fs-2">Accelera</span>
+          </div>
+          <!-- Botão para Abrir/Fechar o modal (sidebar) na visão mobile -->
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#nav-top-sidebar"
+            aria-controls="nav-top-sidebar"
+          >
+            <i class="uil uil-bars"></i>
+          </button>
+          <div
+            class="offcanvas offcanvas-start"
+            tabindex="-1"
+            id="nav-top-sidebar"
+            aria-labelledby="nav-top-sidebarLabel"
+          >
+            <!-- Botão para Abrir/Fechar o modal (sidebar) na visão mobile -->
+            <button
+              class="navbar-toggler border-0"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#nav-top-sidebar"
+              aria-controls="nav-top-sidebar"
+            >
+              <div class="d-flex justify-content-between p-3">
+                <i class="uil uil-truck my-logo"></i>
+                <i class="uil uil-angle-right-b"></i>
+              </div>
+            </button>
+            <!-- Links da Navbar -->
+            <ul class="navbar-nav ms-lg-auto p-4 p-lg-0">
+              <!-- Espaço usuário com dropdown -->
+              <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown d-flex align-items-center">
+                <img
+                  class="user-img me-sm-2"
+                  alt=""
+                  src="/assets/images/user.svg"
+                />
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span>Usuario</span>
+                </a>
+                <ul
+                  class="dropdown-menu shadow"
+                  style="position: absolute; margin: 0px"
+                >
+                  <li>
+                    <a
+                      class="dropdown-item d-flex justify-content-center"
+                      href="meu-perfil-configuracoes.html"
+                    >
+                      <i
+                        class="uil uil-setting"
+                        style="margin-right: 0.6rem"
+                      ></i>
+                      <span>Configurações</span>
+                    </a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item d-flex justify-content-center"
+                      href="#"
+                    >
+                      <i
+                        class="uil uil-sign-out-alt"
+                        style="margin-right: 0.6rem"
+                      ></i>
+                      <span>Sair</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </body>
+</html>

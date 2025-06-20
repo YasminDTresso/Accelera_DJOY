@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ViewController {
 
-    @GetMapping("/auth/view-login")
+    @GetMapping("/auth/login")
     public String login() {
         return "login"; // vai carregar templates/login.html
     }

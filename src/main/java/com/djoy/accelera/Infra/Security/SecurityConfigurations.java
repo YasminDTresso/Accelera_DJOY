@@ -37,7 +37,7 @@ public class SecurityConfigurations {
                 .requestMatchers(HttpMethod.POST,"/auth/cadastrar-usuario").permitAll()
                 .requestMatchers(
                     HttpMethod.GET,
-                    "/auth/view-login", "/css/**", "/js/**", "/images/**", "/assets/**", "/home", "/transportadora/cadastro-view"
+                    "/auth/login", "/css/**", "/js/**", "/images/**", "/assets/**", "/home", "/transportadora/cadastro"
                 ).permitAll()
               .requestMatchers(HttpMethod.POST, "/pessoa").hasRole("ADMINISTRADOR")
               //O resto dos metodos pode ser requisitado por qualquer usuário autenticado
