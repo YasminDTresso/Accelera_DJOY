@@ -14,8 +14,6 @@
     select * from log_consultas
   go
 
-
-
   select * from pessoas
   go
 
