@@ -16,9 +16,11 @@ import com.djoy.accelera.DTO.EditarAgendaDTO;
 import com.djoy.accelera.DTO.InserirAgendaDTO;
 import com.djoy.accelera.Entity.AgendaEntity;
 import com.djoy.accelera.Entity.Enum.statusRota;
+import com.djoy.accelera.Entity.Projection.AgendaDetalhadaProjection;
 import com.djoy.accelera.Entity.UsuarioEntity;
 import com.djoy.accelera.Repository.AgendaRepository;
 import com.djoy.accelera.Repository.UsuarioRepository;
+import com.djoy.accelera.Repository.VwDetalhesAgendaRepository;
 import com.djoy.accelera.Service.AgendaService;
 import com.djoy.accelera.Service.UsuarioService;
 
@@ -42,6 +44,9 @@ public class AgendaController {
 
     @Autowired
     private final UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private VwDetalhesAgendaRepository detalhesAgendaRepository;
 
     /*================Listar Consultas Ativas================*/
     @GetMapping
@@ -103,5 +108,16 @@ public class AgendaController {
 
         return ResponseEntity.ok(agendaExcluida);
     
+    }
+
+    /*================VIEW================*/
+    @GetMapping("/detalhes")
+    public List<AgendaDetalhadaProjection> getDetalhes() {
+        return detalhesAgendaRepository.buscarTodosDetalhes();
+    }
+
+    @GetMapping("/detalhes/rota/{rota}")
+    public List<AgendaDetalhadaProjection> getDetalhesPorRota(@PathVariable String rota) {
+        return detalhesAgendaRepository.buscarPorRotaAgenda(rota);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.djoy.accelera.Entity.CondutorEntity;
+import com.djoy.accelera.Entity.CondutorTransportadoraEntity;
 import com.djoy.accelera.Entity.ConsultaEntity;
 import com.djoy.accelera.Entity.Enum.statusEtapa;
 import com.djoy.accelera.Entity.Enum.tipoVinculo;
@@ -32,6 +33,11 @@ public class ConsultaService {
     private EntityManager entityManager;
 
     private final ConsultaRepository consultaRepository;
+
+    /*====Listar Todos===*/
+    public List<ConsultaEntity> listarTodos(){
+        return consultaRepository.findAll();
+    }
 
     /*====Incluir===*/
     @Transactional
@@ -122,11 +128,6 @@ public class ConsultaService {
         }
 
     }     
-
-    /*====Listar Todos===*/
-    public List<ConsultaEntity> listarTodos(){
-        return consultaRepository.findAll();
-    }
 
     /*====Deletar===*/
     public ConsultaEntity excluir(Integer id, UsuarioEntity usuarioAlteracao){

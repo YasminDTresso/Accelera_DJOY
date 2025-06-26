@@ -77,7 +77,7 @@ go
 */
 
 create or alter procedure sp_criarPessoaJuridica(
-	@v_cnpj char(11),
+	@v_cnpj char(14),
 	@v_dataNascimento date,
 	@v_telefone varchar(25),
 	@v_nome varchar(150),
@@ -108,7 +108,7 @@ go
 */
 
 create or alter procedure sp_editarPessoaJuridica(
-	@v_cnpj char(11),
+	@v_cnpj char(14),
 	@v_dataNascimento date = null,
 	@v_telefone varchar(25) = null,
 	@v_nome varchar(150) = null,
@@ -547,3 +547,107 @@ begin
 end
 go
 
+/*
+	====================
+	Criar Transportadora
+	====================
+*/
+
+create or alter procedure sp_criarTransportadora(
+	@v_cnpj char(14),
+	@v_dataNascimento date,
+	@v_telefone varchar(25),
+	@v_nome varchar(150),
+	@v_nomeFantasia varchar(150),
+	@v_email varchar(255), 
+	@v_tipoServico varchar(255), 
+	@v_tipoVinculo varchar(255)
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+
+	declare @v_idPessoaJuridica int
+
+	--Atribuindo o id a partir do cnpj fornecido
+	select @v_idPessoaJuridica = id
+	from pessoas_juridicas
+	where cnpj= @v_cnpj
+
+	--Verificando se a pessoa referente ao cnpj fornecido existe
+	if @v_idPessoaJuridica is null
+		begin
+			--Se não existir, cadastrar pessoa conforme os dados
+			exec sp_criarPessoaJuridica @v_cnpj, @v_dataNascimento, @v_telefone, @v_nome, @v_nomeFantasia, @v_email
+			
+			select @v_idPessoaJuridica = id
+			from pessoas_juridicas
+			where cnpj = @v_cnpj
+
+		end
+
+        -- Validação final
+        if @v_idPessoaJuridica IS NULL
+        begin
+            raiserror('Falha ao recuperar o ID da pessoa jurídica após tentativa de criação.', 16, 1);
+            rollback;
+            return;
+        end
+
+        -- Evita duplicidade
+        if NOT EXISTS (
+            select 1 from transportadoras where id = @v_idPessoaJuridica
+        )
+        begin
+            insert into transportadoras (id, tipo_servico, tipo_vinculo)
+            values (@v_idPessoaJuridica, @v_tipoServico, @v_tipoVinculo);
+        end
+
+	COMMIT
+end
+GO
+
+/*
+	====================
+	Editar transportadora
+	====================
+*/
+
+create or alter procedure sp_editarTransportadora(
+	@v_cnpj char(14),
+	@v_dataNascimento date,
+	@v_telefone varchar(25),
+	@v_nome varchar(150),
+	@v_nomeFantasia varchar(150),
+	@v_email varchar(255), 
+	@v_tipoServico varchar(255), 
+	@v_tipoVinculo varchar(255)
+)
+as
+begin
+	BEGIN TRANSACTION --Para que seja executado no SpringBoot
+
+	declare @v_idPessoaJuridica int
+
+	--Atribuindo o id a partir do cnpj fornecido
+	select @v_idPessoaJuridica = id
+	from pessoas_juridicas
+	where cnpj= @v_cnpj
+
+	if @v_idPessoaJuridica is not null
+	begin
+
+		--Alterando pessoaJuridica
+		exec sp_editarPessoaJuridica @v_cnpj, @v_dataNascimento, @v_telefone, @v_nome, @v_nomeFantasia,	@v_email
+
+		--Alterando transportadora
+		update transportadoras set tipo_servico = ISNULL(@v_tipoServico, tipo_servico), tipo_vinculo = ISNULL(@v_tipoVinculo, tipo_vinculo)
+								where id = @v_idPessoaJuridica
+	end
+	else
+	begin
+		PRINT 'Transportadora não existe'
+	end
+	COMMIT
+end
+GO

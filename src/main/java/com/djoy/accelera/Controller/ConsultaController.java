@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.djoy.accelera.DTO.EditarConsultaDTO;
 import com.djoy.accelera.DTO.InserirConsultaDTO;
+import com.djoy.accelera.Entity.CondutorTransportadoraEntity;
 import com.djoy.accelera.Entity.ConsultaEntity;
 import com.djoy.accelera.Entity.Enum.statusEtapa;
 
@@ -46,6 +47,13 @@ public class ConsultaController {
     @Autowired
     private final UsuarioRepository usuarioRepository;
 
+
+    /*================Listar Todos================*/
+    @GetMapping
+    public ResponseEntity<List<ConsultaEntity>> listarTodos(){
+    List<ConsultaEntity> lista = consultaService.listarTodos();
+    return ResponseEntity.ok().body(lista);
+    }
 
     /*================Incluir================*/
     @PostMapping("/nova-consulta")

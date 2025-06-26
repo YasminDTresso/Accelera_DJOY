@@ -23,7 +23,8 @@ insert into pessoas(data_nascimento,email,nome,telefone)
 go
 
 select * from pessoas
-
+EXEC sp_criarTransportadora 12345678000199, '2015-04-20', '1140028922', 'Transportadora Brasil Forte', 'Brasil Forte', 'contato@brasilforte.com', 'Transporte rodoviário de cargas', 'AGREGADO'
+GO
 /*
 	===============================
 		   Pessoas Juridicas
@@ -33,6 +34,15 @@ insert into pessoas_juridicas(id,cnpj,nome_fantasia)
 	   values				 (2, '00000000000000', 'Transportadora Lion')
 go
 
+INSERT INTO veiculos (modelo, placa, placa_carreta, chassi, cor, proprietario_id)
+VALUES ('Volvo FH 540', 'ABC1D23', 'XYZ9K88', '9BWZZZ377VT004251', 'Branco', 1);
+go
+
+
+INSERT INTO pessoas (nome, data_nascimento, email, telefone, registro_ativo)
+VALUES ('Amanda Lima', '1990-08-15', 'amanda.lima@example.com', '11988887777', 1);
+
+GO
 /*
 	===============================
 		   Pessoas Físicas
