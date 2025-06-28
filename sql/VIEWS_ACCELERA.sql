@@ -24,13 +24,13 @@ select
     t.tipo_vinculo as TipoVinculoTransportadora
 from
     agendas as a
-LEFT JOIN
+JOIN
     veiculos as v ON a.veiculo_id = v.id
-LEFT JOIN
+JOIN
     condutores as c ON a.condutor_id = c.id
-LEFT JOIN
+JOIN
     pessoas as p_condutor ON c.id = p_condutor.id -- Assumindo que condutor.id referencia pessoas.id
-LEFT JOIN
+JOIN
     transportadoras as t ON a.transportadora_id = t.id;
 go
 
