@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar | Transportadora</title>
+
+    <!--CDN BOOTSTRAP-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!--CDN UNICONS-->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
+    />
+
+  <!-- Estilo local -->
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+
+    <style>
+
+
+    </style>
+  </head>
+  <body>
+    <!------------------------+Header+------------------------>
+    <header></header>
+
+    <!--------------------------+Navbar+-------------------------->
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <!------------------------+Cotéudo do site+------------------------>
+
+    <!--Container que realizará a organização/divisão entre a sidebar e o main-->
+    <div class="wrapper">
+          <!------------------------+SIDEBAR+------------------------>
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+
+
+
+      <!------------------------+Main+------------------------>
+      <main class="my-main p-3 d-flex">
+
+
+            <!--Alinhando contéudo para o centro-->
+            <div class="container-fluid">
+
+            <!-- Título da página -->
+             <div class="row w-100">
+                <div class="col">
+                    <h1>Edição de Transportadora</h1>
+                </div>
+                <hr>
+            </div>
+
+            <!-- Formulário de edição -->
+             <div class="row w-100" style="min-height: 95%; align-items: center;">
+                <form id="editar-transportadora-form" class="mx-auto row g-3" method="post">
+                <!-- Campo de CNPJ -->
+                <div class="col-md-6">
+                <label for="cnpj" class="form-label">CNPJ</label>
+                <input type="text" id="cnpj" name="cnpj" class="form-control" placeholder="Digite o CNPJ" required>
+                </div>
+
+                <!-- Campo oculto para armazenar o ID (apenas para edição) -->
+                <input type="hidden" id="transportadoraId" name="transportadoraId" value="">
+
+                <!-- Campo: Data de Nascimento -->
+                <div class="col-md-6">
+                <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+                <input type="date" id="dataNascimento" name="dataNascimento" class="form-control" required>
+                </div>
+                <!-- Campo: Telefone -->
+                <div class="col-md-6">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="Digite o telefone" required>
+                </div>
+                <!-- Campo: Nome -->
+                <div class="col-md-6">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite o nome" required>
+                </div>
+                <!-- Campo: Nome Fantasia -->
+                <div class="col-md-6">
+                <label for="nomeFantasia" class="form-label">Nome Fantasia</label>
+                <input type="text" id="nomeFantasia" name="nomeFantasia" class="form-control" placeholder="Digite o nome fantasia" required>
+                </div>
+                <!-- Campo: Email -->
+                <div class="col-md-6">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Digite o e-mail" required>
+                </div>
+                <!-- Campo: Tipo de Serviço -->
+                <div class="col-md-6">
+                <label for="tipoServico" class="form-label">Tipo de Serviço</label>
+                <input type="text" id="tipoServico" name="tipoServico" class="form-control" placeholder="Digite o tipo de serviço" required>
+                </div>
+                <!-- Campo: Tipo de Vínculo -->
+                <div class="col-md-6">
+                  <label for="tipoVinculo" class="form-label">Tipo de Vínculo</label>
+                  <select id="tipoVinculo" name="tipoVinculo" class="form-select" required>
+                    <option value="">Selecione...</option>
+                    <option value="FIXO">FIXO</option>
+                    <option value="AGREGADO">AGREGADO</option>
+                    <option value="TERCEIRO">TERCEIRO</option>
+                  </select>
+                </div>
+                <!-- Botões de Ação -->
+                <div class="col-12 d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+                <button type="submit" class="btn btn-success">Inserir</button>
+                <button type="reset" class="btn btn-danger">Cancelar</button>
+                </div>
+                </form>
+
+             </div>    
+
+            </div>
+
+      </main>
+    </div>
+
+    <!------------------------+Footer+------------------------>
+    <footer></footer>
+
+    <!--JS-->
+    <!--CDN BOOTSTRAP JS-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script th:src="@{/js/axios-config.js}"></script>
+    <!--My script -->
+    <script th:src="@{/js/script.js}"></script>
+
+      <script>
+            // Ao sair do campo CNPJ, busca a transportadora correspondente
+            document.getElementById('cnpj').addEventListener('blur', function() {
+            const cnpjValue = this.value;
+            if (cnpjValue) {
+                axios.get('/transportadora/buscar/' + cnpjValue)
+                .then(response => {
+                    if (response.data && response.data.id) {
+                    // Preenche o campo hidden com o id da transportadora
+                    document.getElementById('transportadoraId').value = response.data.id;
+                    
+                    // Preenche os demais campos com os dados atualizados da transportadora
+                    document.getElementById('cnpj').value = response.data.cnpj;
+                    document.getElementById('dataNascimento').value = response.data.dataNascimento;
+                    document.getElementById('telefone').value = response.data.telefone;
+                    document.getElementById('nome').value = response.data.nome;
+                    document.getElementById('nomeFantasia').value = response.data.nomeFantasia;
+                    document.getElementById('email').value = response.data.email;
+                    document.getElementById('tipoServico').value = response.data.tipoServico;
+                    document.getElementById('tipoVinculo').value = response.data.tipoVinculo;
+
+                    console.log('Transportadora encontrada. ID:', response.data.id);
+                    } else {
+                    console.log('Transportadora não encontrada para este CNPJ.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar transportadora pelo CNPJ:', error);
+                });
+            }
+            });
+
+            document.getElementById('editar-transportadora-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Previne o envio tradicional
+
+            // Obtém o ID da transportadora a partir do campo oculto
+            const transportadoraId = document.getElementById('transportadoraId').value;
+
+            // Monta o payload com os dados atualizados do formulário
+            const payload = {
+            cnpj: document.getElementById('cnpj').value,
+            dataNascimento: document.getElementById('dataNascimento').value,
+            telefone: document.getElementById('telefone').value,
+            nome: document.getElementById('nome').value,
+            nomeFantasia: document.getElementById('nomeFantasia').value,
+            email: document.getElementById('email').value,
+            tipoServico: document.getElementById('tipoServico').value,
+            tipoVinculo: document.getElementById('tipoVinculo').value
+            };
+
+            console.log("Payload para edição:", payload);
+            
+            // Envia a requisição PUT para o endpoint de edição
+            axios.put("/transportadora/" + transportadoraId, payload)
+            .then(response => {
+                console.log("Resposta do servidor (edição):", response.data);
+                alert("Transportadora atualizada com sucesso!");
+                // Opcional: redirecione ou atualize a interface conforme necessário.
+            })
+            .catch(error => {
+                console.error("Erro ao editar transportadora:", error);
+                alert("Erro durante a atualização. Verifique os dados e tente novamente.");
+            });
+
+        });
+    </script>
+  </body>
+</html>

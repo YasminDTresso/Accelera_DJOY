@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Home - Usuário Autenticado</title>
+  <!-- Seu CSS customizado -->
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+  <div style="text-align: center; padding-top: 50px;">
+    <h1>Bem-vindo!</h1>
+    <p>Token recebido:</p>
+    <!-- Exibiremos o token aqui -->
+    <pre id="token-output" style="background: #f4f4f4; padding: 10px; width: fit-content; margin: auto;">Carregando token...</pre>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script th:src="@{/js/axios-config.js}"></script>
+<!-- My script -->
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
