@@ -7,20 +7,17 @@ public interface AgendaDetalhadaProjection {
     Integer getIdAgenda();
     LocalDateTime getDataInclusaoAgenda();
     LocalDateTime getDataAlteracaoAgenda();
+    String getSlaDiasAtendimento();    
     String getRotaAgenda();
     String getObservacaoAgenda();
     String getSinalBrrisk();
     String getSinalTcell();
     String getSm();
 
-    String getModeloVeiculo();
-    String getPlacaVeiculo();
-    String getCorVeiculo();
-
-    String getCnhCondutor();
+    String getStatusChecagemSensor();    
     String getNomeCondutor();
+    String getStatusConsultas();         
 
-    String getTipoServicoTransportadora();
-    String getTipoVinculoTransportadora();
+    String getPlacaVeiculo();         
 
 }

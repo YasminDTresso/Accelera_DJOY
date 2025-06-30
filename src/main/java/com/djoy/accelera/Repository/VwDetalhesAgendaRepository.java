@@ -13,9 +13,9 @@ import com.djoy.accelera.Entity.Projection.AgendaDetalhadaProjection;
 @Repository
 public interface  VwDetalhesAgendaRepository extends JpaRepository<AgendaEntity, Integer>{
 
-    @Query(value = "SELECT * FROM vw_DetalhesAgendasComVeiculos", nativeQuery = true)
+    @Query(value = "SELECT * FROM vw_DetalhesAgendas", nativeQuery = true)
     List<AgendaDetalhadaProjection> buscarTodosDetalhes();
 
-    @Query(value = "SELECT * FROM vw_DetalhesAgendasComVeiculos WHERE RotaAgenda = :rota", nativeQuery = true)
+    @Query(value = "SELECT * FROM vw_DetalhesAgendas WHERE RotaAgenda = :rota", nativeQuery = true)
     List<AgendaDetalhadaProjection> buscarPorRotaAgenda(@Param("rota") String rotaAgenda);
 }
