@@ -7,7 +7,7 @@
       <div class="d-flex">
         <!-- +Logo+ -->
         <div class="sidebar-logo">
-          <a href="#">Bem vindo, Usuario</a>
+          <a href="#">Bem vindo(a). </a>
         </div>
 
         <!-- Botão para exibir/esconder a sidebar -->
@@ -73,7 +73,7 @@
             <!-- Link Nivel 01: Transportadora -->
             <li class="sidebar-item">
               <a
-                href="cadastro_transportadora.html"
+                th:href="@{/view/transportadora/cadastro}"
                 class="sidebar-link"
               >
                 <div class="dropdown-link">Transportadora</div>
@@ -170,13 +170,13 @@
                   </a>
                 </li>
                 <li class="sidebar-item">
-                  <a href="trabalhos_pendentes.html" class="sidebar-link">
-                    <div class="dropdown-link-01">Trabalhos Pendentes</div>
+                  <a th:href="@{/view/agenda}" class="sidebar-link">
+                    <div class="dropdown-link-01">Agendas</div>
                   </a>
                 </li>
                 <li class="sidebar-item">
-                  <a href="checklist.html" class="sidebar-link">
-                    <div class="dropdown-link-01">CheckList</div>
+                  <a th:href="@{/view/checagem-sensor}" class="sidebar-link">
+                    <div class="dropdown-link-01">Checagem de Sensor</div>
                   </a>
                 </li>
               </ul>
@@ -195,7 +195,7 @@
 
       <!-- Sidebar Footer -->
       <div class="sidebar-footer">
-        <a href="#" class="sidebar-link">
+        <a th:href="@{/view/auth/login}" class="sidebar-link">
           <span class="text-uppercase">Sair</span>
           <i class="uil uil-sign-out-alt"></i>
         </a>
